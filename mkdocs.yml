@@ -1,0 +1,12 @@
+
+site_name: Django PeeringDB
+site_url: https://beta.peeringdb.com/
+site_description: Django PeeringDB module
+
+repo_url: https://github.com/peeringdb/django-peeringdb
+
+pages:
+  - Home: 'index.md'
+
+markdown_extensions: [abbr,def_list,footnotes,tables,admonition,nl2br,toc]
+
