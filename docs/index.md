@@ -1,6 +1,16 @@
 
 # Django PeeringDB
 
+## Installation
+
+    pip install django-peeringdb
+
+Then add `django_peeringdb` to INSTALLED_APPS
+
+## Models
+Both Abstract and Concrete models are defined, if you want to extend the models in your own application, you'd want to add `PEERINGDB_ABSTRACT_ONLY=True` to your settings file. Please be sure to add the required `ForeignKey` columns to your models, check `models/concrete.py` for the needed relationships.
+
+
 ## Settings
 
 #### PEERINGDB_TABLE_PREFIX
@@ -30,4 +40,11 @@ Strip timezone from datetime fields, useful for databases that don't support tim
 #### PEERINGDB_SYNC_ONLY
 default `[]`
 Only sync these tables
+
+## Commands
+
+#### pdb_sync
+    python manage.py pdb_sync
+
+Will sync the full peeringdb database to your models, any subsequent call will only sync records that have changed.
 
