@@ -1,3 +1,5 @@
 # django-peeringb
 
-Django PeeringDB models
+PeeringDB models and local synchronization for Django
+
+See the docs at http://peeringdb.github.io/django-peeringdb/
