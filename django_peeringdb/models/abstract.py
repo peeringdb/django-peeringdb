@@ -129,7 +129,7 @@ class NetworkBase(HandleRefModel):
     class Meta:
         abstract = True
         db_table = '%snetwork' % settings.TABLE_PREFIX;
-        verbose_name_plural = "Facilities"
+        verbose_name_plural = "Networks"
 
     class HandleRef:
         tag = 'net'
