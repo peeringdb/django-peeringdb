@@ -1,4 +1,4 @@
-include LICENSE
-recursive-include django_peeringdb *.html *.png *.gif *js *.css *jpg *jpeg *svg *py
-include facsimile/requirements.txt
+include LICENSE.txt
+recursive-include django_peeringdb *.py
+recursive-include facsimile *.txt
 include facsimile/VERSION
