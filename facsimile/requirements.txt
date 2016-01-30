@@ -1,4 +1,4 @@
-django>=1.5.1
+django==1.8.5
 django_countries>=0.1.0
 django_handleref==0.1.4
 django_inet>=0.1.1
