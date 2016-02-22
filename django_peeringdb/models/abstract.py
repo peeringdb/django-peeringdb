@@ -68,6 +68,7 @@ class FacilityBase(HandleRefModel, AddressModel):
 
     class HandleRef:
         tag = 'fac'
+        delete_cascade = ["ixfac_set", "netfac_set"]
 
     def __unicode__(self):
         return self.name
@@ -201,7 +202,7 @@ class IXLanBase(HandleRefModel):
 
     class HandleRef:
         tag = 'ixlan'
-        delete_cascade = ["ixpfx_set"]
+        delete_cascade = ["ixpfx_set", "netixlan_set"]
 
 
 class IXLanPrefixBase(HandleRefModel):

@@ -52,7 +52,7 @@ class InternetExchange(InternetExchangeBase):
 @expose_model
 class InternetExchangeFacility(InternetExchangeFacilityBase):
     ix = models.ForeignKey(InternetExchange, related_name="ixfac_set")
-    fac = models.ForeignKey(Facility, default=0)
+    fac = models.ForeignKey(Facility, default=0, related_name="ixfac_set")
 
     class Meta:
         unique_together = ('ix', 'fac')
@@ -64,16 +64,16 @@ class IXLan(IXLanBase):
 
 @expose_model
 class IXLanPrefix(IXLanPrefixBase):
-    ixlan = models.ForeignKey(IXLan, default=0)
+    ixlan = models.ForeignKey(IXLan, default=0, related_name="ixpfx_set")
 
 @expose_model
 class NetworkContact(ContactBase):
-    net = models.ForeignKey(Network, default=0, related_name='poc_set')
+    net = models.ForeignKey(Network, default=0, related_name="poc_set")
 
 @expose_model
 class NetworkFacility(NetworkFacilityBase):
-    net = models.ForeignKey(Network, default=0, related_name='netfac_set')
-    fac = models.ForeignKey(Facility, default=0, related_name='netfac_set')
+    net = models.ForeignKey(Network, default=0, related_name="netfac_set")
+    fac = models.ForeignKey(Facility, default=0, related_name="netfac_set")
 
     class Meta:
         unique_together = ('net', 'fac', 'local_asn')
@@ -81,8 +81,8 @@ class NetworkFacility(NetworkFacilityBase):
 
 @expose_model
 class NetworkIXLan(NetworkIXLanBase):
-    net = models.ForeignKey(Network, default=0, related_name='netixlan_set')
-    ixlan = models.ForeignKey(IXLan, default=0)
+    net = models.ForeignKey(Network, default=0, related_name="netixlan_set")
+    ixlan = models.ForeignKey(IXLan, default=0, related_name="netixlan_set")
 
 __all__ = [m.__name__ for m in all_models]
 # other required vars
