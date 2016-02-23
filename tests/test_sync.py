@@ -20,6 +20,8 @@ class SyncTests(TestCase):
 
     def test_get_since_empty(self):
         for cls in self.cmd.get_class_list():
+            if cls.handleref.tag == "poc":
+                continue
             assert 0 == self.cmd.get_since(cls)
 
     def test_sync_all(self):
@@ -40,6 +42,8 @@ class SyncTests(TestCase):
 #            self.update_db(cls, self.get_objs(cls))
 
         for cls in self.cmd.get_class_list():
+            if cls.handleref.tag == "poc":
+                continue
             assert 0 != self.cmd.get_since(cls)
             assert 0 != cls.objects.all().count()
             print(cls.objects.all().count())
