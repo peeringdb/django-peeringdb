@@ -134,7 +134,7 @@ class NetworkBase(HandleRefModel):
 
     class HandleRef:
         tag = 'net'
-        delete_cascade = ["poc_set", "netfac_set"]
+        delete_cascade = ["poc_set", "netfac_set", "netixlan_set"]
 
     def __unicode__(self):
         return self.name
