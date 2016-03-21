@@ -5,7 +5,7 @@ from django.conf import settings
 TABLE_PREFIX = getattr(settings, 'PEERINGDB_TABLE_PREFIX', 'peeringdb_')
 ABSTRACT_ONLY = getattr(settings, 'PEERINGDB_ABSTRACT_ONLY', False)
 
-SYNC_URL = getattr(settings, 'PEERINGDB_SYNC_URL', 'https://beta.peeringdb.com/api')
+SYNC_URL = getattr(settings, 'PEERINGDB_SYNC_URL', 'https://www.peeringdb.com/api')
 SYNC_USERNAME = getattr(settings, 'PEERINGDB_SYNC_USERNAME', '')
 SYNC_PASSWORD = getattr(settings, 'PEERINGDB_SYNC_PASSWORD', '')
 

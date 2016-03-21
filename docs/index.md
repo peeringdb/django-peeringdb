@@ -22,7 +22,7 @@ default `False`
 Only load abstract models
 
 #### PEERINGDB_SYNC_URL
-default `'https://beta.peeringdb.com/api'`
+default `'https://www.peeringdb.com/api'`
 PeeringDB API endpoint URL
 
 #### PEERINGDB_SYNC_USERNAME
