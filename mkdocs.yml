@@ -1,6 +1,6 @@
 
 site_name: Django PeeringDB
-site_url: https://beta.peeringdb.com/
+site_url: https://www.peeringdb.com/
 site_description: Django PeeringDB module
 
 repo_url: https://github.com/peeringdb/django-peeringdb
