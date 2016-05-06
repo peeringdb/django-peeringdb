@@ -13,6 +13,18 @@ Both Abstract and Concrete models are defined, if you want to extend the models 
 
 ## Settings
 
+!!! danger "Required Settings"
+
+            COUNTRIES_OVERRIDE={
+               'XK': _('Kosovo'),
+            },
+
+    If you're not using _ for tranlastions, add:
+
+        _ = lambda s: s
+
+    or remove `_()`
+
 #### PEERINGDB_TABLE_PREFIX
 default `'peeringdb_'`
 Prefix all table names with this
