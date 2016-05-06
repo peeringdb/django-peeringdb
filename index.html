@@ -6,13 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Django PeeringDB module">
         
-        <link rel="canonical" href="https://beta.peeringdb.com/">
+        <link rel="canonical" href="https://www.peeringdb.com/">
         <link rel="shortcut icon" href="./img/favicon.ico">
 
 	<title>Django PeeringDB</title>
 
         <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="./css/font-awesome-4.5.0.css" rel="stylesheet">
         <link href="./css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="./css/highlight.css">
 
@@ -100,6 +100,17 @@
 <h2 id="models">Models</h2>
 <p>Both Abstract and Concrete models are defined, if you want to extend the models in your own application, you'd want to add <code>PEERINGDB_ABSTRACT_ONLY=True</code> to your settings file. Please be sure to add the required <code>ForeignKey</code> columns to your models, check <code>models/concrete.py</code> for the needed relationships.</p>
 <h2 id="settings">Settings</h2>
+<div class="admonition danger">
+<p class="admonition-title">Required Settings<pre><code>COUNTRIES_OVERRIDE={
+   'XK': _('Kosovo'),
+},
+</code></pre>
+</p>
+<p>If you're not using _ for tranlastions, add:</p>
+<pre><code>_ = lambda s: s
+</code></pre>
+<p>or remove <code>_()</code></p>
+</div>
 <h4 id="peeringdb_table_prefix">PEERINGDB_TABLE_PREFIX</h4>
 <p>default <code>'peeringdb_'</code><br />
 Prefix all table names with this</p>
@@ -107,7 +118,7 @@ Prefix all table names with this</p>
 <p>default <code>False</code><br />
 Only load abstract models</p>
 <h4 id="peeringdb_sync_url">PEERINGDB_SYNC_URL</h4>
-<p>default <code>'https://beta.peeringdb.com/api'</code><br />
+<p>default <code>'https://www.peeringdb.com/api'</code><br />
 PeeringDB API endpoint URL</p>
 <h4 id="peeringdb_sync_username">PEERINGDB_SYNC_USERNAME</h4>
 <p>default <code>''</code><br />
@@ -171,6 +182,6 @@ Only sync these tables</p>
 </html>
 
 <!--
-MkDocs version : 0.14.0
-Build Date UTC : 2015-10-21 03:54:54.745908
+MkDocs version : 0.15.3
+Build Date UTC : 2016-05-06 05:31:42.063709
 -->

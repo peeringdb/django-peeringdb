@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Django PeeringDB\n\n\nInstallation\n\n\npip install django-peeringdb\n\n\n\nThen add \ndjango_peeringdb\n to INSTALLED_APPS\n\n\nModels\n\n\nBoth Abstract and Concrete models are defined, if you want to extend the models in your own application, you'd want to add \nPEERINGDB_ABSTRACT_ONLY=True\n to your settings file. Please be sure to add the required \nForeignKey\n columns to your models, check \nmodels/concrete.py\n for the needed relationships.\n\n\nSettings\n\n\nPEERINGDB_TABLE_PREFIX\n\n\ndefault \n'peeringdb_'\n\nPrefix all table names with this\n\n\nPEERINGDB_ABSTRACT_ONLY\n\n\ndefault \nFalse\n\nOnly load abstract models\n\n\nPEERINGDB_SYNC_URL\n\n\ndefault \n'https://beta.peeringdb.com/api'\n\nPeeringDB API endpoint URL\n\n\nPEERINGDB_SYNC_USERNAME\n\n\ndefault \n''\n\nPeeringDB username\n\n\nPEERINGDB_SYNC_PASSWORD\n\n\ndefault \n''\n\nPeeringDB password\n\n\nPEERINGDB_SYNC_STRIP_TZ\n\n\ndefault \nFalse\n\nStrip timezone from datetime fields, useful for databases that don't support timezones, such as sqlite3\n\n\nPEERINGDB_SYNC_ONLY\n\n\ndefault \n[]\n\nOnly sync these tables\n\n\nCommands\n\n\npdb_sync\n\n\npython manage.py pdb_sync\n\n\n\nWill sync the full peeringdb database to your models, any subsequent call will only sync records that have changed.", 
+            "text": "Django PeeringDB\n\n\nInstallation\n\n\npip install django-peeringdb\n\n\n\nThen add \ndjango_peeringdb\n to INSTALLED_APPS\n\n\nModels\n\n\nBoth Abstract and Concrete models are defined, if you want to extend the models in your own application, you'd want to add \nPEERINGDB_ABSTRACT_ONLY=True\n to your settings file. Please be sure to add the required \nForeignKey\n columns to your models, check \nmodels/concrete.py\n for the needed relationships.\n\n\nSettings\n\n\n\n\nRequired Settings\nCOUNTRIES_OVERRIDE={\n   'XK': _('Kosovo'),\n},\n\n\n\n\n\nIf you're not using _ for tranlastions, add:\n\n\n_ = lambda s: s\n\n\n\nor remove \n_()\n\n\n\n\nPEERINGDB_TABLE_PREFIX\n\n\ndefault \n'peeringdb_'\n\nPrefix all table names with this\n\n\nPEERINGDB_ABSTRACT_ONLY\n\n\ndefault \nFalse\n\nOnly load abstract models\n\n\nPEERINGDB_SYNC_URL\n\n\ndefault \n'https://www.peeringdb.com/api'\n\nPeeringDB API endpoint URL\n\n\nPEERINGDB_SYNC_USERNAME\n\n\ndefault \n''\n\nPeeringDB username\n\n\nPEERINGDB_SYNC_PASSWORD\n\n\ndefault \n''\n\nPeeringDB password\n\n\nPEERINGDB_SYNC_STRIP_TZ\n\n\ndefault \nFalse\n\nStrip timezone from datetime fields, useful for databases that don't support timezones, such as sqlite3\n\n\nPEERINGDB_SYNC_ONLY\n\n\ndefault \n[]\n\nOnly sync these tables\n\n\nCommands\n\n\npdb_sync\n\n\npython manage.py pdb_sync\n\n\n\nWill sync the full peeringdb database to your models, any subsequent call will only sync records that have changed.", 
             "title": "Home"
         }, 
         {
@@ -22,13 +22,53 @@
         }, 
         {
             "location": "/#settings", 
-            "text": "PEERINGDB_TABLE_PREFIX  default  'peeringdb_' \nPrefix all table names with this  PEERINGDB_ABSTRACT_ONLY  default  False \nOnly load abstract models  PEERINGDB_SYNC_URL  default  'https://beta.peeringdb.com/api' \nPeeringDB API endpoint URL  PEERINGDB_SYNC_USERNAME  default  '' \nPeeringDB username  PEERINGDB_SYNC_PASSWORD  default  '' \nPeeringDB password  PEERINGDB_SYNC_STRIP_TZ  default  False \nStrip timezone from datetime fields, useful for databases that don't support timezones, such as sqlite3  PEERINGDB_SYNC_ONLY  default  [] \nOnly sync these tables", 
+            "text": "Required Settings COUNTRIES_OVERRIDE={\n   'XK': _('Kosovo'),\n},   If you're not using _ for tranlastions, add:  _ = lambda s: s  or remove  _()", 
             "title": "Settings"
         }, 
         {
+            "location": "/#peeringdb_table_prefix", 
+            "text": "default  'peeringdb_' \nPrefix all table names with this", 
+            "title": "PEERINGDB_TABLE_PREFIX"
+        }, 
+        {
+            "location": "/#peeringdb_abstract_only", 
+            "text": "default  False \nOnly load abstract models", 
+            "title": "PEERINGDB_ABSTRACT_ONLY"
+        }, 
+        {
+            "location": "/#peeringdb_sync_url", 
+            "text": "default  'https://www.peeringdb.com/api' \nPeeringDB API endpoint URL", 
+            "title": "PEERINGDB_SYNC_URL"
+        }, 
+        {
+            "location": "/#peeringdb_sync_username", 
+            "text": "default  '' \nPeeringDB username", 
+            "title": "PEERINGDB_SYNC_USERNAME"
+        }, 
+        {
+            "location": "/#peeringdb_sync_password", 
+            "text": "default  '' \nPeeringDB password", 
+            "title": "PEERINGDB_SYNC_PASSWORD"
+        }, 
+        {
+            "location": "/#peeringdb_sync_strip_tz", 
+            "text": "default  False \nStrip timezone from datetime fields, useful for databases that don't support timezones, such as sqlite3", 
+            "title": "PEERINGDB_SYNC_STRIP_TZ"
+        }, 
+        {
+            "location": "/#peeringdb_sync_only", 
+            "text": "default  [] \nOnly sync these tables", 
+            "title": "PEERINGDB_SYNC_ONLY"
+        }, 
+        {
             "location": "/#commands", 
-            "text": "pdb_sync  python manage.py pdb_sync  Will sync the full peeringdb database to your models, any subsequent call will only sync records that have changed.", 
+            "text": "", 
             "title": "Commands"
+        }, 
+        {
+            "location": "/#pdb_sync", 
+            "text": "python manage.py pdb_sync  Will sync the full peeringdb database to your models, any subsequent call will only sync records that have changed.", 
+            "title": "pdb_sync"
         }
     ]
 }
