@@ -3,6 +3,15 @@
 
 ## [Unreleased]
 ### Added
+### Fixed
+### Changed
+### Deprecated
+### Removed
+### Security
+
+
+## [0.2.2]
+### Added
 - CHANGELOG!
 - docs for adding XK country code for Kosovo 
 
@@ -11,10 +20,5 @@
 - cascade delete for relational tables
 - fixed foreign key related names
 
-### Changed
-### Deprecated
 ### Removed
 - poc list tests
-
-### Security
-
