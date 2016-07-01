@@ -1,15 +1,20 @@
-from setuptools import setup
+
+from setuptools import find_packages, setup
+
 
 version = open('facsimile/VERSION').read().strip()
 requirements = open('facsimile/requirements.txt').read().split("\n")
 test_requirements = open('facsimile/requirements-test.txt').read().split("\n")
 
+
 setup(
     name='django-peeringdb',
     version=version,
-    author='20C',
-    author_email='code@20c.com',
-    description='django peeringdb interface',
+    author='PeeringDB',
+    author_email='support@peeringdb.com',
+    description='PeeringDB models and local synchronization for Django',
+    long_description='',
+    license='LICENSE.txt',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
@@ -17,13 +22,14 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Internet',
     ],
-    packages=[
-        'django_peeringdb',
-    ],
-    url='https://github.com/20c/django-peeringdb',
-    download_url='https://github.com/20c/django-peeringdb/%s' % version,
+    packages = find_packages(),
     include_package_data=True,
+
+    url='https://github.com/peeringdb/django-peeringdb',
+    download_url='https://github.com/peeringdb/django-peeringdb/%s' % version,
+
     install_requires=requirements,
     test_requires=test_requirements,
+
     zip_safe=True
 )
