@@ -3,26 +3,14 @@ sync peeringdb tables
 """
 from __future__ import print_function
 
-import copy
-import datetime
-import functools
-import json
 import logging
 from optparse import make_option
-import random
-import sys
 import time
-from twentyc.rpc import RestClient, PermissionDeniedException, InvalidRequestException, NotFoundException
-import unittest
-import uuid
-from urlparse import urlparse
+from twentyc.rpc import RestClient
 
 from django.core.management.base import BaseCommand, CommandError
 from django_peeringdb import settings, sync
 
-# ../django-powerdns-manager/src/powerdns_manager/views.py:            Domain = cache.get_model('powerdns_manager', 'Domain')
-
-from django.db.models.fields import DateTimeField
 import django_peeringdb.models
 from django_peeringdb.models.concrete import (
   Organization,
@@ -38,14 +26,9 @@ from django_peeringdb.models.concrete import (
 
 from django.apps import apps
 
+
 def get_model(name):
     return apps.get_model('django_peeringdb', name)
-
-# from django.db.models.loading import get_model
-# def get_model(self, app_label, model_name, seed_cache=True):
-
-#def get_model(name):
-#    raise
 
 
 class Command(BaseCommand):
@@ -69,7 +52,7 @@ class Command(BaseCommand):
 # quiet
 
     def handle(self, *args, **options):
-        log = logging.getLogger('peeringdb.sync')
+        self.log = logging.getLogger('peeringdb.sync')
 
         kwargs = {}
         if settings.SYNC_USERNAME:
@@ -80,8 +63,6 @@ class Command(BaseCommand):
 
         # get models if limited by config
         tables = self.get_class_list(settings.SYNC_ONLY)
-#        tables = self.get_class_list(['organization'])
-        #print(tables)
         self.sync(tables)
 
     def connect(self, url, **kwargs):

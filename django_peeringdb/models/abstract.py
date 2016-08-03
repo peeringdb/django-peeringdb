@@ -10,8 +10,8 @@ from django_inet.models import (
     URLField
 )
 from django_peeringdb import (
-	const,
-	settings,
+    const,
+    settings,
 )
 
 

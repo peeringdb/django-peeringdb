@@ -1,15 +1,18 @@
 
 from django.db import models
-from django_countries.fields import CountryField
-from django_handleref.models import HandleRefModel
-from django_inet.models import (
-    ASNField,
-    IPAddressField,
-    IPPrefixField,
-    MacAddressField
+from django_peeringdb import settings
+from django_peeringdb.models import (
+    OrganizationBase,
+    FacilityBase,
+    NetworkBase,
+    InternetExchangeBase,
+    InternetExchangeFacilityBase,
+    IXLanBase,
+    IXLanPrefixBase,
+    ContactBase,
+    NetworkFacilityBase,
+    NetworkIXLanBase,
 )
-from django_peeringdb import const, settings
-from django_peeringdb.models import *
 
 
 all_models = []

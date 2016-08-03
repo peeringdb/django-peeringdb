@@ -1,9 +1,12 @@
 
-from django_peeringdb.models.abstract import *
+# import to namespace
+from django_peeringdb.models.abstract import * # noqa
 
 from django_peeringdb import settings as __settings
 
 if not __settings.ABSTRACT_ONLY:
-    from django_peeringdb.models.concrete import *
+    # import to namespace
+    # import to namespace
+    from django_peeringdb.models.concrete import * # noqa
 
 del __settings
