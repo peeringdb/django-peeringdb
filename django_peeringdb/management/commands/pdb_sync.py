@@ -4,10 +4,12 @@ sync peeringdb tables
 from __future__ import print_function
 
 import logging
+import re
 from optparse import make_option
 import time
 from twentyc.rpc import RestClient
 
+import django.core.exceptions
 from django.core.management.base import BaseCommand, CommandError
 from django_peeringdb import settings, sync
 
@@ -63,6 +65,15 @@ class Command(BaseCommand):
 
         # get models if limited by config
         tables = self.get_class_list(settings.SYNC_ONLY)
+
+        # disable auto now
+        for model in tables:
+            for field in model._meta.fields:
+                if field.name == "created":
+                    field.auto_now_add = False
+                if field.name == "updated":
+                    field.auto_now = False
+
         self.sync(tables)
 
     def connect(self, url, **kwargs):
@@ -99,11 +110,44 @@ class Command(BaseCommand):
         #print(data)
         return data
 
+    def cls_from_tag(self, tag):
+        tables = self.get_class_list()
+        for cls in tables:
+            if cls._handleref.tag == tag:
+                return cls
+        raise Exception("Unknown reftag: %s" % tag)
+
+    def _sync(self, cls, row):
+        """
+        Try to sync an object to the local database, in case of failure
+        where a referenced object is not found, attempt to fetch said 
+        object from the REST api
+        """
+        try:
+            sync.sync_obj(cls, row)
+        except django.core.exceptions.ValidationError, inst:
+           # There were validation errors
+           for field, errlst in inst.error_dict.items():
+                # check if it was a relationship that doesnt exist locally
+                m = re.match(".+ with id (\d+) does not exist.+", str(errlst))
+                if m:
+                    print("%s.%s not found locally, trying to fetch object... " % (field, m.group(1)))
+                    # fetch missing object
+                    r = self.rpc.get(field, int(m.group(1)), depth=0)
+
+                    # sync missing object
+                    self._sync(self.cls_from_tag(field), r[0])
+                else:
+                    raise
+           
+           # try to sync initial object once more
+           sync.sync_obj(cls, row)
+
     def update_db(self, cls, data):
         print("data to be processed", len(data))
         if not data:
             return
 
         for row in data:
-            sync.sync_obj(cls, row)
+            self._sync(cls, row)
 
