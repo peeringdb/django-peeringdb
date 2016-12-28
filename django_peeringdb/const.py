@@ -78,7 +78,8 @@ TRAFFIC = (('', 'Not Disclosed'),
            ('200-300 Gbps', '200-300 Gbps'),
            ('300-500 Gbps', '300-500 Gbps'),
            ('500-1000 Gbps', '500-1000 Gbps'),
-           ('1 Tbps+', '1 Tbps+'))
+           ('1 Tbps+', '1 Tbps+'),
+           ('10 Tbps+', '10 Tbps+'))
 
 NET_TYPES = (
     ('', 'Not Disclosed'),
@@ -88,7 +89,8 @@ NET_TYPES = (
     ('Cable/DSL/ISP', 'Cable/DSL/ISP'),
     ('Enterprise', 'Enterprise'),
     ('Educational/Research', 'Educational/Research'),
-    ('Non-Profit', 'Non-Profit')
+    ('Non-Profit', 'Non-Profit'),
+    ('Route Server', 'Route Server')
 )
 
 VISIBILITY = (
