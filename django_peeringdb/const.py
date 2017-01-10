@@ -5,6 +5,7 @@ MEDIA = (('Ethernet', 'Ethernet'),
 
 POC_ROLES = (
     ('Abuse', 'Abuse'),
+    ('Maintenance', 'Maintenance'),
     ('Policy', 'Policy'),
     ('Technical', 'Technical'),
     ('NOC', 'NOC'),
