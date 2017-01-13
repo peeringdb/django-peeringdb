@@ -1,18 +1,27 @@
 
+from django.core.validators import URLValidator
 from django.db import models
 from django_countries.fields import CountryField
 from django_handleref.models import HandleRefModel
+
 from django_inet.models import (
     ASNField,
     IPAddressField,
     IPPrefixField,
     MacAddressField,
-    URLField
 )
 from django_peeringdb import (
     const,
     settings,
 )
+
+
+class URLField(models.URLField):
+    default_validators = [URLValidator(schemes=["http", "https", "ftp", "ftps", "telnet"])]
+
+    def __init__(self, *args, **kwargs):
+        kwargs["max_length"] = 255
+        super(URLField, self).__init__(*args, **kwargs)
 
 
 class AddressModel(models.Model):
