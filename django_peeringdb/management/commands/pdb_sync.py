@@ -51,7 +51,6 @@ class Command(BaseCommand):
             help='only process this table'),
         make_option('--id',
             action='store',
-            default=None,
             help='only process this id'),
         )
 # progress
@@ -72,7 +71,7 @@ class Command(BaseCommand):
         only = options.get('only', settings.SYNC_ONLY)
         self.log.debug("only tables {}".format(only))
 
-        pk = options.get('id')
+        pk = options.get('id', 0)
 
         tables = self.get_class_list(only)
 
@@ -89,7 +88,7 @@ class Command(BaseCommand):
     def connect(self, url, **kwargs):
         self.rpc = RestClient(url, **kwargs)
 
-    def sync(self, tables, pk=None):
+    def sync(self, tables, pk=0):
         for cls in tables:
             self.update_db(cls, self.get_objs(cls, pk=pk))
 
