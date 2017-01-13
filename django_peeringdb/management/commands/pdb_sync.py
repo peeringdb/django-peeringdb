@@ -48,7 +48,11 @@ class Command(BaseCommand):
         make_option('--only',
             action='store',
             default=False,
-            help='only process this ixp (id)'),
+            help='only process this table'),
+        make_option('--id',
+            action='store',
+            default=None,
+            help='only process this id'),
         )
 # progress
 # quiet
@@ -61,10 +65,16 @@ class Command(BaseCommand):
             kwargs['user'] = settings.SYNC_USERNAME
             kwargs['password'] = settings.SYNC_PASSWORD
 
+        self.log.debug("syncing from {}".format(settings.SYNC_URL))
         self.connect(settings.SYNC_URL, **kwargs)
 
         # get models if limited by config
-        tables = self.get_class_list(settings.SYNC_ONLY)
+        only = options.get('only', settings.SYNC_ONLY)
+        self.log.debug("only tables {}".format(only))
+
+        pk = options.get('id')
+
+        tables = self.get_class_list(only)
 
         # disable auto now
         for model in tables:
@@ -74,14 +84,14 @@ class Command(BaseCommand):
                 if field.name == "updated":
                     field.auto_now = False
 
-        self.sync(tables)
+        self.sync(tables, pk)
 
     def connect(self, url, **kwargs):
         self.rpc = RestClient(url, **kwargs)
 
-    def sync(self, tables):
+    def sync(self, tables, pk=None):
         for cls in tables:
-            self.update_db(cls, self.get_objs(cls))
+            self.update_db(cls, self.get_objs(cls, pk=pk))
 
     def get_class_list(self, only=None):
         tables = []
@@ -102,12 +112,17 @@ class Command(BaseCommand):
         return self.rpc.all(cls._handleref.tag, since=since)
 
     def get_objs(self, cls, **kwargs):
-        since = self.get_since(cls)
+        pk = int(kwargs.pop('pk', 0))
+        if pk:
+            self.log.debug("getting single id={}".format(pk))
+            data = self.rpc.all(cls._handleref.tag, id=pk, **kwargs)
+            print("%s==%d %d changed" % (cls._handleref.tag, pk, len(data)))
 
-        data = self.rpc.all(cls._handleref.tag, since=since, **kwargs)
-        #data = self.rpc.all(cls._handleref.tag, since=since, limit=20)
-        print("%s last update %s %d changed" % (cls._handleref.tag, str(since), len(data)))
-        #print(data)
+        else:
+            since = self.get_since(cls)
+            data = self.rpc.all(cls._handleref.tag, since=since, **kwargs)
+            print("%s last update %s %d changed" % (cls._handleref.tag, str(since), len(data)))
+
         return data
 
     def cls_from_tag(self, tag):
@@ -125,7 +140,13 @@ class Command(BaseCommand):
         """
         try:
             sync.sync_obj(cls, row)
-        except django.core.exceptions.ValidationError, inst:
+
+        except django.core.exceptions.ObjectDoesNotExist as e:
+            # thrown by subquery on single row
+            print(e)
+            raise
+
+        except django.core.exceptions.ValidationError as inst:
            # There were validation errors
            for field, errlst in inst.error_dict.items():
                 # check if it was a relationship that doesnt exist locally
