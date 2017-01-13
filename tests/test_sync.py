@@ -12,6 +12,12 @@ from django.test import TestCase
 import django_peeringdb.models
 
 
+sync_test = pytest.mark.skipif(
+    not pytest.config.getoption("--sync"),
+    reason="need --sync option to run sync tests"
+)
+
+@sync_test
 class SyncTests(TestCase):
     """ test sync command """
 

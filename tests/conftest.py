@@ -1,7 +1,13 @@
 from django.conf import settings
 
+
 # lazy init for translations
 _ = lambda s: s
+
+
+def pytest_addoption(parser):
+    parser.addoption("--sync", help="run sync tests")
+
 
 def pytest_configure():
 
