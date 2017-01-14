@@ -5,10 +5,12 @@ branches:
   except:
     - gh-pages
 env:
-  - TOX_ENV=py27-django18
-  - TOX_ENV=py27-django19
+  - TOX_ENV=py27-django18-prod
+  - TOX_ENV=py27-django19-prod
+
   - TOX_ENV=py27-django18-beta
   - TOX_ENV=py27-django19-beta
+
 matrix:
   fast_finish: true
   allow_failures:
