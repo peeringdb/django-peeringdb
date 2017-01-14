@@ -10,6 +10,14 @@
 ### Security
 
 
+## [0.3.0]
+### Added
+- Route Server network type
+- Maintenance contact type
+- standalone URLField
+- better testing options
+
+
 ## [0.2.2]
 ### Added
 - CHANGELOG!
