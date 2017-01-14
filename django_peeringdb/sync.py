@@ -1,7 +1,9 @@
 
 import datetime
+from django.core.exceptions import ValidationError
 from django.db import models
 from django_peeringdb import settings
+import logging
 
 
 def sync_obj(cls, row):
@@ -15,7 +17,17 @@ def sync_obj(cls, row):
     for k, v in row.items():
         setattr(obj, k, v)
 
-    obj.full_clean()
+    try:
+        obj.full_clean()
+
+    except ValidationError as e:
+        log = logging.getLogger('peeringdb.sync')
+        log.debug("{} : errors: {}".format(e, e.message_dict))
+        for k, v in e.message_dict.items():
+            field = cls._meta.get_field(k)
+            log.debug("{}: {}, dict: {}".format(k, getattr(obj, k), field.__dict__))
+        raise
+
 
     for field in cls._meta.get_fields():
         ftyp = cls._meta.get_field(field.name)
