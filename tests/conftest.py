@@ -6,7 +6,13 @@ _ = lambda s: s
 
 
 def pytest_addoption(parser):
-    parser.addoption("--sync", help="run sync tests")
+    parser.addoption("--sync", nargs='?', default=False,
+                     help="run sync tests (optionally can set the target to either prod, beta, or a URL)")
+    parser.addoption("--sync-debug", action='store_true',
+                     help="enable sync debug")
+    parser.addoption("--sync-only", nargs='+',
+                     help="sync only these comma separated tables")
+    parser.addoption("--sync-id", help="sync only this id")
 
 
 def pytest_configure():

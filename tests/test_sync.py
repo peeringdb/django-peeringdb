@@ -10,19 +10,51 @@ from django.core.management import (
 )
 from django.test import TestCase
 import django_peeringdb.models
+from django_peeringdb import settings
 
 
-sync_test = pytest.mark.skipif(
-    not pytest.config.getoption("--sync"),
-    reason="need --sync option to run sync tests"
-)
+def sync_test(f):
+    """
+    check for sync settings, configure
+    return decorator for all tests that sync
+    """
+    sync = pytest.config.getoption("--sync")
+
+    # check explicitly for False, none means default (which is prod)
+    if sync == False:
+        return pytest.mark.skip(reason="need --sync option to run sync tests")(f)
+
+    f.sync_args = dict(
+        debug=pytest.config.getoption('--sync-debug'),
+        )
+
+    sync_only = pytest.config.getoption("--sync-only")
+    if sync_only:
+        f.sync_args['only'] = sync_only
+
+    sync_id = pytest.config.getoption("--sync-id")
+    if sync_id:
+        f.sync_args['id'] = sync_id
+
+    if not sync or sync == 'prod':
+        pass
+
+    elif sync == 'beta':
+        settings.SYNC_URL = 'https://beta.peeringdb.com/api'
+
+    else:
+        settings.SYNC_URL = sync
+
+
+    return f
+
 
 @sync_test
 class SyncTests(TestCase):
     """ test sync command """
 
     def setUp(self):
-        self.cmd = load_command_class('django_peeringdb', "pdb_sync")
+        self.cmd = load_command_class('django_peeringdb', 'pdb_sync')
 
     def test_get_since_empty(self):
         for cls in self.cmd.get_class_list():
@@ -31,7 +63,9 @@ class SyncTests(TestCase):
             assert 0 == self.cmd.get_since(cls)
 
     def test_sync_all(self):
-        self.cmd.handle()
+        kwargs = getattr(self, 'sync_args', {})
+        print("syncing kwargs {}".format(kwargs))
+        self.cmd.handle(**kwargs)
 #        self.cmd.sync(self.cmd.get_class_list())
 
 #        for cls in self.cmd.get_class_list():
