@@ -88,3 +88,6 @@ class SyncTests(TestCase):
             assert 0 != cls.objects.all().count()
             print(cls.objects.all().count())
 
+    def test_sync_call_command(self):
+        call_command('pdb_sync', interactive=False)
+

@@ -51,6 +51,7 @@ class Command(BaseCommand):
             help='only process this table'),
         make_option('--id',
             action='store',
+            default=0,
             help='only process this id'),
         )
 # progress
