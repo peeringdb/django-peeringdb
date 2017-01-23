@@ -10,6 +10,11 @@
 ### Security
 
 
+## [0.3.1]
+### Fixed
+- fix sync via call_command
+
+
 ## [0.3.0]
 ### Added
 - Route Server network type
