@@ -53,6 +53,10 @@ class Command(BaseCommand):
             action='store',
             default=0,
             help='only process this id'),
+        make_option('--limit',
+            type=int,
+            default=0,
+            help="limit objects retrieved, retrieve all objects if 0 (default)"),
         )
 # progress
 # quiet
@@ -75,6 +79,7 @@ class Command(BaseCommand):
         pk = options.get('id', 0)
 
         tables = self.get_class_list(only)
+        limit = options.get("limit", 0)
 
         # disable auto now
         for model in tables:
@@ -84,14 +89,14 @@ class Command(BaseCommand):
                 if field.name == "updated":
                     field.auto_now = False
 
-        self.sync(tables, pk)
+        self.sync(tables, pk, limit=limit)
 
     def connect(self, url, **kwargs):
         self.rpc = RestClient(url, **kwargs)
 
-    def sync(self, tables, pk=0):
+    def sync(self, tables, pk=0, **kwargs):
         for cls in tables:
-            self.update_db(cls, self.get_objs(cls, pk=pk))
+            self.update_db(cls, self.get_objs(cls, pk=pk, **kwargs))
 
     def get_class_list(self, only=None):
         tables = []
@@ -147,22 +152,22 @@ class Command(BaseCommand):
             raise
 
         except django.core.exceptions.ValidationError as inst:
-           # There were validation errors
-           for field, errlst in inst.error_dict.items():
-                # check if it was a relationship that doesnt exist locally
-                m = re.match(".+ with id (\d+) does not exist.+", str(errlst))
-                if m:
-                    print("%s.%s not found locally, trying to fetch object... " % (field, m.group(1)))
-                    # fetch missing object
-                    r = self.rpc.get(field, int(m.group(1)), depth=0)
+            # There were validation errors
+            for field, errlst in inst.error_dict.items():
+                 # check if it was a relationship that doesnt exist locally
+                 m = re.match(".+ with id (\d+) does not exist.+", str(errlst))
+                 if m:
+                     print("%s.%s not found locally, trying to fetch object... " % (field, m.group(1)))
+                     # fetch missing object
+                     r = self.rpc.get(field, int(m.group(1)), depth=0)
 
-                    # sync missing object
-                    self._sync(self.cls_from_tag(field), r[0])
-                else:
-                    raise
+                     # sync missing object
+                     self._sync(self.cls_from_tag(field), r[0])
+                 else:
+                     raise
            
-           # try to sync initial object once more
-           sync.sync_obj(cls, row)
+            # try to sync initial object once more
+            sync.sync_obj(cls, row)
 
     def update_db(self, cls, data):
         print("data to be processed", len(data))
