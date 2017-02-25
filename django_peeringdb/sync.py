@@ -1,6 +1,6 @@
 
 import datetime
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.db import models
 from django_peeringdb import settings
 import logging
@@ -25,8 +25,11 @@ def sync_obj(cls, row):
         log.debug("{} : errors: {}".format(e, e.message_dict))
         for k, v in e.message_dict.items():
             field = cls._meta.get_field(k)
-            log.debug("{}: {}, dict: {}".format(k, getattr(obj, k), field.__dict__))
-        raise
+            try:
+                log.debug("{}: {}, dict: {}".format(k, getattr(obj, k), field.__dict__))
+            except ObjectDoesNotExist:
+                log.debug("{}: Missing Object, dict: {}".format(k, field.__dict__))
+        raise e
 
 
     for field in cls._meta.get_fields():
