@@ -12,6 +12,11 @@ from django.test import TestCase
 import django_peeringdb.models
 from django_peeringdb import settings
 
+# set this to 0 to fetch all objects during sync test (takes forever)
+# setting this to anything > 0 will trigger missing object validation errors
+# causing the test to also test the fallback solution for that scenario
+FETCH_LIMIT = 3
+
 
 def sync_test(f):
     """
@@ -64,6 +69,8 @@ class SyncTests(TestCase):
 
     def test_sync_all(self):
         kwargs = getattr(self, 'sync_args', {})
+        if "limit" not in kwargs:
+            kwargs["limit"] = FETCH_LIMIT
         print("syncing kwargs {}".format(kwargs))
         self.cmd.handle(**kwargs)
 #        self.cmd.sync(self.cmd.get_class_list())
@@ -89,5 +96,5 @@ class SyncTests(TestCase):
             print(cls.objects.all().count())
 
     def test_sync_call_command(self):
-        call_command('pdb_sync', interactive=False)
+        call_command('pdb_sync', interactive=False, limit=FETCH_LIMIT)
 
