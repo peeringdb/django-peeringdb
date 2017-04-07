@@ -4,12 +4,18 @@
 ## [Unreleased]
 ### Added
 ### Fixed
-- use calendar.timegm instead of time.mktime so there isn't timezone skew
-
 ### Changed
 ### Deprecated
 ### Removed
 ### Security
+
+
+## [0.4.0]
+### Added
+- --limit option to sync
+
+### Fixed
+- use calendar.timegm instead of time.mktime so there isn't timezone skew
 
 
 ## [0.3.1]
