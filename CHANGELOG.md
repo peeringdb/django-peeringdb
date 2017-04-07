@@ -4,6 +4,8 @@
 ## [Unreleased]
 ### Added
 ### Fixed
+- use calendar.timegm instead of time.mktime so there isn't timezone skew
+
 ### Changed
 ### Deprecated
 ### Removed

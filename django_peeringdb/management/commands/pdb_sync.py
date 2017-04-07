@@ -3,10 +3,10 @@ sync peeringdb tables
 """
 from __future__ import print_function
 
+import calendar
 import logging
 import re
 from optparse import make_option
-import time
 from twentyc.rpc import RestClient
 
 import django.core.exceptions
@@ -110,7 +110,7 @@ class Command(BaseCommand):
     def get_since(self, cls):
         upd = cls.handleref.last_change()
         if upd:
-            return int(time.mktime(upd.timetuple()))
+            return int(calendar.timegm(upd.timetuple()))
         return 0
 
     def get_data(self, cls, since):
