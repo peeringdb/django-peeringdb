@@ -151,7 +151,7 @@ class Command(BaseCommand):
         except django.core.exceptions.ValidationError as inst:
             # There were validation errors
             for field, errlst in inst.error_dict.items():
-                 # check if it was a relationship that doesnt exist locally
+                # check if it was a relationship that doesnt exist locally
                 m = re.match(".+ with id (\d+) does not exist.+", str(errlst))
                 if m:
                     print("%s.%s not found locally, trying to fetch object... " % (field, m.group(1)))
