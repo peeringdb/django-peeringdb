@@ -35,7 +35,7 @@ class AddressModel(models.Model):
     zipcode = models.CharField(max_length=48, blank=True)
     country = CountryField(blank=True)
 
-    class Meta:
+    class Meta(object):
         abstract = True
 
     def __unicode__(self):
@@ -47,12 +47,12 @@ class OrganizationBase(HandleRefModel, AddressModel):
     website = URLField(blank=True)
     notes = models.TextField(blank=True)
 
-    class Meta:
+    class Meta(object):
         abstract = True
         db_table = '%sorganization' % settings.TABLE_PREFIX
         verbose_name_plural = "Organizations"
 
-    class HandleRef:
+    class HandleRef(object):
         tag = 'org'
         delete_cascade = ["net_set", "fac_set", "ix_set"]
 
@@ -70,12 +70,12 @@ class FacilityBase(HandleRefModel, AddressModel):
 
     notes = models.TextField(blank=True)
 
-    class Meta:
+    class Meta(object):
         abstract = True
         db_table = '%sfacility' % settings.TABLE_PREFIX
         verbose_name_plural = "Facilities"
 
-    class HandleRef:
+    class HandleRef(object):
         tag = 'fac'
         delete_cascade = ["ixfac_set", "netfac_set"]
 
@@ -92,11 +92,11 @@ class ContactBase(HandleRefModel):
     email = models.EmailField(max_length=254, blank=True)
     url = URLField(blank=True)
 
-    class Meta:
+    class Meta(object):
         abstract = True
         db_table = '%snetwork_contact' % settings.TABLE_PREFIX
 
-    class HandleRef:
+    class HandleRef(object):
         tag = 'poc'
 
 
@@ -136,12 +136,12 @@ class NetworkBase(HandleRefModel):
     policy_contracts = models.CharField(max_length=36, blank=True,
                                         choices=const.POLICY_CONTRACTS)
 
-    class Meta:
+    class Meta(object):
         abstract = True
         db_table = '%snetwork' % settings.TABLE_PREFIX;
         verbose_name_plural = "Networks"
 
-    class HandleRef:
+    class HandleRef(object):
         tag = 'net'
         delete_cascade = ["poc_set", "netfac_set", "netixlan_set"]
 
@@ -173,11 +173,11 @@ class InternetExchangeBase(HandleRefModel):
     policy_email = models.EmailField(max_length=254, blank=True)
     policy_phone = models.CharField(max_length=192, blank=True)
 
-    class Meta:
+    class Meta(object):
         abstract = True
         db_table = '%six' % settings.TABLE_PREFIX
 
-    class HandleRef:
+    class HandleRef(object):
         tag = 'ix'
         delete_cascade = ["ixfac_set", "ixlan_set"]
 
@@ -187,12 +187,12 @@ class InternetExchangeBase(HandleRefModel):
 
 class InternetExchangeFacilityBase(HandleRefModel):
 
-    class Meta:
+    class Meta(object):
         abstract = True
         db_table = '%six_facility' % settings.TABLE_PREFIX
         verbose_name_plural = "internet exchange facilities"
 
-    class HandleRef:
+    class HandleRef(object):
         tag = 'ixfac'
 
 
@@ -205,11 +205,11 @@ class IXLanBase(HandleRefModel):
     rs_asn = ASNField(null=True, blank=True, default=0)
     arp_sponge = MacAddressField(null=True, unique=True, blank=True)
 
-    class Meta:
+    class Meta(object):
         abstract = True
         db_table = '%sixlan' % settings.TABLE_PREFIX
 
-    class HandleRef:
+    class HandleRef(object):
         tag = 'ixlan'
         delete_cascade = ["ixpfx_set", "netixlan_set"]
 
@@ -219,11 +219,11 @@ class IXLanPrefixBase(HandleRefModel):
     protocol = models.CharField(max_length=64, choices=const.PROTOCOLS)
     prefix = IPPrefixField(unique=True)
 
-    class Meta:
+    class Meta(object):
         abstract = True
         db_table = '%sixlan_prefix' % settings.TABLE_PREFIX
 
-    class HandleRef:
+    class HandleRef(object):
         tag = 'ixpfx'
 
 
@@ -233,12 +233,12 @@ class NetworkFacilityBase(HandleRefModel):
     avail_ethernet = models.BooleanField(default=False)
     avail_atm = models.BooleanField(default=False)
 
-    class Meta:
+    class Meta(object):
         abstract = True
         db_table = '%snetwork_facility' % settings.TABLE_PREFIX
         verbose_name_plural = "Network Facilities"
 
-    class HandleRef:
+    class HandleRef(object):
         tag = 'netfac'
 
 
@@ -250,11 +250,11 @@ class NetworkIXLanBase(HandleRefModel):
     notes = models.CharField(max_length=255, blank=True)
     speed = models.PositiveIntegerField()
 
-    class Meta:
+    class Meta(object):
         abstract = True
         db_table = '%snetwork_ixlan' % settings.TABLE_PREFIX
 
-    class HandleRef:
+    class HandleRef(object):
         tag = "netixlan"
 
 
