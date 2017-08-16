@@ -10,7 +10,7 @@ from optparse import make_option
 from twentyc.rpc import RestClient
 
 import django.core.exceptions
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django_peeringdb import settings, sync
 
 import django_peeringdb.models
@@ -22,7 +22,6 @@ from django_peeringdb.models.concrete import (
   NetworkContact,
   NetworkIXLan,
   NetworkFacility,
-  IXLan,
   InternetExchangeFacility
 )
 
@@ -67,12 +66,12 @@ class Command(BaseCommand):
             kwargs['user'] = settings.SYNC_USERNAME
             kwargs['password'] = settings.SYNC_PASSWORD
 
-        self.log.debug("syncing from {}".format(settings.SYNC_URL))
+        self.log.debug("syncing from %s", settings.SYNC_URL)
         self.connect(settings.SYNC_URL, **kwargs)
 
         # get models if limited by config
         only = options.get('only', settings.SYNC_ONLY)
-        self.log.debug("only tables {}".format(only))
+        self.log.debug("only tables %s", only)
 
         pk = options.get('id', 0)
 
@@ -117,7 +116,7 @@ class Command(BaseCommand):
     def get_objs(self, cls, **kwargs):
         pk = int(kwargs.pop('pk', 0))
         if pk:
-            self.log.debug("getting single id={}".format(pk))
+            self.log.debug("getting single id=%d", pk)
             data = self.rpc.all(cls._handleref.tag, id=pk, **kwargs)
             print("%s==%d %d changed" % (cls._handleref.tag, pk, len(data)))
 
@@ -153,16 +152,16 @@ class Command(BaseCommand):
             # There were validation errors
             for field, errlst in inst.error_dict.items():
                  # check if it was a relationship that doesnt exist locally
-                 m = re.match(".+ with id (\d+) does not exist.+", str(errlst))
-                 if m:
-                     print("%s.%s not found locally, trying to fetch object... " % (field, m.group(1)))
-                     # fetch missing object
-                     r = self.rpc.get(field, int(m.group(1)), depth=0)
+                m = re.match(".+ with id (\d+) does not exist.+", str(errlst))
+                if m:
+                    print("%s.%s not found locally, trying to fetch object... " % (field, m.group(1)))
+                    # fetch missing object
+                    r = self.rpc.get(field, int(m.group(1)), depth=0)
 
-                     # sync missing object
-                     self._sync(self.cls_from_tag(field), r[0])
-                 else:
-                     raise
+                    # sync missing object
+                    self._sync(self.cls_from_tag(field), r[0])
+                else:
+                    raise
            
             # try to sync initial object once more
             sync.sync_obj(cls, row)
