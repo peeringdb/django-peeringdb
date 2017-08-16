@@ -36,7 +36,7 @@ def get_model(name):
 class Command(BaseCommand):
     help = "synchronize local tables to PeeringDB"
 
-    option_list = BaseCommand.option_list + (
+    option_list = getattr(BaseCommand, 'option_list', ()) + (
         make_option('-n', '--dry-run',
             action='store_true',
             default=False,
@@ -58,8 +58,6 @@ class Command(BaseCommand):
             default=0,
             help="limit objects retrieved, retrieve all objects if 0 (default)"),
         )
-# progress
-# quiet
 
     def handle(self, *args, **options):
         self.log = logging.getLogger('peeringdb.sync')

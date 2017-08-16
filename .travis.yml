@@ -5,17 +5,23 @@ branches:
   except:
     - gh-pages
 env:
-  - TOX_ENV=py27-django18-prod
-  - TOX_ENV=py27-django19-prod
+  - TOX_ENV=py27-dj18-prod
+  - TOX_ENV=py27-dj19-prod
+  - TOX_ENV=py27-dj110-prod
+  - TOX_ENV=py27-dj111-prod
 
-  - TOX_ENV=py27-django18-beta
-  - TOX_ENV=py27-django19-beta
+  - TOX_ENV=py27-dj18-beta
+  - TOX_ENV=py27-dj19-beta
+  - TOX_ENV=py27-dj110-beta
+  - TOX_ENV=py27-dj111-beta
 
 matrix:
   fast_finish: true
   allow_failures:
     - env: TOX_ENV=py27-django18-beta
     - env: TOX_ENV=py27-django19-beta
+    - env: TOX_ENV=py27-django110-beta
+    - env: TOX_ENV=py27-django111-beta
 
 before_install:
   - pip install codecov

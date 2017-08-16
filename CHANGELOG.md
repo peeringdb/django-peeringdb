@@ -3,6 +3,7 @@
 
 ## [Unreleased]
 ### Added
+- support for django 1.10, 1.11
 ### Fixed
 ### Changed
 ### Deprecated
