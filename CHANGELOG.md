@@ -3,12 +3,16 @@
 
 ## [Unreleased]
 ### Added
-- support for django 1.10, 1.11
 ### Fixed
 ### Changed
 ### Deprecated
 ### Removed
 ### Security
+
+
+## [0.5.0]
+### Added
+- support for django 1.10, 1.11
 
 
 ## [0.4.0]
