@@ -35,6 +35,9 @@ class AddressModel(models.Model):
     zipcode = models.CharField(max_length=48, blank=True)
     country = CountryField(blank=True)
 
+    lat = models.FloatField(blank=True, null=True)
+    lng = models.FloatField(blank=True, null=True)
+
     class Meta:
         abstract = True
 
