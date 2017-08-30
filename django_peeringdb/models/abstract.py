@@ -35,8 +35,8 @@ class AddressModel(models.Model):
     zipcode = models.CharField(max_length=48, blank=True)
     country = CountryField(blank=True)
 
-    lat = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True, help_text="Latitude")
-    lon = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True, help_text="Longitude")
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True, help_text="Latitude")
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True, help_text="Longitude")
 
     class Meta:
         abstract = True
