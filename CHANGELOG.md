@@ -9,6 +9,10 @@
 ### Removed
 ### Security
 
+## [0.6.0]
+### Added
+- latitude and longitude fields added to AddressModel
+
 
 ## [0.5.0]
 ### Added
