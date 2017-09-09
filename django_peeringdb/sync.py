@@ -1,8 +1,9 @@
 
 import datetime
-from django.core.exceptions import ValidationError, ObjectDoesNotExist
+from django.core.exceptions import ValidationError, ObjectDoesNotExist, FieldDoesNotExist
 from django.db import models
 from django_peeringdb import settings
+from decimal import Decimal
 import logging
 
 
@@ -15,7 +16,14 @@ def sync_obj(cls, row):
         #obj = cls(**row)
 
     for k, v in row.items():
-        setattr(obj, k, v)
+        try:
+            field = obj._meta.get_field(k)
+        except FieldDoesNotExist, inst:
+            field = None
+        if field and isinstance(field, models.DecimalField) and isinstance(v, float):
+            setattr(obj, k, Decimal("{:.{prec}f}".format(v, prec=field.decimal_places)))
+        else:
+            setattr(obj, k, v)
 
     try:
         obj.full_clean()

@@ -4,6 +4,8 @@
 ## [Unreleased]
 ### Added
 ### Fixed
+- fixed issue with longitude / latitude validation errors during sync (#10)
+
 ### Changed
 ### Deprecated
 ### Removed
