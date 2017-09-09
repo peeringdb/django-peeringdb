@@ -4,12 +4,15 @@
 ## [Unreleased]
 ### Added
 ### Fixed
-- fixed issue with longitude / latitude validation errors during sync (#10)
-
 ### Changed
 ### Deprecated
 ### Removed
 ### Security
+
+## [0.6.1]
+### Fixed
+- fixed issue with longitude / latitude validation errors during sync (#10)
+
 
 ## [0.6.0]
 ### Added
