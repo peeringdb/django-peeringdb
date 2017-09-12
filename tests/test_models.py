@@ -7,7 +7,7 @@ import pytest
 from django_peeringdb.models import (
     URLField,
 )
-from models import FieldModel
+from tests.models import FieldModel
 
 
 class FieldTests(TestCase):
