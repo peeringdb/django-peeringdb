@@ -1,5 +1,3 @@
-#https://github.com/benmaddison/django-handleref/archive/master.zip
-#https://github.com/benmaddison/twentyc.rpc/archive/master.zip
 codecov>=2.0.5
 coverage>=4.1
 pytest>=2.9.2
