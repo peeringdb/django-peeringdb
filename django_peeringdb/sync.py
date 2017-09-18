@@ -18,7 +18,7 @@ def sync_obj(cls, row):
     for k, v in row.items():
         try:
             field = obj._meta.get_field(k)
-        except FieldDoesNotExist, inst:
+        except FieldDoesNotExist as inst:
             field = None
         if field and isinstance(field, models.DecimalField) and isinstance(v, float):
             setattr(obj, k, Decimal("{:.{prec}f}".format(v, prec=field.decimal_places)))

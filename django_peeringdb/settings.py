@@ -1,3 +1,4 @@
+from collections import Iterable
 
 from django.conf import settings
 
@@ -12,7 +13,7 @@ SYNC_PASSWORD = getattr(settings, 'PEERINGDB_SYNC_PASSWORD', '')
 SYNC_STRIP_TZ = getattr(settings, 'PEERINGDB_SYNC_STRIP_TZ', False)
 SYNC_ONLY = getattr(settings, 'PEERINGDB_SYNC_ONLY', [])
 
-if isinstance(SYNC_ONLY, basestring):
+if not isinstance(SYNC_ONLY, Iterable):
     raise ValueError("SYNC_ONLY should be iterable (list, tuple, etc)")
 
 
