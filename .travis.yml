@@ -1,33 +1,41 @@
 
 language: python
-python: 2.7
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+sudo: false
 branches:
   except:
     - gh-pages
 env:
-  - TOX_ENV=py27-dj18-prod
-  - TOX_ENV=py27-dj19-prod
-  - TOX_ENV=py27-dj110-prod
-  - TOX_ENV=py27-dj111-prod
-
-  - TOX_ENV=py27-dj18-beta
-  - TOX_ENV=py27-dj19-beta
-  - TOX_ENV=py27-dj110-beta
-  - TOX_ENV=py27-dj111-beta
-
+  - DJANGO=1.8
+  - DJANGO=1.9
+  - DJANGO=1.10
+  - DJANGO=1.11
 matrix:
   fast_finish: true
-  allow_failures:
-    - env: TOX_ENV=py27-django18-beta
-    - env: TOX_ENV=py27-django19-beta
-    - env: TOX_ENV=py27-django110-beta
-    - env: TOX_ENV=py27-django111-beta
-
+  exclude:
+    - python: "3.4"
+      env: DJANGO=1.8
+    - python: "3.4"
+      env: DJANGO=1.9
+    - python: "3.5"
+      env: DJANGO=1.8
+    - python: "3.5"
+      env: DJANGO=1.9
+    - python: "3.6"
+      env: DJANGO=1.8
+    - python: "3.6"
+      env: DJANGO=1.9
 before_install:
-  - pip install codecov
+  - sudo apt-get -qq update
 install:
-  - pip install tox
+  - pip install -U pip
+  - pip install -U setuptools
+  - pip install tox-travis codecov
 script:
-  - tox -e $TOX_ENV
+  - tox
 after_success:
-  - codecov
+  - codecov -e DJANGO
