@@ -9,6 +9,11 @@
 ### Removed
 ### Security
 
+## [0.7.0]
+### Added
+- py3 compatibility
+
+
 ## [0.6.1]
 ### Fixed
 - fixed issue with longitude / latitude validation errors during sync (#10)
