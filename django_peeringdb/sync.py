@@ -41,15 +41,18 @@ def sync_obj(cls, row):
 
 
     for field in cls._meta.get_fields():
-        ftyp = cls._meta.get_field(field.name)
         value = getattr(obj, field.name, None)
         if settings.SYNC_STRIP_TZ and isinstance(value, datetime.datetime):
             setattr(obj, field.name, value.replace(tzinfo=None))
         else:
-            if hasattr(ftyp, "related_name") and ftyp.multiple:
-                continue
-            else:
-                setattr(obj, field.name, value)
+            if hasattr(field, "related_name"):
+                # skip many
+                if field.multiple:
+                    continue
+                # skip delete caused by None, see https://code.djangoproject.com/ticket/28742
+                if not value:
+                    continue
+            setattr(obj, field.name, value)
 
     obj.save()
     return
