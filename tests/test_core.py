@@ -27,6 +27,9 @@ class CoreTests(TestCase):
         assert 1 == len(models)
         assert models[0] == django_peeringdb.models.Network
 
+    def test_dry_run(self):
+         call_command(self.cmd, *[], **{'dry_run': True})
+
     def test_get_tag_dict(self):
         tag_dict = django_peeringdb.models.tag_dict
         assert len(tag_dict)

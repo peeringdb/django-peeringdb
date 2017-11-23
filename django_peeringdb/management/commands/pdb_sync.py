@@ -78,6 +78,8 @@ class Command(BaseCommand):
         tables = self.get_class_list(only)
         limit = options.get("limit", 0)
 
+        self.dry_run = options.get('dry_run', False)
+
         # disable auto now
         for model in tables:
             for field in model._meta.fields:
@@ -140,6 +142,9 @@ class Command(BaseCommand):
         where a referenced object is not found, attempt to fetch said 
         object from the REST api
         """
+        if self.dry_run:
+            return
+
         try:
             sync.sync_obj(cls, row)
 
