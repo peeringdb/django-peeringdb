@@ -9,6 +9,16 @@
 ### Removed
 ### Security
 
+
+## [0.8.0]
+### Added
+- Django 1.11 migration
+
+### Fixed
+- cleaned up sync
+- #17 - skip None deletes on related
+
+
 ## [0.7.0]
 ### Added
 - py3 compatibility
