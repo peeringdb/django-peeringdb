@@ -3,6 +3,7 @@
 
 ## [Unreleased]
 ### Added
+- #22 - use django gettext on choices
 ### Fixed
 ### Changed
 ### Deprecated
