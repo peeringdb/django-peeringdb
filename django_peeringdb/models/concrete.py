@@ -38,16 +38,19 @@ class Organization(OrganizationBase):
 
 @expose_model
 class Facility(FacilityBase):
-    org = models.ForeignKey(Organization, related_name="fac_set")
+    org = models.ForeignKey(Organization, related_name="fac_set",
+                            on_delete=models.CASCADE)
 
 @expose_model
 class Network(NetworkBase):
-    org = models.ForeignKey(Organization, related_name="net_set")
+    org = models.ForeignKey(Organization, related_name="net_set",
+                            on_delete=models.CASCADE)
 
 
 @expose_model
 class InternetExchange(InternetExchangeBase):
-    org = models.ForeignKey(Organization, related_name="ix_set")
+    org = models.ForeignKey(Organization, related_name="ix_set",
+                            on_delete=models.CASCADE)
 
     @property
     def fac_set(self):
@@ -55,8 +58,10 @@ class InternetExchange(InternetExchangeBase):
 
 @expose_model
 class InternetExchangeFacility(InternetExchangeFacilityBase):
-    ix = models.ForeignKey(InternetExchange, related_name="ixfac_set")
-    fac = models.ForeignKey(Facility, default=0, related_name="ixfac_set")
+    ix = models.ForeignKey(InternetExchange, related_name="ixfac_set",
+                           on_delete=models.CASCADE)
+    fac = models.ForeignKey(Facility, default=0, related_name="ixfac_set",
+                            on_delete=models.CASCADE)
 
     class Meta:
         unique_together = ('ix', 'fac')
@@ -64,20 +69,25 @@ class InternetExchangeFacility(InternetExchangeFacilityBase):
 
 @expose_model
 class IXLan(IXLanBase):
-    ix = models.ForeignKey(InternetExchange, default=0, related_name="ixlan_set")
+    ix = models.ForeignKey(InternetExchange, default=0, related_name="ixlan_set",
+                           on_delete=models.CASCADE)
 
 @expose_model
 class IXLanPrefix(IXLanPrefixBase):
-    ixlan = models.ForeignKey(IXLan, default=0, related_name="ixpfx_set")
+    ixlan = models.ForeignKey(IXLan, default=0, related_name="ixpfx_set",
+                              on_delete=models.CASCADE)
 
 @expose_model
 class NetworkContact(ContactBase):
-    net = models.ForeignKey(Network, default=0, related_name="poc_set")
+    net = models.ForeignKey(Network, default=0, related_name="poc_set",
+                            on_delete=models.CASCADE)
 
 @expose_model
 class NetworkFacility(NetworkFacilityBase):
-    net = models.ForeignKey(Network, default=0, related_name="netfac_set")
-    fac = models.ForeignKey(Facility, default=0, related_name="netfac_set")
+    net = models.ForeignKey(Network, default=0, related_name="netfac_set",
+                            on_delete=models.CASCADE)
+    fac = models.ForeignKey(Facility, default=0, related_name="netfac_set",
+                            on_delete=models.CASCADE)
 
     class Meta:
         unique_together = ('net', 'fac', 'local_asn')
@@ -85,8 +95,10 @@ class NetworkFacility(NetworkFacilityBase):
 
 @expose_model
 class NetworkIXLan(NetworkIXLanBase):
-    net = models.ForeignKey(Network, default=0, related_name="netixlan_set")
-    ixlan = models.ForeignKey(IXLan, default=0, related_name="netixlan_set")
+    net = models.ForeignKey(Network, default=0, related_name="netixlan_set",
+                            on_delete=models.CASCADE)
+    ixlan = models.ForeignKey(IXLan, default=0, related_name="netixlan_set",
+                              on_delete=models.CASCADE)
 
 __all__ = [m.__name__ for m in all_models]
 # other required vars

@@ -96,5 +96,5 @@ class SyncTests(TestCase):
             print(cls.objects.all().count())
 
     def test_sync_call_command(self):
-        call_command('pdb_sync', interactive=False, limit=FETCH_LIMIT)
+        call_command('pdb_sync', limit=FETCH_LIMIT)
 

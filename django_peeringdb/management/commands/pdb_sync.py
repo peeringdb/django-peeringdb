@@ -6,7 +6,6 @@ from __future__ import print_function
 import calendar
 import logging
 import re
-from optparse import make_option
 from twentyc.rpc import RestClient
 
 import django.core.exceptions
@@ -35,28 +34,27 @@ def get_model(name):
 class Command(BaseCommand):
     help = "synchronize local tables to PeeringDB"
 
-    option_list = getattr(BaseCommand, 'option_list', ()) + (
-        make_option('-n', '--dry-run',
-            action='store_true',
-            default=False,
-            help='enable extra debug output'),
-        make_option('--debug',
-            action='store_true',
-            default=False,
-            help='enable extra debug output'),
-        make_option('--only',
-            action='store',
-            default=False,
-            help='only process this table'),
-        make_option('--id',
-            action='store',
-            default=0,
-            help='only process this id'),
-        make_option('--limit',
-            type=int,
-            default=0,
-            help="limit objects retrieved, retrieve all objects if 0 (default)"),
-        )
+    def add_arguments(self, parser):
+        parser.add_argument('-n', '--dry-run',
+                            action='store_true',
+                            default=False,
+                            help='enable extra debug output')
+        parser.add_argument('--debug',
+                            action='store_true',
+                            default=False,
+                            help='enable extra debug output')
+        parser.add_argument('--only',
+                            action='store',
+                            default=False,
+                            help='only process this table')
+        parser.add_argument('--id',
+                            action='store',
+                            default=0,
+                            help='only process this id')
+        parser.add_argument('--limit',
+                            type=int,
+                            default=0,
+                            help="limit objects retrieved, retrieve all if 0 (default)")
 
     def handle(self, *args, **options):
         self.log = logging.getLogger('peeringdb.sync')
