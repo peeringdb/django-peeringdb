@@ -1,4 +1,5 @@
 
+from __future__ import unicode_literals
 from django.core.validators import URLValidator
 from django.db import models
 from django_countries.fields import CountryField
@@ -41,7 +42,7 @@ class AddressModel(models.Model):
     class Meta:
         abstract = True
 
-    def __unicode__(self):
+    def __str__(self):
         return self.address1
 
 
@@ -59,7 +60,7 @@ class OrganizationBase(HandleRefModel, AddressModel):
         tag = 'org'
         delete_cascade = ["net_set", "fac_set", "ix_set"]
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -82,7 +83,7 @@ class FacilityBase(HandleRefModel, AddressModel):
         tag = 'fac'
         delete_cascade = ["ixfac_set", "netfac_set"]
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -148,7 +149,7 @@ class NetworkBase(HandleRefModel):
         tag = 'net'
         delete_cascade = ["poc_set", "netfac_set", "netixlan_set"]
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -184,7 +185,7 @@ class InternetExchangeBase(HandleRefModel):
         tag = 'ix'
         delete_cascade = ["ixfac_set", "ixlan_set"]
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
