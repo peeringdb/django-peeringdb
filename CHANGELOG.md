@@ -3,6 +3,8 @@
 
 ## [Unreleased]
 ### Added
+- Django 2.0, 2.1 support (thanks @paravoid)
+- Improved py3 support (thanks @paravoid)
 - #22 - use django gettext on choices
 ### Fixed
 ### Changed
