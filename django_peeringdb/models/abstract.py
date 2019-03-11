@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.core.validators import URLValidator
 from django.db import models
+from django.conf import settings
 from django_countries.fields import CountryField
 from django_handleref.models import HandleRefModel
 
@@ -13,7 +14,6 @@ from django_inet.models import (
 )
 from django_peeringdb import (
     const,
-    settings,
 )
 
 

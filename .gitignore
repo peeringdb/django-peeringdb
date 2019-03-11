@@ -1,4 +1,6 @@
 *.py[cod]
+*.swp
+*.swo
 *.egg
 *.egg-info
 .cache/
