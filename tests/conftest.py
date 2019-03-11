@@ -5,16 +5,6 @@ from django.conf import settings
 _ = lambda s: s
 
 
-def pytest_addoption(parser):
-    parser.addoption("--sync", nargs='?', default=False,
-                     help="run sync tests (optionally can set the target to either prod, beta, or a URL)")
-    parser.addoption("--sync-debug", action='store_true',
-                     help="enable sync debug")
-    parser.addoption("--sync-only", nargs='+',
-                     help="sync only these comma separated tables")
-    parser.addoption("--sync-id", help="sync only this id")
-
-
 def pytest_configure():
 
     settings.configure(
@@ -57,5 +47,9 @@ def pytest_configure():
         # add user defined iso code for Kosovo
         COUNTRIES_OVERRIDE = {
             'XK': _('Kosovo'),
-        }
+        },
+
+        TABLE_PREFIX='peeringdb_',
+        ABSTRACT_ONLY=False,
+        SECRET_KEY='s3cr3t',
     )
