@@ -5,6 +5,7 @@ from django.db import models
 from django.conf import settings
 from django_countries.fields import CountryField
 from django_handleref.models import HandleRefModel
+from django.utils.translation import ugettext_lazy as _
 
 from django_inet.models import (
     ASNField,
@@ -108,8 +109,10 @@ class NetworkBase(HandleRefModel):
     asn = ASNField(unique=True)
     name = models.CharField(max_length=255, unique=True)
     aka = models.CharField(max_length=255, blank=True)
-    irr_as_set = models.CharField(max_length=255, blank=True)
-
+    irr_as_set = models.CharField(max_length=255, blank=True,
+                                  help_text=_("Reference to an AS-SET or "
+                                              "ROUTE-SET in Internet "
+                                              "Routing Registry (IRR)"))
     website = URLField(blank=True)
     looking_glass = URLField(blank=True)
     route_server = URLField(blank=True)
@@ -125,11 +128,21 @@ class NetworkBase(HandleRefModel):
                                   default='Not Disclosed')
     info_type = models.CharField(max_length=60, blank=True, choices=const.NET_TYPES,
                                  default='Not Disclosed')
-    info_prefixes4 = models.PositiveIntegerField(null=True, blank=True)
-    info_prefixes6 = models.PositiveIntegerField(null=True, blank=True)
+    info_prefixes4 = models.PositiveIntegerField(null=True, blank=True,
+                                                 help_text=_("Recommended IPv4 maximum-prefix "
+                                                             "limit to be configured on peering "
+                                                             "sessions for this ASN"))
+    info_prefixes6 = models.PositiveIntegerField(null=True, blank=True,
+                                                 help_text=_("Recommended IPv6 maximum-prefix "
+                                                             "limit to be configured on peering "
+                                                             "sessions for this ASN"))
     info_unicast = models.BooleanField(default=False)
     info_multicast = models.BooleanField(default=False)
     info_ipv6 = models.BooleanField(default=False)
+    info_never_via_route_servers = models.BooleanField(default=False,
+                                                      help_text=_("Indicates if this network "
+                                                                  "will announce its routes "
+                                                                  "via rout servers or not"))
 
     policy_url = URLField(blank=True)
     policy_general = models.CharField(max_length=72, blank=True,
