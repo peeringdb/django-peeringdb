@@ -11,11 +11,17 @@
 ### Removed
 ### Security
 
+
 ## [1.0.0]
 ### Added
+- Client adaptor to work with the new peeringdb client
 - Django 2.0, 2.1 support (thanks @paravoid)
 - Improved py3 support (thanks @paravoid)
 - #22 - use django gettext on choices
+
+### Removed
+- `pdb_sync` command, peeringdb client now implements sync logic
+
 
 ## [0.8.0]
 ### Added
