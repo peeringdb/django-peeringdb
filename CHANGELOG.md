@@ -3,15 +3,19 @@
 
 ## [Unreleased]
 ### Added
-- Django 2.0, 2.1 support (thanks @paravoid)
-- Improved py3 support (thanks @paravoid)
-- #22 - use django gettext on choices
+- add `info_never_via_route_servers` to `NetworkBase` (peeringdb/394)
+- set help text for irr_as_set, info_prefixes4 and info_prefixes6 (peeringdb/228)
 ### Fixed
 ### Changed
 ### Deprecated
 ### Removed
 ### Security
 
+## [1.0.0]
+### Added
+- Django 2.0, 2.1 support (thanks @paravoid)
+- Improved py3 support (thanks @paravoid)
+- #22 - use django gettext on choices
 
 ## [0.8.0]
 ### Added
