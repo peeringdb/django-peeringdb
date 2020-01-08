@@ -3,6 +3,15 @@
 
 ## [Unreleased]
 ### Added
+### Fixed
+### Changed
+### Deprecated
+### Removed
+### Security
+
+
+## [1.1.0]
+### Added
 - add `info_never_via_route_servers` to `NetworkBase` (peeringdb/394)
 - set help text for irr_as_set, info_prefixes4 and info_prefixes6 (peeringdb/228)
 ### Fixed
