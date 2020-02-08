@@ -40,6 +40,7 @@ LOGGING={
     },
 }
 USE_TZ=False
+TIME_ZONE='UTC'
 # add user defined iso code for Kosovo
 COUNTRIES_OVERRIDE={
     'XK': _('Kosovo'),
