@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='network',
             name='info_never_via_route_servers',
-            field=models.BooleanField(default=False, help_text='Indicates if this network will announce its routes via rout servers or not'),
+            field=models.BooleanField(default=False, help_text='Indicates if this network will announce its routes via route servers or not'),
         ),
     ]
