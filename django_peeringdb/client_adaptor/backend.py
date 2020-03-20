@@ -160,7 +160,7 @@ class Backend(Interface):
         as a dict of Resource -> {id set}
         """
         missing = defaultdict(set)
-        for name, err in exc.error_dict.items():
+        for name, err in list(exc.error_dict.items()):
             # check if it was a relationship that doesnt exist locally
             pattern = r".+ with id (\d+) does not exist.+"
             m = re.match(pattern, str(err))
@@ -182,7 +182,7 @@ class Backend(Interface):
             return self._detect_integrity_error(exc)
         assert isinstance(exc, ValidationError), TypeError
 
-        for name, err in exc.error_dict.items():
+        for name, err in list(exc.error_dict.items()):
             if re.search(pattern, str(err)):
                 fields.append(name)
         return fields or None

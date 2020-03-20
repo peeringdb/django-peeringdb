@@ -3,10 +3,13 @@
 
 ## [Unreleased]
 ### Added
+- add py3.7 to tox and travis tests
 ### Fixed
 ### Changed
 ### Deprecated
 ### Removed
+- remove py2.7 support (#36)
+- remove py3.4 tests (py3.4 EOL reched)
 ### Security
 
 

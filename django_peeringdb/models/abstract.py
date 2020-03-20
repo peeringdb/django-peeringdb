@@ -1,5 +1,5 @@
 
-from __future__ import unicode_literals
+
 from django.core.validators import URLValidator
 from django.db import models
 from django.conf import settings
