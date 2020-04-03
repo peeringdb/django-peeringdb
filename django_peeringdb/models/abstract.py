@@ -142,7 +142,7 @@ class NetworkBase(HandleRefModel):
     info_never_via_route_servers = models.BooleanField(default=False,
                                                       help_text=_("Indicates if this network "
                                                                   "will announce its routes "
-                                                                  "via rout servers or not"))
+                                                                  "via route servers or not"))
 
     policy_url = URLField(blank=True)
     policy_general = models.CharField(max_length=72, blank=True,
