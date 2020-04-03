@@ -80,6 +80,11 @@ class FacilityBase(HandleRefModel, AddressModel):
     rencode = models.CharField(max_length=18, blank=True)
     npanxx = models.CharField(max_length=21, blank=True)
 
+    tech_email = models.EmailField(max_length=254, blank=True)
+    tech_phone = models.CharField(max_length=192, blank=True)
+    sales_email = models.EmailField(max_length=254, blank=True)
+    sales_phone = models.CharField(max_length=192, blank=True)
+
     notes = models.TextField(blank=True)
 
     class Meta:
