@@ -17,9 +17,16 @@ from django_peeringdb import (
     const,
 )
 
+class LG_URLField(models.URLField):
+    default_validators = [URLValidator(schemes=["http", "https", "telnet", "ssh"])]
+
+    def __init__(self, *args, **kwargs):
+        kwargs["max_length"] = 255
+        super(LG_URLField, self).__init__(*args, **kwargs)
+
 
 class URLField(models.URLField):
-    default_validators = [URLValidator(schemes=["http", "https", "ftp", "ftps", "telnet"])]
+    default_validators = [URLValidator(schemes=["http", "https"])]
 
     def __init__(self, *args, **kwargs):
         kwargs["max_length"] = 255
@@ -114,14 +121,13 @@ class NetworkBase(HandleRefModel):
                                               "ROUTE-SET in Internet "
                                               "Routing Registry (IRR)"))
     website = URLField(blank=True)
-    looking_glass = URLField(blank=True)
-    route_server = URLField(blank=True)
+    looking_glass = LG_URLField(blank=True)
+    route_server = LG_URLField(blank=True)
 
     notes = models.TextField(blank=True)
     notes_private = models.TextField(blank=True)
 
-    info_traffic = models.CharField(
-        max_length=39, blank=True, choices=const.TRAFFIC)
+    info_traffic = models.CharField(max_length=39, blank=True, choices=const.TRAFFIC)
     info_ratio = models.CharField(max_length=45, blank=True, choices=const.RATIOS,
                                   default='Not Disclosed')
     info_scope = models.CharField(max_length=39, blank=True, choices=const.SCOPES,
@@ -142,7 +148,7 @@ class NetworkBase(HandleRefModel):
     info_never_via_route_servers = models.BooleanField(default=False,
                                                       help_text=_("Indicates if this network "
                                                                   "will announce its routes "
-                                                                  "via rout servers or not"))
+                                                                  "via route servers or not"))
 
     policy_url = URLField(blank=True)
     policy_general = models.CharField(max_length=72, blank=True,
