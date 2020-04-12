@@ -1,5 +1,5 @@
 
-from __future__ import unicode_literals
+
 from django.core.validators import URLValidator
 from django.db import models
 from django.conf import settings
@@ -79,6 +79,11 @@ class FacilityBase(HandleRefModel, AddressModel):
     clli = models.CharField(max_length=18, blank=True)
     rencode = models.CharField(max_length=18, blank=True)
     npanxx = models.CharField(max_length=21, blank=True)
+
+    tech_email = models.EmailField(max_length=254, blank=True)
+    tech_phone = models.CharField(max_length=192, blank=True)
+    sales_email = models.EmailField(max_length=254, blank=True)
+    sales_phone = models.CharField(max_length=192, blank=True)
 
     notes = models.TextField(blank=True)
 
@@ -272,6 +277,7 @@ class NetworkIXLanBase(HandleRefModel):
     is_rs_peer = models.BooleanField(default=False)
     notes = models.CharField(max_length=255, blank=True)
     speed = models.PositiveIntegerField()
+    operational = models.BooleanField(default=True)
 
     class Meta:
         abstract = True

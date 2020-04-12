@@ -9,7 +9,7 @@ DJANGO_DB_FIELDS = (
 
 def database_settings(db_config):
     db = {}
-    for k,v in db_config.items():
+    for k,v in list(db_config.items()):
         k = k.upper()
         if k in DJANGO_DB_FIELDS:
             db[k] = v
