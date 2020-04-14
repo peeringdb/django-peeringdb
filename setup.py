@@ -1,39 +1,43 @@
-
 from setuptools import find_packages, setup
 
 
-version = open('facsimile/VERSION').read().strip()
-requirements = open('facsimile/requirements.txt').read().split("\n")
-requirements.append(open('facsimile/requirements-django.txt').read().split("\n"))
-test_requirements = open('facsimile/requirements-test.txt').read().split("\n")
+def read_file(name):
+    with open(name) as fobj:
+        return fobj.read().strip()
+
+
+LONG_DESCRIPTION = read_file("README.md")
+VERSION = read_file("Ctl/VERSION")
+REQUIREMENTS = read_file("Ctl/requirements.txt").split("\n")
+TEST_REQUIREMENTS = read_file("Ctl/requirements-test.txt").split("\n")
 
 
 setup(
-    name='django-peeringdb',
-    version=version,
-    author='PeeringDB',
-    author_email='support@peeringdb.com',
-    description='PeeringDB models and local synchronization for Django',
-    long_description='',
-    license='LICENSE.txt',
+    name="django-peeringdb",
+    version=VERSION,
+    author="PeeringDB",
+    author_email="support@peeringdb.com",
+    description="PeeringDB models and local synchronization for Django",
+    long_description=LONG_DESCRIPTION,
+    long_description_content_type="text/markdown",
+    license="LICENSE.txt",
     classifiers=[
-        'Development Status :: 4 - Beta',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: Apache Software License',
-        'Topic :: Software Development :: Libraries :: Python Modules',
-        'Topic :: Internet',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
+        "Development Status :: 5 - Production/Stable",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: Apache Software License",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: Internet",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
     ],
-    packages = find_packages(),
+    packages=find_packages(),
     include_package_data=True,
-
-    url='https://github.com/peeringdb/django-peeringdb',
-    download_url='https://github.com/peeringdb/django-peeringdb/%s' % version,
-
-    install_requires=requirements,
-    test_requires=test_requirements,
-
-    zip_safe=True
+    url="https://github.com/peeringdb/django-peeringdb",
+    download_url="https://github.com/peeringdb/django-peeringdb/archive/{}.zip".format(
+        VERSION
+    ),
+    install_requires=REQUIREMENTS,
+    test_requires=TEST_REQUIREMENTS,
+    zip_safe=True,
 )
