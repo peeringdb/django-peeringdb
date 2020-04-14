@@ -7,7 +7,7 @@ ctl:
     - name: this_repo
       type: git
       config:
-        repo_url: git@github.com:20c/rdap.git
+        repo_url: git@github.com:peeringdb/django-peeringdb.git
 
     - name: pypi
       type: pypi
