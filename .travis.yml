@@ -17,6 +17,10 @@ env:
   - DJANGO=3.0
 matrix:
   fast_finish: true
+  exclude:
+    # django 3.0 needs py >= 3.6
+    - python: "3.5"
+      env: DJANGO=3.0
 before_install:
   - sudo apt-get -qq update
 install:

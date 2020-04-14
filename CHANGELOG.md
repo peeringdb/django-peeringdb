@@ -3,7 +3,8 @@
 
 ## [Unreleased]
 ### Added
-- add py3.7 to tox and travis tests
+- add py3.7, py3.8 to tox and travis tests
+- add django 2.2 to tests
 ### Fixed
 ### Changed
 ### Deprecated
