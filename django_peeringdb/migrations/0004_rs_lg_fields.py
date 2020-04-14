@@ -7,18 +7,22 @@ import django_peeringdb.models.abstract
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('django_peeringdb', '0003_never_via_route_servers'),
+        ("django_peeringdb", "0003_never_via_route_servers"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='network',
-            name='looking_glass',
-            field=django_peeringdb.models.abstract.LG_URLField(blank=True, max_length=255),
+            model_name="network",
+            name="looking_glass",
+            field=django_peeringdb.models.abstract.LG_URLField(
+                blank=True, max_length=255
+            ),
         ),
         migrations.AlterField(
-            model_name='network',
-            name='route_server',
-            field=django_peeringdb.models.abstract.LG_URLField(blank=True, max_length=255),
+            model_name="network",
+            name="route_server",
+            field=django_peeringdb.models.abstract.LG_URLField(
+                blank=True, max_length=255
+            ),
         ),
     ]

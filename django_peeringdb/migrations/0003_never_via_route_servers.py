@@ -8,13 +8,16 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('django_peeringdb', '0002_network_fields_help_text'),
+        ("django_peeringdb", "0002_network_fields_help_text"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='network',
-            name='info_never_via_route_servers',
-            field=models.BooleanField(default=False, help_text='Indicates if this network will announce its routes via route servers or not'),
+            model_name="network",
+            name="info_never_via_route_servers",
+            field=models.BooleanField(
+                default=False,
+                help_text="Indicates if this network will announce its routes via route servers or not",
+            ),
         ),
     ]

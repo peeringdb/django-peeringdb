@@ -1,23 +1,26 @@
 DJANGO_DB_FIELDS = (
-    'ENGINE',
-    'NAME',
-    'HOST',
-    'PORT',
-    'USER',
-    'PASSWORD',
+    "ENGINE",
+    "NAME",
+    "HOST",
+    "PORT",
+    "USER",
+    "PASSWORD",
 )
+
 
 def database_settings(db_config):
     db = {}
-    for k,v in list(db_config.items()):
+    for k, v in list(db_config.items()):
         k = k.upper()
         if k in DJANGO_DB_FIELDS:
             db[k] = v
 
-    db['ENGINE'] = 'django.db.backends.' + db['ENGINE']
+    db["ENGINE"] = "django.db.backends." + db["ENGINE"]
     return db
 
+
 __backend = None
+
 
 def load_backend(**orm_config):
     """
@@ -25,15 +28,14 @@ def load_backend(**orm_config):
     Assumes config is valid.
     """
     settings = {}
-    settings['SECRET_KEY'] = orm_config.get('secret_key', '')
+    settings["SECRET_KEY"] = orm_config.get("secret_key", "")
 
-    db_config = orm_config['database']
+    db_config = orm_config["database"]
     if db_config:
-        settings['DATABASES'] = {
-            'default': database_settings(db_config)
-        }
+        settings["DATABASES"] = {"default": database_settings(db_config)}
 
     from django_peeringdb.client_adaptor.setup import configure
+
     # Override defaults
     configure(**settings)
     # Must import implementation module after configure

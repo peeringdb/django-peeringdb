@@ -1,5 +1,3 @@
-
-
 from django.core.validators import URLValidator
 from django.db import models
 from django.conf import settings
@@ -13,9 +11,8 @@ from django_inet.models import (
     IPPrefixField,
     MacAddressField,
 )
-from django_peeringdb import (
-    const,
-)
+from django_peeringdb import const
+
 
 class LG_URLField(models.URLField):
     default_validators = [URLValidator(schemes=["http", "https", "telnet", "ssh"])]
@@ -37,6 +34,7 @@ class AddressModel(models.Model):
     """
     Postal Address
     """
+
     address1 = models.CharField(max_length=255, blank=True)
     address2 = models.CharField(max_length=255, blank=True)
     city = models.CharField(max_length=255, blank=True)
@@ -44,8 +42,12 @@ class AddressModel(models.Model):
     zipcode = models.CharField(max_length=48, blank=True)
     country = CountryField(blank=True)
 
-    latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True, help_text="Latitude")
-    longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True, help_text="Longitude")
+    latitude = models.DecimalField(
+        max_digits=9, decimal_places=6, blank=True, null=True, help_text="Latitude"
+    )
+    longitude = models.DecimalField(
+        max_digits=9, decimal_places=6, blank=True, null=True, help_text="Longitude"
+    )
 
     class Meta:
         abstract = True
@@ -61,11 +63,11 @@ class OrganizationBase(HandleRefModel, AddressModel):
 
     class Meta:
         abstract = True
-        db_table = '%sorganization' % settings.TABLE_PREFIX
+        db_table = "%sorganization" % settings.TABLE_PREFIX
         verbose_name_plural = "Organizations"
 
     class HandleRef:
-        tag = 'org'
+        tag = "org"
         delete_cascade = ["net_set", "fac_set", "ix_set"]
 
     def __str__(self):
@@ -89,11 +91,11 @@ class FacilityBase(HandleRefModel, AddressModel):
 
     class Meta:
         abstract = True
-        db_table = '%sfacility' % settings.TABLE_PREFIX
+        db_table = "%sfacility" % settings.TABLE_PREFIX
         verbose_name_plural = "Facilities"
 
     class HandleRef:
-        tag = 'fac'
+        tag = "fac"
         delete_cascade = ["ixfac_set", "netfac_set"]
 
     def __str__(self):
@@ -103,7 +105,8 @@ class FacilityBase(HandleRefModel, AddressModel):
 class ContactBase(HandleRefModel):
     role = models.CharField(max_length=27, choices=const.POC_ROLES)
     visible = models.CharField(
-        max_length=64, choices=const.VISIBILITY, default='Public')
+        max_length=64, choices=const.VISIBILITY, default="Public"
+    )
     name = models.CharField(max_length=254, blank=True)
     phone = models.CharField(max_length=100, blank=True)
     email = models.EmailField(max_length=254, blank=True)
@@ -111,20 +114,25 @@ class ContactBase(HandleRefModel):
 
     class Meta:
         abstract = True
-        db_table = '%snetwork_contact' % settings.TABLE_PREFIX
+        db_table = "%snetwork_contact" % settings.TABLE_PREFIX
 
     class HandleRef:
-        tag = 'poc'
+        tag = "poc"
 
 
 class NetworkBase(HandleRefModel):
     asn = ASNField(unique=True)
     name = models.CharField(max_length=255, unique=True)
     aka = models.CharField(max_length=255, blank=True)
-    irr_as_set = models.CharField(max_length=255, blank=True,
-                                  help_text=_("Reference to an AS-SET or "
-                                              "ROUTE-SET in Internet "
-                                              "Routing Registry (IRR)"))
+    irr_as_set = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text=_(
+            "Reference to an AS-SET or "
+            "ROUTE-SET in Internet "
+            "Routing Registry (IRR)"
+        ),
+    )
     website = URLField(blank=True)
     looking_glass = LG_URLField(blank=True)
     route_server = LG_URLField(blank=True)
@@ -133,44 +141,64 @@ class NetworkBase(HandleRefModel):
     notes_private = models.TextField(blank=True)
 
     info_traffic = models.CharField(max_length=39, blank=True, choices=const.TRAFFIC)
-    info_ratio = models.CharField(max_length=45, blank=True, choices=const.RATIOS,
-                                  default='Not Disclosed')
-    info_scope = models.CharField(max_length=39, blank=True, choices=const.SCOPES,
-                                  default='Not Disclosed')
-    info_type = models.CharField(max_length=60, blank=True, choices=const.NET_TYPES,
-                                 default='Not Disclosed')
-    info_prefixes4 = models.PositiveIntegerField(null=True, blank=True,
-                                                 help_text=_("Recommended IPv4 maximum-prefix "
-                                                             "limit to be configured on peering "
-                                                             "sessions for this ASN"))
-    info_prefixes6 = models.PositiveIntegerField(null=True, blank=True,
-                                                 help_text=_("Recommended IPv6 maximum-prefix "
-                                                             "limit to be configured on peering "
-                                                             "sessions for this ASN"))
+    info_ratio = models.CharField(
+        max_length=45, blank=True, choices=const.RATIOS, default="Not Disclosed"
+    )
+    info_scope = models.CharField(
+        max_length=39, blank=True, choices=const.SCOPES, default="Not Disclosed"
+    )
+    info_type = models.CharField(
+        max_length=60, blank=True, choices=const.NET_TYPES, default="Not Disclosed"
+    )
+    info_prefixes4 = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        help_text=_(
+            "Recommended IPv4 maximum-prefix "
+            "limit to be configured on peering "
+            "sessions for this ASN"
+        ),
+    )
+    info_prefixes6 = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        help_text=_(
+            "Recommended IPv6 maximum-prefix "
+            "limit to be configured on peering "
+            "sessions for this ASN"
+        ),
+    )
     info_unicast = models.BooleanField(default=False)
     info_multicast = models.BooleanField(default=False)
     info_ipv6 = models.BooleanField(default=False)
-    info_never_via_route_servers = models.BooleanField(default=False,
-                                                      help_text=_("Indicates if this network "
-                                                                  "will announce its routes "
-                                                                  "via route servers or not"))
+    info_never_via_route_servers = models.BooleanField(
+        default=False,
+        help_text=_(
+            "Indicates if this network "
+            "will announce its routes "
+            "via route servers or not"
+        ),
+    )
 
     policy_url = URLField(blank=True)
-    policy_general = models.CharField(max_length=72, blank=True,
-                                      choices=const.POLICY_GENERAL)
-    policy_locations = models.CharField(max_length=72, blank=True,
-                                        choices=const.POLICY_LOCATIONS)
+    policy_general = models.CharField(
+        max_length=72, blank=True, choices=const.POLICY_GENERAL
+    )
+    policy_locations = models.CharField(
+        max_length=72, blank=True, choices=const.POLICY_LOCATIONS
+    )
     policy_ratio = models.BooleanField(default=False)
-    policy_contracts = models.CharField(max_length=36, blank=True,
-                                        choices=const.POLICY_CONTRACTS)
+    policy_contracts = models.CharField(
+        max_length=36, blank=True, choices=const.POLICY_CONTRACTS
+    )
 
     class Meta:
         abstract = True
-        db_table = '%snetwork' % settings.TABLE_PREFIX;
+        db_table = "%snetwork" % settings.TABLE_PREFIX
         verbose_name_plural = "Networks"
 
     class HandleRef:
-        tag = 'net'
+        tag = "net"
         delete_cascade = ["poc_set", "netfac_set", "netixlan_set"]
 
     def __str__(self):
@@ -186,8 +214,7 @@ class InternetExchangeBase(HandleRefModel):
 
     notes = models.TextField(blank=True)
 
-    region_continent = models.CharField(
-        max_length=255, choices=const.REGIONS)
+    region_continent = models.CharField(max_length=255, choices=const.REGIONS)
     media = models.CharField(max_length=128, choices=const.MEDIA)
     proto_unicast = models.BooleanField(default=False)
     proto_multicast = models.BooleanField(default=False)
@@ -203,10 +230,10 @@ class InternetExchangeBase(HandleRefModel):
 
     class Meta:
         abstract = True
-        db_table = '%six' % settings.TABLE_PREFIX
+        db_table = "%six" % settings.TABLE_PREFIX
 
     class HandleRef:
-        tag = 'ix'
+        tag = "ix"
         delete_cascade = ["ixfac_set", "ixlan_set"]
 
     def __str__(self):
@@ -214,14 +241,13 @@ class InternetExchangeBase(HandleRefModel):
 
 
 class InternetExchangeFacilityBase(HandleRefModel):
-
     class Meta:
         abstract = True
-        db_table = '%six_facility' % settings.TABLE_PREFIX
+        db_table = "%six_facility" % settings.TABLE_PREFIX
         verbose_name_plural = "internet exchange facilities"
 
     class HandleRef:
-        tag = 'ixfac'
+        tag = "ixfac"
 
 
 class IXLanBase(HandleRefModel):
@@ -235,10 +261,10 @@ class IXLanBase(HandleRefModel):
 
     class Meta:
         abstract = True
-        db_table = '%sixlan' % settings.TABLE_PREFIX
+        db_table = "%sixlan" % settings.TABLE_PREFIX
 
     class HandleRef:
-        tag = 'ixlan'
+        tag = "ixlan"
         delete_cascade = ["ixpfx_set", "netixlan_set"]
 
 
@@ -249,10 +275,10 @@ class IXLanPrefixBase(HandleRefModel):
 
     class Meta:
         abstract = True
-        db_table = '%sixlan_prefix' % settings.TABLE_PREFIX
+        db_table = "%sixlan_prefix" % settings.TABLE_PREFIX
 
     class HandleRef:
-        tag = 'ixpfx'
+        tag = "ixpfx"
 
 
 class NetworkFacilityBase(HandleRefModel):
@@ -263,11 +289,11 @@ class NetworkFacilityBase(HandleRefModel):
 
     class Meta:
         abstract = True
-        db_table = '%snetwork_facility' % settings.TABLE_PREFIX
+        db_table = "%snetwork_facility" % settings.TABLE_PREFIX
         verbose_name_plural = "Network Facilities"
 
     class HandleRef:
-        tag = 'netfac'
+        tag = "netfac"
 
 
 class NetworkIXLanBase(HandleRefModel):
@@ -281,9 +307,7 @@ class NetworkIXLanBase(HandleRefModel):
 
     class Meta:
         abstract = True
-        db_table = '%snetwork_ixlan' % settings.TABLE_PREFIX
+        db_table = "%snetwork_ixlan" % settings.TABLE_PREFIX
 
     class HandleRef:
         tag = "netixlan"
-
-
