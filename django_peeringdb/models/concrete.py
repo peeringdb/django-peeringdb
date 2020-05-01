@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 from django_peeringdb.models import (
     OrganizationBase,
     FacilityBase,
@@ -42,21 +43,30 @@ class Organization(OrganizationBase):
 @expose_model
 class Facility(FacilityBase):
     org = models.ForeignKey(
-        Organization, related_name="fac_set", on_delete=models.CASCADE
+        Organization,
+        related_name="fac_set",
+        verbose_name=_("Organization"),
+        on_delete=models.CASCADE,
     )
 
 
 @expose_model
 class Network(NetworkBase):
     org = models.ForeignKey(
-        Organization, related_name="net_set", on_delete=models.CASCADE
+        Organization,
+        related_name="net_set",
+        verbose_name=_("Organization"),
+        on_delete=models.CASCADE,
     )
 
 
 @expose_model
 class InternetExchange(InternetExchangeBase):
     org = models.ForeignKey(
-        Organization, related_name="ix_set", on_delete=models.CASCADE
+        Organization,
+        related_name="ix_set",
+        verbose_name=_("Organization"),
+        on_delete=models.CASCADE,
     )
 
     @property
@@ -67,13 +77,20 @@ class InternetExchange(InternetExchangeBase):
 @expose_model
 class InternetExchangeFacility(InternetExchangeFacilityBase):
     ix = models.ForeignKey(
-        InternetExchange, related_name="ixfac_set", on_delete=models.CASCADE
+        InternetExchange,
+        related_name="ixfac_set",
+        verbose_name=_("Internet Exchange"),
+        on_delete=models.CASCADE,
     )
     fac = models.ForeignKey(
-        Facility, default=0, related_name="ixfac_set", on_delete=models.CASCADE
+        Facility,
+        default=0,
+        related_name="ixfac_set",
+        verbose_name=_("Facility"),
+        on_delete=models.CASCADE,
     )
 
-    class Meta:
+    class Meta(InternetExchangeFacilityBase.Meta):
         unique_together = ("ix", "fac")
         db_table = "%six_facility" % settings.TABLE_PREFIX
 
@@ -81,34 +98,54 @@ class InternetExchangeFacility(InternetExchangeFacilityBase):
 @expose_model
 class IXLan(IXLanBase):
     ix = models.ForeignKey(
-        InternetExchange, default=0, related_name="ixlan_set", on_delete=models.CASCADE
+        InternetExchange,
+        default=0,
+        related_name="ixlan_set",
+        verbose_name=_("Internet Exchange"),
+        on_delete=models.CASCADE,
     )
 
 
 @expose_model
 class IXLanPrefix(IXLanPrefixBase):
     ixlan = models.ForeignKey(
-        IXLan, default=0, related_name="ixpfx_set", on_delete=models.CASCADE
+        IXLan,
+        default=0,
+        related_name="ixpfx_set",
+        verbose_name=_("Internet Exchange LAN"),
+        on_delete=models.CASCADE,
     )
 
 
 @expose_model
 class NetworkContact(ContactBase):
     net = models.ForeignKey(
-        Network, default=0, related_name="poc_set", on_delete=models.CASCADE
+        Network,
+        default=0,
+        related_name="poc_set",
+        verbose_name=_("Network"),
+        on_delete=models.CASCADE,
     )
 
 
 @expose_model
 class NetworkFacility(NetworkFacilityBase):
     net = models.ForeignKey(
-        Network, default=0, related_name="netfac_set", on_delete=models.CASCADE
+        Network,
+        default=0,
+        related_name="netfac_set",
+        verbose_name=_("Network"),
+        on_delete=models.CASCADE,
     )
     fac = models.ForeignKey(
-        Facility, default=0, related_name="netfac_set", on_delete=models.CASCADE
+        Facility,
+        default=0,
+        related_name="netfac_set",
+        verbose_name=_("Facility"),
+        on_delete=models.CASCADE,
     )
 
-    class Meta:
+    class Meta(NetworkFacilityBase.Meta):
         unique_together = ("net", "fac", "local_asn")
         db_table = "%snetwork_facility" % settings.TABLE_PREFIX
 
@@ -116,10 +153,18 @@ class NetworkFacility(NetworkFacilityBase):
 @expose_model
 class NetworkIXLan(NetworkIXLanBase):
     net = models.ForeignKey(
-        Network, default=0, related_name="netixlan_set", on_delete=models.CASCADE
+        Network,
+        default=0,
+        related_name="netixlan_set",
+        verbose_name=_("Network"),
+        on_delete=models.CASCADE,
     )
     ixlan = models.ForeignKey(
-        IXLan, default=0, related_name="netixlan_set", on_delete=models.CASCADE
+        IXLan,
+        default=0,
+        related_name="netixlan_set",
+        verbose_name=_("Internet Exchange LAN"),
+        on_delete=models.CASCADE,
     )
 
 
