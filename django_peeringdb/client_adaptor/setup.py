@@ -15,6 +15,7 @@ class _Settings:
             if name.isupper():
                 self.__dict__[name] = getattr(new, name)
 
+
 def configure(**kwargs):
     if settings.configured:
         return

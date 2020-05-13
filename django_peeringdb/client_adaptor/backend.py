@@ -9,7 +9,11 @@ from collections import defaultdict
 import django
 from django.apps import apps
 from django.conf import settings
-from django.core.exceptions import ValidationError, FieldDoesNotExist, ObjectDoesNotExist
+from django.core.exceptions import (
+    ValidationError,
+    FieldDoesNotExist,
+    ObjectDoesNotExist,
+)
 from django.core.management import call_command
 from django.db import models, connections, DEFAULT_DB_ALIAS, IntegrityError, connection
 from django.db.migrations.executor import MigrationExecutor
@@ -37,26 +41,28 @@ class Backend(Interface):
 
     # Resource (abstract) and model (concrete) definitions
     RESOURCE_MAP = {
-        resource.Facility:                  concrete.Facility,
-        resource.InternetExchange:          concrete.InternetExchange,
-        resource.InternetExchangeFacility:  concrete.InternetExchangeFacility,
-        resource.InternetExchangeLan:       concrete.IXLan,
+        resource.Facility: concrete.Facility,
+        resource.InternetExchange: concrete.InternetExchange,
+        resource.InternetExchangeFacility: concrete.InternetExchangeFacility,
+        resource.InternetExchangeLan: concrete.IXLan,
         resource.InternetExchangeLanPrefix: concrete.IXLanPrefix,
-        resource.Network:                   concrete.Network,
-        resource.NetworkContact:            concrete.NetworkContact,
-        resource.NetworkFacility:           concrete.NetworkFacility,
-        resource.NetworkIXLan:              concrete.NetworkIXLan,
-        resource.Organization:              concrete.Organization,
+        resource.Network: concrete.Network,
+        resource.NetworkContact: concrete.NetworkContact,
+        resource.NetworkFacility: concrete.NetworkFacility,
+        resource.NetworkIXLan: concrete.NetworkIXLan,
+        resource.Organization: concrete.Organization,
     }
 
     ERROR_PATTERNS = {
-        "mysql" : {
-            "unique" : [(r"Duplicate entry '[^\']+' for key '(?P<field_name>\w+)'",1)],
+        "mysql": {
+            "unique": [(r"Duplicate entry '[^\']+' for key '(?P<field_name>\w+)'", 1)],
         },
         "sqlite": {
-            "unique" : [(r"UNIQUE constraint failed: (\w+)\.(?P<field_name>\w+)",0),
-                        (r"column (?P<field_name>\w+) is not unique",0)],
-        }
+            "unique": [
+                (r"UNIQUE constraint failed: (\w+)\.(?P<field_name>\w+)", 0),
+                (r"column (?P<field_name>\w+) is not unique", 0),
+            ],
+        },
     }
 
     @classmethod
@@ -91,14 +97,13 @@ class Backend(Interface):
             return int(calendar.timegm(upd.timetuple()))
         return 0
 
-
     @reftag_to_cls
     def get_object(self, concrete, id):
         return concrete.objects.get(pk=id)
 
     @reftag_to_cls
     def get_object_by(self, concrete, field_name, value):
-        return concrete.objects.get(**{field_name:value})
+        return concrete.objects.get(**{field_name: value})
 
     @reftag_to_cls
     def get_objects(self, concrete, ids=None):
@@ -108,7 +113,7 @@ class Backend(Interface):
 
     @reftag_to_cls
     def get_objects_by(self, concrete, field_name, value):
-        return concrete.objects.filter(**{field_name:value})
+        return concrete.objects.filter(**{field_name: value})
 
     @reftag_to_cls
     def create_object(self, concrete, **data):
@@ -129,17 +134,17 @@ class Backend(Interface):
     @reftag_to_cls
     def is_field_related(self, concrete, field_name):
         field = self.get_field(concrete, field_name)
-        related = getattr(field, 'related_model', False)
-        multiple = getattr(field, 'multiple', False)
+        related = getattr(field, "related_model", False)
+        multiple = getattr(field, "multiple", False)
         return (related, multiple)
 
     def set_relation_many_to_many(self, obj, field_name, objs):
         "Set a many-to-many field on an object"
         relation = getattr(obj, field_name)
-        if hasattr(relation, 'set'):
-            relation.set(objs) # Django 2.x
+        if hasattr(relation, "set"):
+            relation.set(objs)  # Django 2.x
         else:
-            setattr(obj, field_name, objs) # Django 1.x
+            setattr(obj, field_name, objs)  # Django 1.x
 
     def clean(self, obj):
         obj.full_clean()
@@ -201,10 +206,9 @@ class Backend(Interface):
                 return [m.groupdict()["field_name"]]
         return None
 
-
     # Database
     def migrate_database(self, verbosity=0):
-        call_command('migrate', interactive=False, verbosity=verbosity)
+        call_command("migrate", interactive=False, verbosity=verbosity)
 
     # credit to https://stackoverflow.com/a/31847406/1325447
     def is_database_migrated(self, database=DEFAULT_DB_ALIAS):
@@ -216,4 +220,4 @@ class Backend(Interface):
         return not executor.migration_plan(targets)
 
     def delete_all(self):
-        call_command('flush', interactive=False, verbosity=1)
+        call_command("flush", interactive=False, verbosity=1)

@@ -15,301 +15,748 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Facility',
+            name="Facility",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('status', models.CharField(blank=True, max_length=255, verbose_name='Status')),
-                ('created', django_handleref.models.CreatedDateTimeField(auto_now_add=True, verbose_name='Created')),
-                ('updated', django_handleref.models.UpdatedDateTimeField(auto_now=True, verbose_name='Updated')),
-                ('version', models.IntegerField(default=0)),
-                ('address1', models.CharField(blank=True, max_length=255)),
-                ('address2', models.CharField(blank=True, max_length=255)),
-                ('city', models.CharField(blank=True, max_length=255)),
-                ('state', models.CharField(blank=True, max_length=255)),
-                ('zipcode', models.CharField(blank=True, max_length=48)),
-                ('country', django_countries.fields.CountryField(blank=True, max_length=2)),
-                ('latitude', models.DecimalField(blank=True, decimal_places=6, help_text='Latitude', max_digits=9, null=True)),
-                ('longitude', models.DecimalField(blank=True, decimal_places=6, help_text='Longitude', max_digits=9, null=True)),
-                ('name', models.CharField(max_length=255, unique=True)),
-                ('website', django_peeringdb.models.abstract.URLField(blank=True, max_length=255)),
-                ('clli', models.CharField(blank=True, max_length=18)),
-                ('rencode', models.CharField(blank=True, max_length=18)),
-                ('npanxx', models.CharField(blank=True, max_length=21)),
-                ('notes', models.TextField(blank=True)),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                (
+                    "status",
+                    models.CharField(blank=True, max_length=255, verbose_name="Status"),
+                ),
+                (
+                    "created",
+                    django_handleref.models.CreatedDateTimeField(
+                        auto_now_add=True, verbose_name="Created"
+                    ),
+                ),
+                (
+                    "updated",
+                    django_handleref.models.UpdatedDateTimeField(
+                        auto_now=True, verbose_name="Updated"
+                    ),
+                ),
+                ("version", models.IntegerField(default=0)),
+                ("address1", models.CharField(blank=True, max_length=255)),
+                ("address2", models.CharField(blank=True, max_length=255)),
+                ("city", models.CharField(blank=True, max_length=255)),
+                ("state", models.CharField(blank=True, max_length=255)),
+                ("zipcode", models.CharField(blank=True, max_length=48)),
+                (
+                    "country",
+                    django_countries.fields.CountryField(blank=True, max_length=2),
+                ),
+                (
+                    "latitude",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=6,
+                        help_text="Latitude",
+                        max_digits=9,
+                        null=True,
+                    ),
+                ),
+                (
+                    "longitude",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=6,
+                        help_text="Longitude",
+                        max_digits=9,
+                        null=True,
+                    ),
+                ),
+                ("name", models.CharField(max_length=255, unique=True)),
+                (
+                    "website",
+                    django_peeringdb.models.abstract.URLField(
+                        blank=True, max_length=255
+                    ),
+                ),
+                ("clli", models.CharField(blank=True, max_length=18)),
+                ("rencode", models.CharField(blank=True, max_length=18)),
+                ("npanxx", models.CharField(blank=True, max_length=21)),
+                ("notes", models.TextField(blank=True)),
             ],
             options={
-                'abstract': False,
-                'db_table': 'peeringdb_facility',
-                'verbose_name_plural': 'Facilities',
+                "abstract": False,
+                "db_table": "peeringdb_facility",
+                "verbose_name_plural": "Facilities",
             },
-            managers=[
-                ('handleref', django.db.models.manager.Manager()),
-            ],
+            managers=[("handleref", django.db.models.manager.Manager()),],
         ),
         migrations.CreateModel(
-            name='InternetExchange',
+            name="InternetExchange",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('status', models.CharField(blank=True, max_length=255, verbose_name='Status')),
-                ('created', django_handleref.models.CreatedDateTimeField(auto_now_add=True, verbose_name='Created')),
-                ('updated', django_handleref.models.UpdatedDateTimeField(auto_now=True, verbose_name='Updated')),
-                ('version', models.IntegerField(default=0)),
-                ('name', models.CharField(max_length=64, unique=True)),
-                ('name_long', models.CharField(blank=True, max_length=254)),
-                ('city', models.CharField(max_length=192)),
-                ('country', django_countries.fields.CountryField(max_length=2)),
-                ('notes', models.TextField(blank=True)),
-                ('region_continent', models.CharField(choices=[('North America', 'North America'), ('Asia Pacific', 'Asia Pacific'), ('Europe', 'Europe'), ('South America', 'South America'), ('Africa', 'Africa'), ('Australia', 'Australia'), ('Middle East', 'Middle East')], max_length=255)),
-                ('media', models.CharField(choices=[('Ethernet', 'Ethernet'), ('ATM', 'ATM'), ('Multiple', 'Multiple')], max_length=128)),
-                ('proto_unicast', models.BooleanField(default=False)),
-                ('proto_multicast', models.BooleanField(default=False)),
-                ('proto_ipv6', models.BooleanField(default=False)),
-                ('website', django_peeringdb.models.abstract.URLField(blank=True, max_length=255)),
-                ('url_stats', django_peeringdb.models.abstract.URLField(blank=True, max_length=255)),
-                ('tech_email', models.EmailField(blank=True, max_length=254)),
-                ('tech_phone', models.CharField(blank=True, max_length=192)),
-                ('policy_email', models.EmailField(blank=True, max_length=254)),
-                ('policy_phone', models.CharField(blank=True, max_length=192)),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                (
+                    "status",
+                    models.CharField(blank=True, max_length=255, verbose_name="Status"),
+                ),
+                (
+                    "created",
+                    django_handleref.models.CreatedDateTimeField(
+                        auto_now_add=True, verbose_name="Created"
+                    ),
+                ),
+                (
+                    "updated",
+                    django_handleref.models.UpdatedDateTimeField(
+                        auto_now=True, verbose_name="Updated"
+                    ),
+                ),
+                ("version", models.IntegerField(default=0)),
+                ("name", models.CharField(max_length=64, unique=True)),
+                ("name_long", models.CharField(blank=True, max_length=254)),
+                ("city", models.CharField(max_length=192)),
+                ("country", django_countries.fields.CountryField(max_length=2)),
+                ("notes", models.TextField(blank=True)),
+                (
+                    "region_continent",
+                    models.CharField(
+                        choices=[
+                            ("North America", "North America"),
+                            ("Asia Pacific", "Asia Pacific"),
+                            ("Europe", "Europe"),
+                            ("South America", "South America"),
+                            ("Africa", "Africa"),
+                            ("Australia", "Australia"),
+                            ("Middle East", "Middle East"),
+                        ],
+                        max_length=255,
+                    ),
+                ),
+                (
+                    "media",
+                    models.CharField(
+                        choices=[
+                            ("Ethernet", "Ethernet"),
+                            ("ATM", "ATM"),
+                            ("Multiple", "Multiple"),
+                        ],
+                        max_length=128,
+                    ),
+                ),
+                ("proto_unicast", models.BooleanField(default=False)),
+                ("proto_multicast", models.BooleanField(default=False)),
+                ("proto_ipv6", models.BooleanField(default=False)),
+                (
+                    "website",
+                    django_peeringdb.models.abstract.URLField(
+                        blank=True, max_length=255
+                    ),
+                ),
+                (
+                    "url_stats",
+                    django_peeringdb.models.abstract.URLField(
+                        blank=True, max_length=255
+                    ),
+                ),
+                ("tech_email", models.EmailField(blank=True, max_length=254)),
+                ("tech_phone", models.CharField(blank=True, max_length=192)),
+                ("policy_email", models.EmailField(blank=True, max_length=254)),
+                ("policy_phone", models.CharField(blank=True, max_length=192)),
             ],
-            options={
-                'abstract': False,
-                'db_table': 'peeringdb_ix',
-            },
-            managers=[
-                ('handleref', django.db.models.manager.Manager()),
-            ],
+            options={"abstract": False, "db_table": "peeringdb_ix",},
+            managers=[("handleref", django.db.models.manager.Manager()),],
         ),
         migrations.CreateModel(
-            name='InternetExchangeFacility',
+            name="InternetExchangeFacility",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('status', models.CharField(blank=True, max_length=255, verbose_name='Status')),
-                ('created', django_handleref.models.CreatedDateTimeField(auto_now_add=True, verbose_name='Created')),
-                ('updated', django_handleref.models.UpdatedDateTimeField(auto_now=True, verbose_name='Updated')),
-                ('version', models.IntegerField(default=0)),
-                ('fac', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='ixfac_set', to='django_peeringdb.Facility')),
-                ('ix', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='ixfac_set', to='django_peeringdb.InternetExchange')),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                (
+                    "status",
+                    models.CharField(blank=True, max_length=255, verbose_name="Status"),
+                ),
+                (
+                    "created",
+                    django_handleref.models.CreatedDateTimeField(
+                        auto_now_add=True, verbose_name="Created"
+                    ),
+                ),
+                (
+                    "updated",
+                    django_handleref.models.UpdatedDateTimeField(
+                        auto_now=True, verbose_name="Updated"
+                    ),
+                ),
+                ("version", models.IntegerField(default=0)),
+                (
+                    "fac",
+                    models.ForeignKey(
+                        default=0,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="ixfac_set",
+                        to="django_peeringdb.Facility",
+                    ),
+                ),
+                (
+                    "ix",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="ixfac_set",
+                        to="django_peeringdb.InternetExchange",
+                    ),
+                ),
             ],
-            options={
-                'db_table': 'peeringdb_ix_facility',
-            },
-            managers=[
-                ('handleref', django.db.models.manager.Manager()),
-            ],
+            options={"db_table": "peeringdb_ix_facility",},
+            managers=[("handleref", django.db.models.manager.Manager()),],
         ),
         migrations.CreateModel(
-            name='IXLan',
+            name="IXLan",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('status', models.CharField(blank=True, max_length=255, verbose_name='Status')),
-                ('created', django_handleref.models.CreatedDateTimeField(auto_now_add=True, verbose_name='Created')),
-                ('updated', django_handleref.models.UpdatedDateTimeField(auto_now=True, verbose_name='Updated')),
-                ('version', models.IntegerField(default=0)),
-                ('name', models.CharField(blank=True, max_length=255)),
-                ('descr', models.TextField(blank=True)),
-                ('mtu', models.PositiveIntegerField(blank=True, null=True)),
-                ('vlan', models.PositiveIntegerField(blank=True, null=True)),
-                ('dot1q_support', models.BooleanField(default=False)),
-                ('rs_asn', django_inet.models.ASNField(blank=True, default=0, null=True)),
-                ('arp_sponge', django_inet.models.MacAddressField(blank=True, max_length=17, null=True, unique=True)),
-                ('ix', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='ixlan_set', to='django_peeringdb.InternetExchange')),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                (
+                    "status",
+                    models.CharField(blank=True, max_length=255, verbose_name="Status"),
+                ),
+                (
+                    "created",
+                    django_handleref.models.CreatedDateTimeField(
+                        auto_now_add=True, verbose_name="Created"
+                    ),
+                ),
+                (
+                    "updated",
+                    django_handleref.models.UpdatedDateTimeField(
+                        auto_now=True, verbose_name="Updated"
+                    ),
+                ),
+                ("version", models.IntegerField(default=0)),
+                ("name", models.CharField(blank=True, max_length=255)),
+                ("descr", models.TextField(blank=True)),
+                ("mtu", models.PositiveIntegerField(blank=True, null=True)),
+                ("vlan", models.PositiveIntegerField(blank=True, null=True)),
+                ("dot1q_support", models.BooleanField(default=False)),
+                (
+                    "rs_asn",
+                    django_inet.models.ASNField(blank=True, default=0, null=True),
+                ),
+                (
+                    "arp_sponge",
+                    django_inet.models.MacAddressField(
+                        blank=True, max_length=17, null=True, unique=True
+                    ),
+                ),
+                (
+                    "ix",
+                    models.ForeignKey(
+                        default=0,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="ixlan_set",
+                        to="django_peeringdb.InternetExchange",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-                'db_table': 'peeringdb_ixlan',
-            },
-            managers=[
-                ('handleref', django.db.models.manager.Manager()),
-            ],
+            options={"abstract": False, "db_table": "peeringdb_ixlan",},
+            managers=[("handleref", django.db.models.manager.Manager()),],
         ),
         migrations.CreateModel(
-            name='IXLanPrefix',
+            name="IXLanPrefix",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('status', models.CharField(blank=True, max_length=255, verbose_name='Status')),
-                ('created', django_handleref.models.CreatedDateTimeField(auto_now_add=True, verbose_name='Created')),
-                ('updated', django_handleref.models.UpdatedDateTimeField(auto_now=True, verbose_name='Updated')),
-                ('version', models.IntegerField(default=0)),
-                ('notes', models.CharField(blank=True, max_length=255)),
-                ('protocol', models.CharField(choices=[('IPv4', 'IPv4'), ('IPv6', 'IPv6')], max_length=64)),
-                ('prefix', django_inet.models.IPPrefixField(max_length=43, unique=True)),
-                ('ixlan', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='ixpfx_set', to='django_peeringdb.IXLan')),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                (
+                    "status",
+                    models.CharField(blank=True, max_length=255, verbose_name="Status"),
+                ),
+                (
+                    "created",
+                    django_handleref.models.CreatedDateTimeField(
+                        auto_now_add=True, verbose_name="Created"
+                    ),
+                ),
+                (
+                    "updated",
+                    django_handleref.models.UpdatedDateTimeField(
+                        auto_now=True, verbose_name="Updated"
+                    ),
+                ),
+                ("version", models.IntegerField(default=0)),
+                ("notes", models.CharField(blank=True, max_length=255)),
+                (
+                    "protocol",
+                    models.CharField(
+                        choices=[("IPv4", "IPv4"), ("IPv6", "IPv6")], max_length=64
+                    ),
+                ),
+                (
+                    "prefix",
+                    django_inet.models.IPPrefixField(max_length=43, unique=True),
+                ),
+                (
+                    "ixlan",
+                    models.ForeignKey(
+                        default=0,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="ixpfx_set",
+                        to="django_peeringdb.IXLan",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-                'db_table': 'peeringdb_ixlan_prefix',
-            },
-            managers=[
-                ('handleref', django.db.models.manager.Manager()),
-            ],
+            options={"abstract": False, "db_table": "peeringdb_ixlan_prefix",},
+            managers=[("handleref", django.db.models.manager.Manager()),],
         ),
         migrations.CreateModel(
-            name='Network',
+            name="Network",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('status', models.CharField(blank=True, max_length=255, verbose_name='Status')),
-                ('created', django_handleref.models.CreatedDateTimeField(auto_now_add=True, verbose_name='Created')),
-                ('updated', django_handleref.models.UpdatedDateTimeField(auto_now=True, verbose_name='Updated')),
-                ('version', models.IntegerField(default=0)),
-                ('asn', django_inet.models.ASNField(unique=True)),
-                ('name', models.CharField(max_length=255, unique=True)),
-                ('aka', models.CharField(blank=True, max_length=255)),
-                ('irr_as_set', models.CharField(blank=True, max_length=255)),
-                ('website', django_peeringdb.models.abstract.URLField(blank=True, max_length=255)),
-                ('looking_glass', django_peeringdb.models.abstract.URLField(blank=True, max_length=255)),
-                ('route_server', django_peeringdb.models.abstract.URLField(blank=True, max_length=255)),
-                ('notes', models.TextField(blank=True)),
-                ('notes_private', models.TextField(blank=True)),
-                ('info_traffic', models.CharField(blank=True, choices=[('', 'Not Disclosed'), ('0-20 Mbps', '0-20 Mbps'), ('20-100Mbps', '20-100Mbps'), ('100-1000Mbps', '100-1000Mbps'), ('1-5Gbps', '1-5Gbps'), ('5-10Gbps', '5-10Gbps'), ('10-20Gbps', '10-20Gbps'), ('20-50 Gbps', '20-50 Gbps'), ('50-100 Gbps', '50-100 Gbps'), ('100+ Gbps', '100+ Gbps'), ('100-200 Gbps', '100-200 Gbps'), ('200-300 Gbps', '200-300 Gbps'), ('300-500 Gbps', '300-500 Gbps'), ('500-1000 Gbps', '500-1000 Gbps'), ('1 Tbps+', '1 Tbps+'), ('10 Tbps+', '10 Tbps+')], max_length=39)),
-                ('info_ratio', models.CharField(blank=True, choices=[('', 'Not Disclosed'), ('Not Disclosed', 'Not Disclosed'), ('Heavy Outbound', 'Heavy Outbound'), ('Mostly Outbound', 'Mostly Outbound'), ('Balanced', 'Balanced'), ('Mostly Inbound', 'Mostly Inbound'), ('Heavy Inbound', 'Heavy Inbound')], default='Not Disclosed', max_length=45)),
-                ('info_scope', models.CharField(blank=True, choices=[('', 'Not Disclosed'), ('Not Disclosed', 'Not Disclosed'), ('Regional', 'Regional'), ('North America', 'North America'), ('Asia Pacific', 'Asia Pacific'), ('Europe', 'Europe'), ('South America', 'South America'), ('Africa', 'Africa'), ('Australia', 'Australia'), ('Middle East', 'Middle East'), ('Global', 'Global')], default='Not Disclosed', max_length=39)),
-                ('info_type', models.CharField(blank=True, choices=[('', 'Not Disclosed'), ('Not Disclosed', 'Not Disclosed'), ('NSP', 'NSP'), ('Content', 'Content'), ('Cable/DSL/ISP', 'Cable/DSL/ISP'), ('Enterprise', 'Enterprise'), ('Educational/Research', 'Educational/Research'), ('Non-Profit', 'Non-Profit'), ('Route Server', 'Route Server')], default='Not Disclosed', max_length=60)),
-                ('info_prefixes4', models.PositiveIntegerField(blank=True, null=True)),
-                ('info_prefixes6', models.PositiveIntegerField(blank=True, null=True)),
-                ('info_unicast', models.BooleanField(default=False)),
-                ('info_multicast', models.BooleanField(default=False)),
-                ('info_ipv6', models.BooleanField(default=False)),
-                ('policy_url', django_peeringdb.models.abstract.URLField(blank=True, max_length=255)),
-                ('policy_general', models.CharField(blank=True, choices=[('Open', 'Open'), ('Selective', 'Selective'), ('Restrictive', 'Restrictive'), ('No', 'No')], max_length=72)),
-                ('policy_locations', models.CharField(blank=True, choices=[('Not Required', 'Not Required'), ('Preferred', 'Preferred'), ('Required - US', 'Required - US'), ('Required - EU', 'Required - EU'), ('Required - International', 'Required - International')], max_length=72)),
-                ('policy_ratio', models.BooleanField(default=False)),
-                ('policy_contracts', models.CharField(blank=True, choices=[('Not Required', 'Not Required'), ('Private Only', 'Private Only'), ('Required', 'Required')], max_length=36)),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                (
+                    "status",
+                    models.CharField(blank=True, max_length=255, verbose_name="Status"),
+                ),
+                (
+                    "created",
+                    django_handleref.models.CreatedDateTimeField(
+                        auto_now_add=True, verbose_name="Created"
+                    ),
+                ),
+                (
+                    "updated",
+                    django_handleref.models.UpdatedDateTimeField(
+                        auto_now=True, verbose_name="Updated"
+                    ),
+                ),
+                ("version", models.IntegerField(default=0)),
+                ("asn", django_inet.models.ASNField(unique=True)),
+                ("name", models.CharField(max_length=255, unique=True)),
+                ("aka", models.CharField(blank=True, max_length=255)),
+                ("irr_as_set", models.CharField(blank=True, max_length=255)),
+                (
+                    "website",
+                    django_peeringdb.models.abstract.URLField(
+                        blank=True, max_length=255
+                    ),
+                ),
+                (
+                    "looking_glass",
+                    django_peeringdb.models.abstract.URLField(
+                        blank=True, max_length=255
+                    ),
+                ),
+                (
+                    "route_server",
+                    django_peeringdb.models.abstract.URLField(
+                        blank=True, max_length=255
+                    ),
+                ),
+                ("notes", models.TextField(blank=True)),
+                ("notes_private", models.TextField(blank=True)),
+                (
+                    "info_traffic",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("", "Not Disclosed"),
+                            ("0-20 Mbps", "0-20 Mbps"),
+                            ("20-100Mbps", "20-100Mbps"),
+                            ("100-1000Mbps", "100-1000Mbps"),
+                            ("1-5Gbps", "1-5Gbps"),
+                            ("5-10Gbps", "5-10Gbps"),
+                            ("10-20Gbps", "10-20Gbps"),
+                            ("20-50 Gbps", "20-50 Gbps"),
+                            ("50-100 Gbps", "50-100 Gbps"),
+                            ("100+ Gbps", "100+ Gbps"),
+                            ("100-200 Gbps", "100-200 Gbps"),
+                            ("200-300 Gbps", "200-300 Gbps"),
+                            ("300-500 Gbps", "300-500 Gbps"),
+                            ("500-1000 Gbps", "500-1000 Gbps"),
+                            ("1 Tbps+", "1 Tbps+"),
+                            ("10 Tbps+", "10 Tbps+"),
+                        ],
+                        max_length=39,
+                    ),
+                ),
+                (
+                    "info_ratio",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("", "Not Disclosed"),
+                            ("Not Disclosed", "Not Disclosed"),
+                            ("Heavy Outbound", "Heavy Outbound"),
+                            ("Mostly Outbound", "Mostly Outbound"),
+                            ("Balanced", "Balanced"),
+                            ("Mostly Inbound", "Mostly Inbound"),
+                            ("Heavy Inbound", "Heavy Inbound"),
+                        ],
+                        default="Not Disclosed",
+                        max_length=45,
+                    ),
+                ),
+                (
+                    "info_scope",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("", "Not Disclosed"),
+                            ("Not Disclosed", "Not Disclosed"),
+                            ("Regional", "Regional"),
+                            ("North America", "North America"),
+                            ("Asia Pacific", "Asia Pacific"),
+                            ("Europe", "Europe"),
+                            ("South America", "South America"),
+                            ("Africa", "Africa"),
+                            ("Australia", "Australia"),
+                            ("Middle East", "Middle East"),
+                            ("Global", "Global"),
+                        ],
+                        default="Not Disclosed",
+                        max_length=39,
+                    ),
+                ),
+                (
+                    "info_type",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("", "Not Disclosed"),
+                            ("Not Disclosed", "Not Disclosed"),
+                            ("NSP", "NSP"),
+                            ("Content", "Content"),
+                            ("Cable/DSL/ISP", "Cable/DSL/ISP"),
+                            ("Enterprise", "Enterprise"),
+                            ("Educational/Research", "Educational/Research"),
+                            ("Non-Profit", "Non-Profit"),
+                            ("Route Server", "Route Server"),
+                        ],
+                        default="Not Disclosed",
+                        max_length=60,
+                    ),
+                ),
+                ("info_prefixes4", models.PositiveIntegerField(blank=True, null=True)),
+                ("info_prefixes6", models.PositiveIntegerField(blank=True, null=True)),
+                ("info_unicast", models.BooleanField(default=False)),
+                ("info_multicast", models.BooleanField(default=False)),
+                ("info_ipv6", models.BooleanField(default=False)),
+                (
+                    "policy_url",
+                    django_peeringdb.models.abstract.URLField(
+                        blank=True, max_length=255
+                    ),
+                ),
+                (
+                    "policy_general",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("Open", "Open"),
+                            ("Selective", "Selective"),
+                            ("Restrictive", "Restrictive"),
+                            ("No", "No"),
+                        ],
+                        max_length=72,
+                    ),
+                ),
+                (
+                    "policy_locations",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("Not Required", "Not Required"),
+                            ("Preferred", "Preferred"),
+                            ("Required - US", "Required - US"),
+                            ("Required - EU", "Required - EU"),
+                            ("Required - International", "Required - International"),
+                        ],
+                        max_length=72,
+                    ),
+                ),
+                ("policy_ratio", models.BooleanField(default=False)),
+                (
+                    "policy_contracts",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("Not Required", "Not Required"),
+                            ("Private Only", "Private Only"),
+                            ("Required", "Required"),
+                        ],
+                        max_length=36,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
-                'db_table': 'peeringdb_network',
-                'verbose_name_plural': 'Networks',
+                "abstract": False,
+                "db_table": "peeringdb_network",
+                "verbose_name_plural": "Networks",
             },
-            managers=[
-                ('handleref', django.db.models.manager.Manager()),
-            ],
+            managers=[("handleref", django.db.models.manager.Manager()),],
         ),
         migrations.CreateModel(
-            name='NetworkContact',
+            name="NetworkContact",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('status', models.CharField(blank=True, max_length=255, verbose_name='Status')),
-                ('created', django_handleref.models.CreatedDateTimeField(auto_now_add=True, verbose_name='Created')),
-                ('updated', django_handleref.models.UpdatedDateTimeField(auto_now=True, verbose_name='Updated')),
-                ('version', models.IntegerField(default=0)),
-                ('role', models.CharField(choices=[('Abuse', 'Abuse'), ('Maintenance', 'Maintenance'), ('Policy', 'Policy'), ('Technical', 'Technical'), ('NOC', 'NOC'), ('Public Relations', 'Public Relations'), ('Sales', 'Sales')], max_length=27)),
-                ('visible', models.CharField(choices=[('Private', 'Private'), ('Users', 'Users'), ('Public', 'Public')], default='Public', max_length=64)),
-                ('name', models.CharField(blank=True, max_length=254)),
-                ('phone', models.CharField(blank=True, max_length=100)),
-                ('email', models.EmailField(blank=True, max_length=254)),
-                ('url', django_peeringdb.models.abstract.URLField(blank=True, max_length=255)),
-                ('net', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='poc_set', to='django_peeringdb.Network')),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                (
+                    "status",
+                    models.CharField(blank=True, max_length=255, verbose_name="Status"),
+                ),
+                (
+                    "created",
+                    django_handleref.models.CreatedDateTimeField(
+                        auto_now_add=True, verbose_name="Created"
+                    ),
+                ),
+                (
+                    "updated",
+                    django_handleref.models.UpdatedDateTimeField(
+                        auto_now=True, verbose_name="Updated"
+                    ),
+                ),
+                ("version", models.IntegerField(default=0)),
+                (
+                    "role",
+                    models.CharField(
+                        choices=[
+                            ("Abuse", "Abuse"),
+                            ("Maintenance", "Maintenance"),
+                            ("Policy", "Policy"),
+                            ("Technical", "Technical"),
+                            ("NOC", "NOC"),
+                            ("Public Relations", "Public Relations"),
+                            ("Sales", "Sales"),
+                        ],
+                        max_length=27,
+                    ),
+                ),
+                (
+                    "visible",
+                    models.CharField(
+                        choices=[
+                            ("Private", "Private"),
+                            ("Users", "Users"),
+                            ("Public", "Public"),
+                        ],
+                        default="Public",
+                        max_length=64,
+                    ),
+                ),
+                ("name", models.CharField(blank=True, max_length=254)),
+                ("phone", models.CharField(blank=True, max_length=100)),
+                ("email", models.EmailField(blank=True, max_length=254)),
+                (
+                    "url",
+                    django_peeringdb.models.abstract.URLField(
+                        blank=True, max_length=255
+                    ),
+                ),
+                (
+                    "net",
+                    models.ForeignKey(
+                        default=0,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="poc_set",
+                        to="django_peeringdb.Network",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-                'db_table': 'peeringdb_network_contact',
-            },
-            managers=[
-                ('handleref', django.db.models.manager.Manager()),
-            ],
+            options={"abstract": False, "db_table": "peeringdb_network_contact",},
+            managers=[("handleref", django.db.models.manager.Manager()),],
         ),
         migrations.CreateModel(
-            name='NetworkFacility',
+            name="NetworkFacility",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('status', models.CharField(blank=True, max_length=255, verbose_name='Status')),
-                ('created', django_handleref.models.CreatedDateTimeField(auto_now_add=True, verbose_name='Created')),
-                ('updated', django_handleref.models.UpdatedDateTimeField(auto_now=True, verbose_name='Updated')),
-                ('version', models.IntegerField(default=0)),
-                ('local_asn', django_inet.models.ASNField(blank=True, null=True)),
-                ('avail_sonet', models.BooleanField(default=False)),
-                ('avail_ethernet', models.BooleanField(default=False)),
-                ('avail_atm', models.BooleanField(default=False)),
-                ('fac', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='netfac_set', to='django_peeringdb.Facility')),
-                ('net', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='netfac_set', to='django_peeringdb.Network')),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                (
+                    "status",
+                    models.CharField(blank=True, max_length=255, verbose_name="Status"),
+                ),
+                (
+                    "created",
+                    django_handleref.models.CreatedDateTimeField(
+                        auto_now_add=True, verbose_name="Created"
+                    ),
+                ),
+                (
+                    "updated",
+                    django_handleref.models.UpdatedDateTimeField(
+                        auto_now=True, verbose_name="Updated"
+                    ),
+                ),
+                ("version", models.IntegerField(default=0)),
+                ("local_asn", django_inet.models.ASNField(blank=True, null=True)),
+                ("avail_sonet", models.BooleanField(default=False)),
+                ("avail_ethernet", models.BooleanField(default=False)),
+                ("avail_atm", models.BooleanField(default=False)),
+                (
+                    "fac",
+                    models.ForeignKey(
+                        default=0,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="netfac_set",
+                        to="django_peeringdb.Facility",
+                    ),
+                ),
+                (
+                    "net",
+                    models.ForeignKey(
+                        default=0,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="netfac_set",
+                        to="django_peeringdb.Network",
+                    ),
+                ),
             ],
-            options={
-                'db_table': 'peeringdb_network_facility',
-            },
-            managers=[
-                ('handleref', django.db.models.manager.Manager()),
-            ],
+            options={"db_table": "peeringdb_network_facility",},
+            managers=[("handleref", django.db.models.manager.Manager()),],
         ),
         migrations.CreateModel(
-            name='NetworkIXLan',
+            name="NetworkIXLan",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('status', models.CharField(blank=True, max_length=255, verbose_name='Status')),
-                ('created', django_handleref.models.CreatedDateTimeField(auto_now_add=True, verbose_name='Created')),
-                ('updated', django_handleref.models.UpdatedDateTimeField(auto_now=True, verbose_name='Updated')),
-                ('version', models.IntegerField(default=0)),
-                ('asn', django_inet.models.ASNField()),
-                ('ipaddr4', django_inet.models.IPAddressField(blank=True, max_length=39, null=True)),
-                ('ipaddr6', django_inet.models.IPAddressField(blank=True, max_length=39, null=True)),
-                ('is_rs_peer', models.BooleanField(default=False)),
-                ('notes', models.CharField(blank=True, max_length=255)),
-                ('speed', models.PositiveIntegerField()),
-                ('ixlan', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='netixlan_set', to='django_peeringdb.IXLan')),
-                ('net', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='netixlan_set', to='django_peeringdb.Network')),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                (
+                    "status",
+                    models.CharField(blank=True, max_length=255, verbose_name="Status"),
+                ),
+                (
+                    "created",
+                    django_handleref.models.CreatedDateTimeField(
+                        auto_now_add=True, verbose_name="Created"
+                    ),
+                ),
+                (
+                    "updated",
+                    django_handleref.models.UpdatedDateTimeField(
+                        auto_now=True, verbose_name="Updated"
+                    ),
+                ),
+                ("version", models.IntegerField(default=0)),
+                ("asn", django_inet.models.ASNField()),
+                (
+                    "ipaddr4",
+                    django_inet.models.IPAddressField(
+                        blank=True, max_length=39, null=True
+                    ),
+                ),
+                (
+                    "ipaddr6",
+                    django_inet.models.IPAddressField(
+                        blank=True, max_length=39, null=True
+                    ),
+                ),
+                ("is_rs_peer", models.BooleanField(default=False)),
+                ("notes", models.CharField(blank=True, max_length=255)),
+                ("speed", models.PositiveIntegerField()),
+                (
+                    "ixlan",
+                    models.ForeignKey(
+                        default=0,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="netixlan_set",
+                        to="django_peeringdb.IXLan",
+                    ),
+                ),
+                (
+                    "net",
+                    models.ForeignKey(
+                        default=0,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="netixlan_set",
+                        to="django_peeringdb.Network",
+                    ),
+                ),
             ],
-            options={
-                'abstract': False,
-                'db_table': 'peeringdb_network_ixlan',
-            },
-            managers=[
-                ('handleref', django.db.models.manager.Manager()),
-            ],
+            options={"abstract": False, "db_table": "peeringdb_network_ixlan",},
+            managers=[("handleref", django.db.models.manager.Manager()),],
         ),
         migrations.CreateModel(
-            name='Organization',
+            name="Organization",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('status', models.CharField(blank=True, max_length=255, verbose_name='Status')),
-                ('created', django_handleref.models.CreatedDateTimeField(auto_now_add=True, verbose_name='Created')),
-                ('updated', django_handleref.models.UpdatedDateTimeField(auto_now=True, verbose_name='Updated')),
-                ('version', models.IntegerField(default=0)),
-                ('address1', models.CharField(blank=True, max_length=255)),
-                ('address2', models.CharField(blank=True, max_length=255)),
-                ('city', models.CharField(blank=True, max_length=255)),
-                ('state', models.CharField(blank=True, max_length=255)),
-                ('zipcode', models.CharField(blank=True, max_length=48)),
-                ('country', django_countries.fields.CountryField(blank=True, max_length=2)),
-                ('latitude', models.DecimalField(blank=True, decimal_places=6, help_text='Latitude', max_digits=9, null=True)),
-                ('longitude', models.DecimalField(blank=True, decimal_places=6, help_text='Longitude', max_digits=9, null=True)),
-                ('name', models.CharField(max_length=255, unique=True)),
-                ('website', django_peeringdb.models.abstract.URLField(blank=True, max_length=255)),
-                ('notes', models.TextField(blank=True)),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                (
+                    "status",
+                    models.CharField(blank=True, max_length=255, verbose_name="Status"),
+                ),
+                (
+                    "created",
+                    django_handleref.models.CreatedDateTimeField(
+                        auto_now_add=True, verbose_name="Created"
+                    ),
+                ),
+                (
+                    "updated",
+                    django_handleref.models.UpdatedDateTimeField(
+                        auto_now=True, verbose_name="Updated"
+                    ),
+                ),
+                ("version", models.IntegerField(default=0)),
+                ("address1", models.CharField(blank=True, max_length=255)),
+                ("address2", models.CharField(blank=True, max_length=255)),
+                ("city", models.CharField(blank=True, max_length=255)),
+                ("state", models.CharField(blank=True, max_length=255)),
+                ("zipcode", models.CharField(blank=True, max_length=48)),
+                (
+                    "country",
+                    django_countries.fields.CountryField(blank=True, max_length=2),
+                ),
+                (
+                    "latitude",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=6,
+                        help_text="Latitude",
+                        max_digits=9,
+                        null=True,
+                    ),
+                ),
+                (
+                    "longitude",
+                    models.DecimalField(
+                        blank=True,
+                        decimal_places=6,
+                        help_text="Longitude",
+                        max_digits=9,
+                        null=True,
+                    ),
+                ),
+                ("name", models.CharField(max_length=255, unique=True)),
+                (
+                    "website",
+                    django_peeringdb.models.abstract.URLField(
+                        blank=True, max_length=255
+                    ),
+                ),
+                ("notes", models.TextField(blank=True)),
             ],
             options={
-                'abstract': False,
-                'db_table': 'peeringdb_organization',
-                'verbose_name_plural': 'Organizations',
+                "abstract": False,
+                "db_table": "peeringdb_organization",
+                "verbose_name_plural": "Organizations",
             },
-            managers=[
-                ('handleref', django.db.models.manager.Manager()),
-            ],
+            managers=[("handleref", django.db.models.manager.Manager()),],
         ),
         migrations.AddField(
-            model_name='network',
-            name='org',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='net_set', to='django_peeringdb.Organization'),
+            model_name="network",
+            name="org",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="net_set",
+                to="django_peeringdb.Organization",
+            ),
         ),
         migrations.AddField(
-            model_name='internetexchange',
-            name='org',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='ix_set', to='django_peeringdb.Organization'),
+            model_name="internetexchange",
+            name="org",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="ix_set",
+                to="django_peeringdb.Organization",
+            ),
         ),
         migrations.AddField(
-            model_name='facility',
-            name='org',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='fac_set', to='django_peeringdb.Organization'),
+            model_name="facility",
+            name="org",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="fac_set",
+                to="django_peeringdb.Organization",
+            ),
         ),
         migrations.AlterUniqueTogether(
-            name='networkfacility',
-            unique_together=set([('net', 'fac', 'local_asn')]),
+            name="networkfacility", unique_together=set([("net", "fac", "local_asn")]),
         ),
         migrations.AlterUniqueTogether(
-            name='internetexchangefacility',
-            unique_together=set([('ix', 'fac')]),
+            name="internetexchangefacility", unique_together=set([("ix", "fac")]),
         ),
     ]

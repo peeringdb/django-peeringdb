@@ -3,14 +3,22 @@
 
 ## [Unreleased]
 ### Added
-- add py3.7 to tox and travis tests
 ### Fixed
 ### Changed
 ### Deprecated
 ### Removed
+### Security
+
+
+## [2.0.0]
+### Added
+- add py3.7, py3.8 to tox and travis tests
+- add django 2.2, 3.0 to tests
+### Changed
+- Explicitly set TIME_ZONE='UTC' (#38)
+### Removed
 - remove py2.7 support (#36)
 - remove py3.4 tests (py3.4 EOL reched)
-### Security
 
 
 ## [1.1.0]
