@@ -272,6 +272,7 @@ class IXLanPrefixBase(HandleRefModel):
     notes = models.CharField(max_length=255, blank=True)
     protocol = models.CharField(max_length=64, choices=const.PROTOCOLS)
     prefix = IPPrefixField(unique=True)
+    in_dfz = models.BooleanField(default=False)
 
     class Meta:
         abstract = True
