@@ -35,18 +35,18 @@ class AddressModel(models.Model):
     Postal Address
     """
 
-    address1 = models.CharField(max_length=255, blank=True)
-    address2 = models.CharField(max_length=255, blank=True)
-    city = models.CharField(max_length=255, blank=True)
-    state = models.CharField(max_length=255, blank=True)
-    zipcode = models.CharField(max_length=48, blank=True)
-    country = CountryField(blank=True)
+    address1 = models.CharField(_("Address 1"), max_length=255, blank=True)
+    address2 = models.CharField(_("Address 2"), max_length=255, blank=True)
+    city = models.CharField(_("City"), max_length=255, blank=True)
+    state = models.CharField(_("State"), max_length=255, blank=True)
+    zipcode = models.CharField(_("Zip-Code"), max_length=48, blank=True)
+    country = CountryField(_("Country"), blank=True)
 
     latitude = models.DecimalField(
-        max_digits=9, decimal_places=6, blank=True, null=True, help_text="Latitude"
+        _("Latitude"), max_digits=9, decimal_places=6, blank=True, null=True
     )
     longitude = models.DecimalField(
-        max_digits=9, decimal_places=6, blank=True, null=True, help_text="Longitude"
+        _("Longitude"), max_digits=9, decimal_places=6, blank=True, null=True
     )
 
     class Meta:
@@ -57,14 +57,15 @@ class AddressModel(models.Model):
 
 
 class OrganizationBase(HandleRefModel, AddressModel):
-    name = models.CharField(max_length=255, unique=True)
-    website = URLField(blank=True)
-    notes = models.TextField(blank=True)
+    name = models.CharField(_("Name"), max_length=255, unique=True)
+    website = URLField(_("Website"), blank=True)
+    notes = models.TextField(_("Notes"), blank=True)
 
     class Meta:
         abstract = True
         db_table = "%sorganization" % settings.TABLE_PREFIX
-        verbose_name_plural = "Organizations"
+        verbose_name = _("Organization")
+        verbose_name_plural = _("Organizations")
 
     class HandleRef:
         tag = "org"
@@ -75,24 +76,25 @@ class OrganizationBase(HandleRefModel, AddressModel):
 
 
 class FacilityBase(HandleRefModel, AddressModel):
-    name = models.CharField(max_length=255, unique=True)
-    website = URLField(blank=True)
+    name = models.CharField(_("Name"), max_length=255, unique=True)
+    website = URLField(_("Website"), blank=True)
 
-    clli = models.CharField(max_length=18, blank=True)
-    rencode = models.CharField(max_length=18, blank=True)
-    npanxx = models.CharField(max_length=21, blank=True)
+    clli = models.CharField(_("CLLI Code"), max_length=18, blank=True)
+    rencode = models.CharField(_("Rencode"), max_length=18, blank=True)
+    npanxx = models.CharField(_("NPA-NXX"), max_length=21, blank=True)
 
-    tech_email = models.EmailField(max_length=254, blank=True)
-    tech_phone = models.CharField(max_length=192, blank=True)
-    sales_email = models.EmailField(max_length=254, blank=True)
-    sales_phone = models.CharField(max_length=192, blank=True)
+    tech_email = models.EmailField(_("Technical Email"), max_length=254, blank=True)
+    tech_phone = models.CharField(_("Technical Phone"), max_length=192, blank=True)
+    sales_email = models.EmailField(_("Sales Email"), max_length=254, blank=True)
+    sales_phone = models.CharField(_("Sales Phone"), max_length=192, blank=True)
 
-    notes = models.TextField(blank=True)
+    notes = models.TextField(_("Notes"), blank=True)
 
     class Meta:
         abstract = True
         db_table = "%sfacility" % settings.TABLE_PREFIX
-        verbose_name_plural = "Facilities"
+        verbose_name = _("Facility")
+        verbose_name_plural = _("Facilities")
 
     class HandleRef:
         tag = "fac"
@@ -103,28 +105,31 @@ class FacilityBase(HandleRefModel, AddressModel):
 
 
 class ContactBase(HandleRefModel):
-    role = models.CharField(max_length=27, choices=const.POC_ROLES)
+    role = models.CharField(_("Role"), max_length=27, choices=const.POC_ROLES)
     visible = models.CharField(
-        max_length=64, choices=const.VISIBILITY, default="Public"
+        _("Visibility"), max_length=64, choices=const.VISIBILITY, default="Public"
     )
-    name = models.CharField(max_length=254, blank=True)
-    phone = models.CharField(max_length=100, blank=True)
-    email = models.EmailField(max_length=254, blank=True)
-    url = URLField(blank=True)
+    name = models.CharField(_("Name"), max_length=254, blank=True)
+    phone = models.CharField(_("Phone"), max_length=100, blank=True)
+    email = models.EmailField(_("Email"), max_length=254, blank=True)
+    url = URLField(_("URL"), blank=True)
 
     class Meta:
         abstract = True
         db_table = "%snetwork_contact" % settings.TABLE_PREFIX
+        verbose_name = _("Contact")
+        verbose_name_plural = _("Contacts")
 
     class HandleRef:
         tag = "poc"
 
 
 class NetworkBase(HandleRefModel):
-    asn = ASNField(unique=True)
-    name = models.CharField(max_length=255, unique=True)
-    aka = models.CharField(max_length=255, blank=True)
+    asn = ASNField(verbose_name="ASN", unique=True)
+    name = models.CharField(_("Name"), max_length=255, unique=True)
+    aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
     irr_as_set = models.CharField(
+        _("IRR as-set/route-set"),
         max_length=255,
         blank=True,
         help_text=_(
@@ -133,24 +138,39 @@ class NetworkBase(HandleRefModel):
             "Routing Registry (IRR)"
         ),
     )
-    website = URLField(blank=True)
-    looking_glass = LG_URLField(blank=True)
-    route_server = LG_URLField(blank=True)
+    website = URLField(_("Website"), blank=True)
+    looking_glass = LG_URLField(_("Looking Glass URL"), blank=True)
+    route_server = LG_URLField(_("Route Server URL"), blank=True)
 
-    notes = models.TextField(blank=True)
-    notes_private = models.TextField(blank=True)
+    notes = models.TextField(_("Notes"), blank=True)
+    notes_private = models.TextField(_("Private notes"), blank=True)
 
-    info_traffic = models.CharField(max_length=39, blank=True, choices=const.TRAFFIC)
+    info_traffic = models.CharField(
+        _("Traffic Levels"), max_length=39, blank=True, choices=const.TRAFFIC
+    )
     info_ratio = models.CharField(
-        max_length=45, blank=True, choices=const.RATIOS, default="Not Disclosed"
+        _("Traffic Ratios"),
+        max_length=45,
+        blank=True,
+        choices=const.RATIOS,
+        default="Not Disclosed",
     )
     info_scope = models.CharField(
-        max_length=39, blank=True, choices=const.SCOPES, default="Not Disclosed"
+        _("Geographic Scope"),
+        max_length=39,
+        blank=True,
+        choices=const.SCOPES,
+        default="Not Disclosed",
     )
     info_type = models.CharField(
-        max_length=60, blank=True, choices=const.NET_TYPES, default="Not Disclosed"
+        _("Network Type"),
+        max_length=60,
+        blank=True,
+        choices=const.NET_TYPES,
+        default="Not Disclosed",
     )
     info_prefixes4 = models.PositiveIntegerField(
+        _("IPv4 Prefixes"),
         null=True,
         blank=True,
         help_text=_(
@@ -160,6 +180,7 @@ class NetworkBase(HandleRefModel):
         ),
     )
     info_prefixes6 = models.PositiveIntegerField(
+        _("IPv6 Prefixes"),
         null=True,
         blank=True,
         help_text=_(
@@ -168,10 +189,11 @@ class NetworkBase(HandleRefModel):
             "sessions for this ASN"
         ),
     )
-    info_unicast = models.BooleanField(default=False)
-    info_multicast = models.BooleanField(default=False)
-    info_ipv6 = models.BooleanField(default=False)
+    info_unicast = models.BooleanField(_("Unicast IPv4"), default=False)
+    info_multicast = models.BooleanField(_("Multicast"), default=False)
+    info_ipv6 = models.BooleanField(_("Unicast IPv6"), default=False)
     info_never_via_route_servers = models.BooleanField(
+        _("Never via route servers"),
         default=False,
         help_text=_(
             "Indicates if this network "
@@ -180,22 +202,29 @@ class NetworkBase(HandleRefModel):
         ),
     )
 
-    policy_url = URLField(blank=True)
+    policy_url = URLField(_("Peering Policy"), blank=True)
     policy_general = models.CharField(
-        max_length=72, blank=True, choices=const.POLICY_GENERAL
+        _("General Policy"), max_length=72, blank=True, choices=const.POLICY_GENERAL
     )
     policy_locations = models.CharField(
-        max_length=72, blank=True, choices=const.POLICY_LOCATIONS
+        _("Multiple Locations"),
+        max_length=72,
+        blank=True,
+        choices=const.POLICY_LOCATIONS,
     )
-    policy_ratio = models.BooleanField(default=False)
+    policy_ratio = models.BooleanField(_("Ratio Requirement"), default=False)
     policy_contracts = models.CharField(
-        max_length=36, blank=True, choices=const.POLICY_CONTRACTS
+        _("Contract Requirement"),
+        max_length=36,
+        blank=True,
+        choices=const.POLICY_CONTRACTS,
     )
 
     class Meta:
         abstract = True
         db_table = "%snetwork" % settings.TABLE_PREFIX
-        verbose_name_plural = "Networks"
+        verbose_name = _("Network")
+        verbose_name_plural = _("Networks")
 
     class HandleRef:
         tag = "net"
@@ -206,31 +235,35 @@ class NetworkBase(HandleRefModel):
 
 
 class InternetExchangeBase(HandleRefModel):
-    name = models.CharField(max_length=64, unique=True)
-    name_long = models.CharField(max_length=254, blank=True)
+    name = models.CharField(_("Name"), max_length=64, unique=True)
+    name_long = models.CharField(_("Long Name"), max_length=254, blank=True)
 
-    city = models.CharField(max_length=192)
-    country = CountryField()
+    city = models.CharField(_("City"), max_length=192)
+    country = CountryField(_("Country"))
 
-    notes = models.TextField(blank=True)
+    notes = models.TextField(_("Notes"), blank=True)
 
-    region_continent = models.CharField(max_length=255, choices=const.REGIONS)
-    media = models.CharField(max_length=128, choices=const.MEDIA)
-    proto_unicast = models.BooleanField(default=False)
-    proto_multicast = models.BooleanField(default=False)
-    proto_ipv6 = models.BooleanField(default=False)
+    region_continent = models.CharField(
+        _("Continental Region"), max_length=255, choices=const.REGIONS
+    )
+    media = models.CharField(_("Media Type"), max_length=128, choices=const.MEDIA)
+    proto_unicast = models.BooleanField(_("Unicast IPv4"), default=False)
+    proto_multicast = models.BooleanField(_("Multicast"), default=False)
+    proto_ipv6 = models.BooleanField(_("Unicast IPv6"), default=False)
 
-    website = URLField(blank=True)
-    url_stats = URLField(blank=True)
+    website = URLField(_("Company Website"), blank=True)
+    url_stats = URLField(_("Traffic Stats Website"), blank=True)
 
-    tech_email = models.EmailField(max_length=254, blank=True)
-    tech_phone = models.CharField(max_length=192, blank=True)
-    policy_email = models.EmailField(max_length=254, blank=True)
-    policy_phone = models.CharField(max_length=192, blank=True)
+    tech_email = models.EmailField(_("Technical Email"), max_length=254, blank=True)
+    tech_phone = models.CharField(_("Technical Phone"), max_length=192, blank=True)
+    policy_email = models.EmailField(_("Policy Email"), max_length=254, blank=True)
+    policy_phone = models.CharField(_("Policy Phone"), max_length=192, blank=True)
 
     class Meta:
         abstract = True
         db_table = "%six" % settings.TABLE_PREFIX
+        verbose_name = _("Internet Exchange")
+        verbose_name_plural = _("Internet Exchanges")
 
     class HandleRef:
         tag = "ix"
@@ -244,24 +277,31 @@ class InternetExchangeFacilityBase(HandleRefModel):
     class Meta:
         abstract = True
         db_table = "%six_facility" % settings.TABLE_PREFIX
-        verbose_name_plural = "internet exchange facilities"
+        verbose_name = _("Internet Exchange facility")
+        verbose_name_plural = _("Internet Exchange facilities")
 
     class HandleRef:
         tag = "ixfac"
 
 
 class IXLanBase(HandleRefModel):
-    name = models.CharField(max_length=255, blank=True)
-    descr = models.TextField(blank=True)
-    mtu = models.PositiveIntegerField(null=True, blank=True)
-    vlan = models.PositiveIntegerField(null=True, blank=True)
-    dot1q_support = models.BooleanField(default=False)
-    rs_asn = ASNField(null=True, blank=True, default=0)
-    arp_sponge = MacAddressField(null=True, unique=True, blank=True)
+    name = models.CharField(_("Name"), max_length=255, blank=True)
+    descr = models.TextField(_("Description"), blank=True)
+    mtu = models.PositiveIntegerField("MTU", null=True, blank=True)
+    vlan = models.PositiveIntegerField("VLAN", null=True, blank=True)
+    dot1q_support = models.BooleanField("802.1Q", default=False)
+    rs_asn = ASNField(
+        verbose_name=_("Route Server ASN"), null=True, blank=True, default=0
+    )
+    arp_sponge = MacAddressField(
+        verbose_name=_("ARP sponging MAC"), null=True, unique=True, blank=True
+    )
 
     class Meta:
         abstract = True
         db_table = "%sixlan" % settings.TABLE_PREFIX
+        verbose_name = _("Internet Exchange LAN")
+        verbose_name_plural = _("Internet Exchange LANs")
 
     class HandleRef:
         tag = "ixlan"
@@ -269,45 +309,50 @@ class IXLanBase(HandleRefModel):
 
 
 class IXLanPrefixBase(HandleRefModel):
-    notes = models.CharField(max_length=255, blank=True)
-    protocol = models.CharField(max_length=64, choices=const.PROTOCOLS)
-    prefix = IPPrefixField(unique=True)
+    notes = models.CharField(_("Notes"), max_length=255, blank=True)
+    protocol = models.CharField(_("Protocol"), max_length=64, choices=const.PROTOCOLS)
+    prefix = IPPrefixField(verbose_name=_("Prefix"), unique=True)
 
     class Meta:
         abstract = True
         db_table = "%sixlan_prefix" % settings.TABLE_PREFIX
+        verbose_name = _("Internet Exchange LAN prefix")
+        verbose_name_plural = _("Internet Exchange LAN prefixes")
 
     class HandleRef:
         tag = "ixpfx"
 
 
 class NetworkFacilityBase(HandleRefModel):
-    local_asn = ASNField(null=True, blank=True)
-    avail_sonet = models.BooleanField(default=False)
-    avail_ethernet = models.BooleanField(default=False)
-    avail_atm = models.BooleanField(default=False)
+    local_asn = ASNField(verbose_name=_("Local ASN"), null=True, blank=True)
+    avail_sonet = models.BooleanField("SONET", default=False)
+    avail_ethernet = models.BooleanField("Ethernet", default=False)
+    avail_atm = models.BooleanField("ATM", default=False)
 
     class Meta:
         abstract = True
         db_table = "%snetwork_facility" % settings.TABLE_PREFIX
-        verbose_name_plural = "Network Facilities"
+        verbose_name = _("Network Facility")
+        verbose_name_plural = _("Network Facilities")
 
     class HandleRef:
         tag = "netfac"
 
 
 class NetworkIXLanBase(HandleRefModel):
-    asn = ASNField()
-    ipaddr4 = IPAddressField(version=4, blank=True, null=True)
-    ipaddr6 = IPAddressField(version=6, blank=True, null=True)
-    is_rs_peer = models.BooleanField(default=False)
-    notes = models.CharField(max_length=255, blank=True)
-    speed = models.PositiveIntegerField()
-    operational = models.BooleanField(default=True)
+    asn = ASNField(verbose_name="ASN")
+    ipaddr4 = IPAddressField(verbose_name="IPv4", version=4, blank=True, null=True)
+    ipaddr6 = IPAddressField(verbose_name="IPv6", version=6, blank=True, null=True)
+    is_rs_peer = models.BooleanField(_("RS peer"), default=False)
+    notes = models.CharField(_("Notes"), max_length=255, blank=True)
+    speed = models.PositiveIntegerField(_("Speed (mbit/sec)"))
+    operational = models.BooleanField(_("Operational"), default=True)
 
     class Meta:
         abstract = True
         db_table = "%snetwork_ixlan" % settings.TABLE_PREFIX
+        verbose_name = _("Public Peering Exchange Point")
+        verbose_name_plural = _("Public Peering Exchange Points")
 
     class HandleRef:
         tag = "netixlan"
