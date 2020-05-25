@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('django_peeringdb', '0006_net_operational'),
+        ('django_peeringdb', '0007_traffic_levels'),
     ]
 
     operations = [
