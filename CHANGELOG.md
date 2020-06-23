@@ -3,8 +3,10 @@
 
 ## [Unreleased]
 ### Added
+- add `in_dfz` field to IXLanPrefixBase (peeringdb/peeringdb#352)
 ### Fixed
 ### Changed
+- Make spelling of traffic levels consistent (peeringdb/peeringdb#519)
 ### Deprecated
 ### Removed
 ### Security
