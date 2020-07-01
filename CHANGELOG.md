@@ -10,6 +10,11 @@
 ### Security
 
 
+## [2.1.1]
+### Fixed
+- remove verbose_name migrations (#45)
+
+
 ## [2.1.0]
 ### Added
 - add `in_dfz` field to IXLanPrefixBase (peeringdb/peeringdb#352)
