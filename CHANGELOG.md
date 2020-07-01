@@ -10,6 +10,13 @@
 ### Security
 
 
+## [2.1.0]
+### Added
+- add `in_dfz` field to IXLanPrefixBase (peeringdb/peeringdb#352)
+### Changed
+- Make spelling of traffic levels consistent (peeringdb/peeringdb#519)
+
+
 ## [2.0.0]
 ### Added
 - add py3.7, py3.8 to tox and travis tests
