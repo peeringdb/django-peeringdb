@@ -3,6 +3,8 @@
 
 ## [Unreleased]
 ### Added
+- add `ixf_last_import` to InternetExchangeBase (peeringdb/peeringdb#683)
+- add `ixf_net_count` to InternetExchangeBase (peeringdb/peeringdb#683)
 ### Fixed
 ### Changed
 ### Deprecated

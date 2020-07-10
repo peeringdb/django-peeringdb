@@ -259,6 +259,9 @@ class InternetExchangeBase(HandleRefModel):
     policy_email = models.EmailField(_("Policy Email"), max_length=254, blank=True)
     policy_phone = models.CharField(_("Policy Phone"), max_length=192, blank=True)
 
+    ixf_net_count = models.IntegerField(_("IX-F Network Count"), default=0)
+    ixf_last_import = models.DateTimeField(_("IX-F Last Import"), null=True, blank=True)
+
     class Meta:
         abstract = True
         db_table = "%six" % settings.TABLE_PREFIX
