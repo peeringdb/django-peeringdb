@@ -300,6 +300,18 @@ class IXLanBase(HandleRefModel):
         verbose_name=_("ARP sponging MAC"), null=True, unique=True, blank=True
     )
 
+    ixf_ixp_member_list_url = models.URLField(
+        verbose_name=_("IX-F Member Export URL"),
+        null=True,
+        blank=True
+    )
+    ixf_ixp_member_list_url_visible = models.CharField(
+        verbose_name=_("IX-F Member Export URL Visibility"),
+        max_length=64,
+        choices=const.VISIBILITY,
+        default="Private"
+    )
+
     class Meta:
         abstract = True
         db_table = "%sixlan" % settings.TABLE_PREFIX
