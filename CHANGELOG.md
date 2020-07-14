@@ -8,6 +8,7 @@
 - add `ixf_ixp_member_list_url` to IXLanBase (peeringdb/peeringdb#249)
 - add `ixf_ixp_member_list_url_visible` to IXLanBase (peeringdb/peeringdb#249)
 ### Fixed
+- fix issue in setup.py for test requirements
 ### Changed
 ### Deprecated
 ### Removed
