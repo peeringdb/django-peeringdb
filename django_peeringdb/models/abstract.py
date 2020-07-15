@@ -19,7 +19,7 @@ class LG_URLField(models.URLField):
 
     def __init__(self, *args, **kwargs):
         kwargs["max_length"] = 255
-        super(LG_URLField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
 
 class URLField(models.URLField):
@@ -27,7 +27,7 @@ class URLField(models.URLField):
 
     def __init__(self, *args, **kwargs):
         kwargs["max_length"] = 255
-        super(URLField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
 
 class AddressModel(models.Model):

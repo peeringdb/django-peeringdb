@@ -32,7 +32,7 @@ class URLField(models.URLField):
 
     def __init__(self, *args, **kwargs):
         kwargs["max_length"] = 255
-        super(URLField, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
 
 @expose_model
