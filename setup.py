@@ -44,6 +44,6 @@ setup(
         VERSION
     ),
     install_requires=REQUIREMENTS,
-    test_requires=TEST_REQUIREMENTS,
+    tests_require=TEST_REQUIREMENTS,
     zip_safe=True,
 )

@@ -3,7 +3,7 @@ from django.db import models
 from django.conf import settings
 from django_countries.fields import CountryField
 from django_handleref.models import HandleRefModel
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from django_inet.models import (
     ASNField,
@@ -259,6 +259,9 @@ class InternetExchangeBase(HandleRefModel):
     policy_email = models.EmailField(_("Policy Email"), max_length=254, blank=True)
     policy_phone = models.CharField(_("Policy Phone"), max_length=192, blank=True)
 
+    ixf_net_count = models.IntegerField(_("IX-F Network Count"), default=0)
+    ixf_last_import = models.DateTimeField(_("IX-F Last Import"), null=True, blank=True)
+
     class Meta:
         abstract = True
         db_table = "%six" % settings.TABLE_PREFIX
@@ -295,6 +298,18 @@ class IXLanBase(HandleRefModel):
     )
     arp_sponge = MacAddressField(
         verbose_name=_("ARP sponging MAC"), null=True, unique=True, blank=True
+    )
+
+    ixf_ixp_member_list_url = models.URLField(
+        verbose_name=_("IX-F Member Export URL"),
+        null=True,
+        blank=True
+    )
+    ixf_ixp_member_list_url_visible = models.CharField(
+        verbose_name=_("IX-F Member Export URL Visibility"),
+        max_length=64,
+        choices=const.VISIBILITY,
+        default="Private"
     )
 
     class Meta:
