@@ -301,15 +301,13 @@ class IXLanBase(HandleRefModel):
     )
 
     ixf_ixp_member_list_url = models.URLField(
-        verbose_name=_("IX-F Member Export URL"),
-        null=True,
-        blank=True
+        verbose_name=_("IX-F Member Export URL"), null=True, blank=True
     )
     ixf_ixp_member_list_url_visible = models.CharField(
         verbose_name=_("IX-F Member Export URL Visibility"),
         max_length=64,
         choices=const.VISIBILITY,
-        default="Private"
+        default="Private",
     )
 
     class Meta:
