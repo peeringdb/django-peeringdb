@@ -224,7 +224,7 @@ def test_detect_missing_relations(db):
 
     info = backend.detect_missing_relations(net, exc.value)
     expected = defaultdict(set)
-    expected[backend.get_resource(models.Organization)] = set([1])
+    expected[backend.get_resource(models.Organization)] = {1}
     assert dict(info) == dict(expected)
 
 

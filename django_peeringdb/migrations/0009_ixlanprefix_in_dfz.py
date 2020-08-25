@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('django_peeringdb', '0008_traffic_levels'),
+        ("django_peeringdb", "0008_traffic_levels"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='ixlanprefix',
-            name='in_dfz',
+            model_name="ixlanprefix",
+            name="in_dfz",
             field=models.BooleanField(default=False),
         ),
     ]
