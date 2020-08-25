@@ -3,13 +3,16 @@
 
 ## [Unreleased]
 ### Added
-- django3.0 support
-
 ### Fixed
 ### Changed
 ### Deprecated
 ### Removed
 ### Security
+
+
+## [2.3.0]
+### Added
+- django3.0 support
 
 
 ## [2.2.0]
