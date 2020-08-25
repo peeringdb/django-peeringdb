@@ -3,6 +3,8 @@
 
 ## [Unreleased]
 ### Added
+- django3.0 support
+
 ### Fixed
 ### Changed
 ### Deprecated
