@@ -10,6 +10,11 @@
 ### Security
 
 
+## [2.3.0]
+### Added
+- django3.0 support
+
+
 ## [2.2.0]
 ### Added
 - add `ixf_last_import` to InternetExchangeBase (peeringdb/peeringdb#683)
