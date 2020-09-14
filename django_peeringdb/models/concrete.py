@@ -69,10 +69,6 @@ class InternetExchange(InternetExchangeBase):
         on_delete=models.CASCADE,
     )
 
-    @property
-    def fac_set(self):
-        return [ixfac.fac for ixfac in self.ixfac_set]
-
 
 @expose_model
 class InternetExchangeFacility(InternetExchangeFacilityBase):
