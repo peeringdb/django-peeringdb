@@ -106,6 +106,7 @@ NET_TYPES = (
     ("Route Server", _("Route Server")),
     ("Network Services", _("Network Services")),
     ("Route Collector", _("Route Collector")),
+    ("Government", _("Government")),
 )
 
 VISIBILITY = (

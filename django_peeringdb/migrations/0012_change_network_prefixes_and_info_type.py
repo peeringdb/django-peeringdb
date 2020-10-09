@@ -51,6 +51,7 @@ class Migration(migrations.Migration):
                     ("Route Server", "Route Server"),
                     ("Network Services", "Network Services"),
                     ("Route Collector", "Route Collector"),
+                    ("Government", "Government"),
                 ],
                 default="Not Disclosed",
                 max_length=60,
