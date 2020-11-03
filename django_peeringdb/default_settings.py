@@ -23,7 +23,9 @@ LOGGING = {
             "filters": ["dev_warnings"],
         },
     },
-    "loggers": {"": {"handlers": ["stderr"], "level": "DEBUG", "propagate": False},},
+    "loggers": {
+        "": {"handlers": ["stderr"], "level": "DEBUG", "propagate": False},
+    },
 }
 USE_TZ = False
 TIME_ZONE = "UTC"

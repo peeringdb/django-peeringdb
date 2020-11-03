@@ -84,7 +84,9 @@ class Migration(migrations.Migration):
                 "db_table": "peeringdb_facility",
                 "verbose_name_plural": "Facilities",
             },
-            managers=[("handleref", django.db.models.manager.Manager()),],
+            managers=[
+                ("handleref", django.db.models.manager.Manager()),
+            ],
         ),
         migrations.CreateModel(
             name="InternetExchange",
@@ -158,8 +160,13 @@ class Migration(migrations.Migration):
                 ("policy_email", models.EmailField(blank=True, max_length=254)),
                 ("policy_phone", models.CharField(blank=True, max_length=192)),
             ],
-            options={"abstract": False, "db_table": "peeringdb_ix",},
-            managers=[("handleref", django.db.models.manager.Manager()),],
+            options={
+                "abstract": False,
+                "db_table": "peeringdb_ix",
+            },
+            managers=[
+                ("handleref", django.db.models.manager.Manager()),
+            ],
         ),
         migrations.CreateModel(
             name="InternetExchangeFacility",
@@ -200,8 +207,12 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"db_table": "peeringdb_ix_facility",},
-            managers=[("handleref", django.db.models.manager.Manager()),],
+            options={
+                "db_table": "peeringdb_ix_facility",
+            },
+            managers=[
+                ("handleref", django.db.models.manager.Manager()),
+            ],
         ),
         migrations.CreateModel(
             name="IXLan",
@@ -249,8 +260,13 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"abstract": False, "db_table": "peeringdb_ixlan",},
-            managers=[("handleref", django.db.models.manager.Manager()),],
+            options={
+                "abstract": False,
+                "db_table": "peeringdb_ixlan",
+            },
+            managers=[
+                ("handleref", django.db.models.manager.Manager()),
+            ],
         ),
         migrations.CreateModel(
             name="IXLanPrefix",
@@ -294,8 +310,13 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"abstract": False, "db_table": "peeringdb_ixlan_prefix",},
-            managers=[("handleref", django.db.models.manager.Manager()),],
+            options={
+                "abstract": False,
+                "db_table": "peeringdb_ixlan_prefix",
+            },
+            managers=[
+                ("handleref", django.db.models.manager.Manager()),
+            ],
         ),
         migrations.CreateModel(
             name="Network",
@@ -481,7 +502,9 @@ class Migration(migrations.Migration):
                 "db_table": "peeringdb_network",
                 "verbose_name_plural": "Networks",
             },
-            managers=[("handleref", django.db.models.manager.Manager()),],
+            managers=[
+                ("handleref", django.db.models.manager.Manager()),
+            ],
         ),
         migrations.CreateModel(
             name="NetworkContact",
@@ -550,8 +573,13 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"abstract": False, "db_table": "peeringdb_network_contact",},
-            managers=[("handleref", django.db.models.manager.Manager()),],
+            options={
+                "abstract": False,
+                "db_table": "peeringdb_network_contact",
+            },
+            managers=[
+                ("handleref", django.db.models.manager.Manager()),
+            ],
         ),
         migrations.CreateModel(
             name="NetworkFacility",
@@ -597,8 +625,12 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"db_table": "peeringdb_network_facility",},
-            managers=[("handleref", django.db.models.manager.Manager()),],
+            options={
+                "db_table": "peeringdb_network_facility",
+            },
+            managers=[
+                ("handleref", django.db.models.manager.Manager()),
+            ],
         ),
         migrations.CreateModel(
             name="NetworkIXLan",
@@ -656,8 +688,13 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"abstract": False, "db_table": "peeringdb_network_ixlan",},
-            managers=[("handleref", django.db.models.manager.Manager()),],
+            options={
+                "abstract": False,
+                "db_table": "peeringdb_network_ixlan",
+            },
+            managers=[
+                ("handleref", django.db.models.manager.Manager()),
+            ],
         ),
         migrations.CreateModel(
             name="Organization",
@@ -723,7 +760,9 @@ class Migration(migrations.Migration):
                 "db_table": "peeringdb_organization",
                 "verbose_name_plural": "Organizations",
             },
-            managers=[("handleref", django.db.models.manager.Manager()),],
+            managers=[
+                ("handleref", django.db.models.manager.Manager()),
+            ],
         ),
         migrations.AddField(
             model_name="network",
@@ -753,9 +792,11 @@ class Migration(migrations.Migration):
             ),
         ),
         migrations.AlterUniqueTogether(
-            name="networkfacility", unique_together={("net", "fac", "local_asn")},
+            name="networkfacility",
+            unique_together={("net", "fac", "local_asn")},
         ),
         migrations.AlterUniqueTogether(
-            name="internetexchangefacility", unique_together={("ix", "fac")},
+            name="internetexchangefacility",
+            unique_together={("ix", "fac")},
         ),
     ]

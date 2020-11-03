@@ -174,8 +174,8 @@ class NetworkBase(HandleRefModel):
         null=True,
         blank=True,
         help_text=_(
-            "Recommended IPv4 maximum-prefix "
-            "limit to be configured on peering "
+            "Recommended maximum number of IPv4 "
+            "routes/prefixes to be configured on peering "
             "sessions for this ASN"
         ),
     )
@@ -184,8 +184,8 @@ class NetworkBase(HandleRefModel):
         null=True,
         blank=True,
         help_text=_(
-            "Recommended IPv6 maximum-prefix "
-            "limit to be configured on peering "
+            "Recommended maximum number of IPv6 "
+            "routes/prefixes to be configured on peering "
             "sessions for this ASN"
         ),
     )

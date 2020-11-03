@@ -12,13 +12,13 @@ POC_ROLES = (
     ("Sales", _("Sales")),
 )
 
-
 POLICY_GENERAL = (
     ("Open", _("Open")),
     ("Selective", _("Selective")),
     ("Restrictive", _("Restrictive")),
     ("No", _("No")),
 )
+
 POLICY_LOCATIONS = (
     ("Not Required", _("Not Required")),
     ("Preferred", _("Preferred")),
@@ -26,6 +26,7 @@ POLICY_LOCATIONS = (
     ("Required - EU", _("Required - EU")),
     ("Required - International", _("Required - International")),
 )
+
 POLICY_CONTRACTS = (
     ("Not Required", _("Not Required")),
     ("Private Only", _("Private Only")),
@@ -103,6 +104,9 @@ NET_TYPES = (
     ("Educational/Research", _("Educational/Research")),
     ("Non-Profit", _("Non-Profit")),
     ("Route Server", _("Route Server")),
+    ("Network Services", _("Network Services")),
+    ("Route Collector", _("Route Collector")),
+    ("Government", _("Government")),
 )
 
 VISIBILITY = (
