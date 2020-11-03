@@ -3,10 +3,16 @@
 
 ## [Unreleased]
 ### Added
+- "Government" network type
+- "Network Services" network type
+- "Route Collector" network type
 ### Fixed
 ### Changed
+- improve network.info_prefixes4 help text
+- improve network.info_prefixes6 help text
 ### Deprecated
 ### Removed
+- django1.11 support (end of life Apr 2020)
 ### Security
 
 
