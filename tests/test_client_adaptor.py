@@ -98,7 +98,7 @@ def test_get_objects(db):
     for i in range(0, 4):
         orgs.append(
             models.Organization.objects.create(
-                name="Test org {}".format(i), created=now, updated=now
+                name=f"Test org {i}", created=now, updated=now
             )
         )
     assert [o for o in backend.get_objects(models.Organization, [1, 2])] == orgs[:2]
@@ -121,7 +121,7 @@ def test_get_objects_by(db):
     for i in range(0, 4):
         orgs.append(
             models.Organization.objects.create(
-                name="Test org {}".format(i), created=now, updated=now
+                name=f"Test org {i}", created=now, updated=now
             )
         )
     assert [
@@ -183,7 +183,7 @@ def test_set_relation_many_to_many(db):
     )
     nets = [
         models.Network.objects.create(
-            asn=i, name="Net {}".format(i), created=now, updated=now, org=org
+            asn=i, name=f"Net {i}", created=now, updated=now, org=org
         )
         for i in range(1, 4)
     ]
