@@ -6,6 +6,7 @@
 - "Government" network type
 - "Network Services" network type
 - "Route Collector" network type
+- django3.1 tests
 ### Fixed
 ### Changed
 - improve network.info_prefixes4 help text
@@ -13,6 +14,9 @@
 ### Deprecated
 ### Removed
 - django1.11 support (end of life Apr 2020)
+- django2.0 support (end of life Apr 2019)
+- django2.1 support (end of life Dec 2019)
+- python3.5 support (end of life Sep 2020)
 ### Security
 
 
