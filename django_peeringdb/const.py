@@ -115,3 +115,11 @@ VISIBILITY = (
     ("Users", _("Users")),
     ("Public", _("Public")),
 )
+
+
+PHONE_HELP_TEXT = (
+    "An E.164-formatted phone number starts with a +, "
+    "followed by the country code, then the national phone number "
+    "(dropping the leading 0 in most countries), without spaces "
+    "or dashes between the groups of digits"
+)
