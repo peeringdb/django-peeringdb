@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             name="phone",
             field=models.CharField(
                 blank=True,
-                help_text="An E.164-formatted phone number start with a +, followed by the country code, then the national phone number (dropping the leading 0 in most countries), without spaces or dashes between the groups of digits",
+                help_text="An E.164-formatted phone number starts with a +, followed by the country code, then the national phone number (dropping the leading 0 in most countries), without spaces or dashes between the groups of digits",
                 max_length=100,
                 verbose_name="Phone",
             ),
@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
             name="sales_phone",
             field=models.CharField(
                 blank=True,
-                help_text="An E.164-formatted phone number start with a +, followed by the country code, then the national phone number (dropping the leading 0 in most countries), without spaces or dashes between the groups of digits",
+                help_text="An E.164-formatted phone number starts with a +, followed by the country code, then the national phone number (dropping the leading 0 in most countries), without spaces or dashes between the groups of digits",
                 max_length=192,
                 verbose_name="Sales Phone",
             ),
@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
             name="tech_phone",
             field=models.CharField(
                 blank=True,
-                help_text="An E.164-formatted phone number start with a +, followed by the country code, then the national phone number (dropping the leading 0 in most countries), without spaces or dashes between the groups of digits",
+                help_text="An E.164-formatted phone number starts with a +, followed by the country code, then the national phone number (dropping the leading 0 in most countries), without spaces or dashes between the groups of digits",
                 max_length=192,
                 verbose_name="Technical Phone",
             ),
@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
             name="policy_phone",
             field=models.CharField(
                 blank=True,
-                help_text="An E.164-formatted phone number start with a +, followed by the country code, then the national phone number (dropping the leading 0 in most countries), without spaces or dashes between the groups of digits",
+                help_text="An E.164-formatted phone number starts with a +, followed by the country code, then the national phone number (dropping the leading 0 in most countries), without spaces or dashes between the groups of digits",
                 max_length=192,
                 verbose_name="Policy Phone",
             ),
@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
             name="tech_phone",
             field=models.CharField(
                 blank=True,
-                help_text="An E.164-formatted phone number start with a +, followed by the country code, then the national phone number (dropping the leading 0 in most countries), without spaces or dashes between the groups of digits",
+                help_text="An E.164-formatted phone number starts with a +, followed by the country code, then the national phone number (dropping the leading 0 in most countries), without spaces or dashes between the groups of digits",
                 max_length=192,
                 verbose_name="Technical Phone",
             ),
