@@ -42,6 +42,9 @@ class AddressModel(models.Model):
     zipcode = models.CharField(_("Zip-Code"), max_length=48, blank=True)
     country = CountryField(_("Country"), blank=True)
 
+    suite = models.CharField(_("Suite"), max_length=255, blank=True)
+    floor = models.CharField(_("Floor"), max_length=255, blank=True)
+
     latitude = models.DecimalField(
         _("Latitude"), max_digits=9, decimal_places=6, blank=True, null=True
     )
