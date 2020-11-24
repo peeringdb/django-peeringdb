@@ -117,7 +117,7 @@ VISIBILITY = (
 )
 
 
-PHONE_HELP_TEXT = (
+PHONE_HELP_TEXT = _(
     "An E.164-formatted phone number starts with a +, "
     "followed by the country code, then the national phone number "
     "(dropping the leading 0 in most countries), without spaces "
