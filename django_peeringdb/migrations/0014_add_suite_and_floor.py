@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('django_peeringdb', '0012_change_network_prefixes_and_info_type'),
+        ('django_peeringdb', '0013_add_phone_help_text'),
     ]
 
     operations = [
