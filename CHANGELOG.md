@@ -3,6 +3,8 @@
 
 ## [Unreleased]
 ### Added
+- `suite` and ``floor` fields to `AddressModel`
+- better tooltip/help text for phone fields
 ### Fixed
 ### Changed
 ### Deprecated

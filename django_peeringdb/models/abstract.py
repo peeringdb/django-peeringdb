@@ -42,6 +42,9 @@ class AddressModel(models.Model):
     zipcode = models.CharField(_("Zip-Code"), max_length=48, blank=True)
     country = CountryField(_("Country"), blank=True)
 
+    suite = models.CharField(_("Suite"), max_length=255, blank=True)
+    floor = models.CharField(_("Floor"), max_length=255, blank=True)
+
     latitude = models.DecimalField(
         _("Latitude"), max_digits=9, decimal_places=6, blank=True, null=True
     )
@@ -84,9 +87,16 @@ class FacilityBase(HandleRefModel, AddressModel):
     npanxx = models.CharField(_("NPA-NXX"), max_length=21, blank=True)
 
     tech_email = models.EmailField(_("Technical Email"), max_length=254, blank=True)
-    tech_phone = models.CharField(_("Technical Phone"), max_length=192, blank=True)
+    tech_phone = models.CharField(
+        _("Technical Phone"),
+        max_length=192,
+        blank=True,
+        help_text=const.PHONE_HELP_TEXT,
+    )
     sales_email = models.EmailField(_("Sales Email"), max_length=254, blank=True)
-    sales_phone = models.CharField(_("Sales Phone"), max_length=192, blank=True)
+    sales_phone = models.CharField(
+        _("Sales Phone"), max_length=192, blank=True, help_text=const.PHONE_HELP_TEXT
+    )
 
     notes = models.TextField(_("Notes"), blank=True)
 
@@ -110,7 +120,9 @@ class ContactBase(HandleRefModel):
         _("Visibility"), max_length=64, choices=const.VISIBILITY, default="Public"
     )
     name = models.CharField(_("Name"), max_length=254, blank=True)
-    phone = models.CharField(_("Phone"), max_length=100, blank=True)
+    phone = models.CharField(
+        _("Phone"), max_length=100, blank=True, help_text=const.PHONE_HELP_TEXT
+    )
     email = models.EmailField(_("Email"), max_length=254, blank=True)
     url = URLField(_("URL"), blank=True)
 
@@ -255,9 +267,16 @@ class InternetExchangeBase(HandleRefModel):
     url_stats = URLField(_("Traffic Stats Website"), blank=True)
 
     tech_email = models.EmailField(_("Technical Email"), max_length=254, blank=True)
-    tech_phone = models.CharField(_("Technical Phone"), max_length=192, blank=True)
+    tech_phone = models.CharField(
+        _("Technical Phone"),
+        max_length=192,
+        blank=True,
+        help_text=const.PHONE_HELP_TEXT,
+    )
     policy_email = models.EmailField(_("Policy Email"), max_length=254, blank=True)
-    policy_phone = models.CharField(_("Policy Phone"), max_length=192, blank=True)
+    policy_phone = models.CharField(
+        _("Policy Phone"), max_length=192, blank=True, help_text=const.PHONE_HELP_TEXT
+    )
 
     ixf_net_count = models.IntegerField(_("IX-F Network Count"), default=0)
     ixf_last_import = models.DateTimeField(_("IX-F Last Import"), null=True, blank=True)
