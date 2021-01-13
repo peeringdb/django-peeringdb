@@ -3,13 +3,17 @@
 
 ## [Unreleased]
 ### Added
-- `suite` and ``floor` fields to `AddressModel`
-- better tooltip/help text for phone fields
 ### Fixed
 ### Changed
 ### Deprecated
 ### Removed
 ### Security
+
+
+## [2.5.0]
+### Added
+- `suite` and ``floor` fields to `AddressModel`
+- better tooltip/help text for phone fields
 
 
 ## [2.4.0]
