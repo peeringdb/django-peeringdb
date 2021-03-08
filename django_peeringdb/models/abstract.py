@@ -61,6 +61,10 @@ class AddressModel(models.Model):
 
 class OrganizationBase(HandleRefModel, AddressModel):
     name = models.CharField(_("Name"), max_length=255, unique=True)
+
+    aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
+    name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
+
     website = URLField(_("Website"), blank=True)
     notes = models.TextField(_("Notes"), blank=True)
 
@@ -81,6 +85,9 @@ class OrganizationBase(HandleRefModel, AddressModel):
 class FacilityBase(HandleRefModel, AddressModel):
     name = models.CharField(_("Name"), max_length=255, unique=True)
     website = URLField(_("Website"), blank=True)
+
+    aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
+    name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
 
     clli = models.CharField(_("CLLI Code"), max_length=18, blank=True)
     rencode = models.CharField(_("Rencode"), max_length=18, blank=True)
@@ -139,7 +146,10 @@ class ContactBase(HandleRefModel):
 class NetworkBase(HandleRefModel):
     asn = ASNField(verbose_name="ASN", unique=True)
     name = models.CharField(_("Name"), max_length=255, unique=True)
+
     aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
+    name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
+
     irr_as_set = models.CharField(
         _("IRR as-set/route-set"),
         max_length=255,
@@ -248,7 +258,9 @@ class NetworkBase(HandleRefModel):
 
 class InternetExchangeBase(HandleRefModel):
     name = models.CharField(_("Name"), max_length=64, unique=True)
-    name_long = models.CharField(_("Long Name"), max_length=254, blank=True)
+
+    aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
+    name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
 
     city = models.CharField(_("City"), max_length=192)
     country = CountryField(_("Country"))
