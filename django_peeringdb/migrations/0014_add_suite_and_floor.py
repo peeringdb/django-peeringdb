@@ -6,28 +6,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('django_peeringdb', '0013_add_phone_help_text'),
+        ("django_peeringdb", "0013_add_phone_help_text"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='facility',
-            name='floor',
-            field=models.CharField(blank=True, max_length=255, verbose_name='Floor'),
+            model_name="facility",
+            name="floor",
+            field=models.CharField(blank=True, max_length=255, verbose_name="Floor"),
         ),
         migrations.AddField(
-            model_name='facility',
-            name='suite',
-            field=models.CharField(blank=True, max_length=255, verbose_name='Suite'),
+            model_name="facility",
+            name="suite",
+            field=models.CharField(blank=True, max_length=255, verbose_name="Suite"),
         ),
         migrations.AddField(
-            model_name='organization',
-            name='floor',
-            field=models.CharField(blank=True, max_length=255, verbose_name='Floor'),
+            model_name="organization",
+            name="floor",
+            field=models.CharField(blank=True, max_length=255, verbose_name="Floor"),
         ),
         migrations.AddField(
-            model_name='organization',
-            name='suite',
-            field=models.CharField(blank=True, max_length=255, verbose_name='Suite'),
+            model_name="organization",
+            name="suite",
+            field=models.CharField(blank=True, max_length=255, verbose_name="Suite"),
         ),
     ]

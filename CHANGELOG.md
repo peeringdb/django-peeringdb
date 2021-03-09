@@ -3,6 +3,13 @@
 
 ## [Unreleased]
 ### Added
+- `name_long` field to `Network`
+- `aka` field to `InternetExchange`
+- `name_long` field to `Facility`
+- `aka` field to `Facility`
+- `name_long` field to `Organization`
+- `aka` field to `Organization`
+- github workflow for tests 
 ### Fixed
 ### Changed
 ### Deprecated

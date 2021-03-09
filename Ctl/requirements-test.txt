@@ -4,3 +4,8 @@ pytest>=2.9.2
 pytest-cov>=2.2.1
 pytest-django>=3
 tox>=2.3.1
+
+bandit>=1.6.2
+black>=20.8b1
+isort>=5.7.0
+flake8>=3.8.4
