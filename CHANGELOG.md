@@ -9,6 +9,7 @@
 - `aka` field to `Facility`
 - `name_long` field to `Organization`
 - `aka` field to `Organization`
+- github workflow for tests 
 ### Fixed
 ### Changed
 ### Deprecated
