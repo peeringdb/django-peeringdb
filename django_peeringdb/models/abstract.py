@@ -293,6 +293,22 @@ class InternetExchangeBase(HandleRefModel):
     ixf_net_count = models.IntegerField(_("IX-F Network Count"), default=0)
     ixf_last_import = models.DateTimeField(_("IX-F Last Import"), null=True, blank=True)
 
+    service_level = models.CharField(
+        _("Service Level"),
+        max_length=60,
+        blank=True,
+        choices=const.SERVICE_LEVEL_TYPES,
+        default="Not Disclosed",
+    )
+
+    terms = models.CharField(
+        _("Terms"),
+        max_length=60,
+        blank=True,
+        choices=const.TERMS_TYPES,
+        default="Not Disclosed",
+    )
+
     class Meta:
         abstract = True
         db_table = "%six" % settings.TABLE_PREFIX
