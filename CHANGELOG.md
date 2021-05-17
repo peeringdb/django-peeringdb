@@ -3,13 +3,18 @@
 
 ## [Unreleased]
 ### Added
-- `service_level` to `InternetExchange`
-- `terms` to `InternetExchange`
 ### Fixed
 ### Changed
 ### Deprecated
 ### Removed
 ### Security
+
+
+## [2.7.0]
+### Added
+- `service_level` to `InternetExchange`
+- `terms` to `InternetExchange`
+
 
 ## [2.6.0]
 ### Added
