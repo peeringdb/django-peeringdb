@@ -3,6 +3,17 @@
 
 ## [Unreleased]
 ### Added
+- `service_level` to `InternetExchange`
+- `terms` to `InternetExchange`
+### Fixed
+### Changed
+### Deprecated
+### Removed
+### Security
+
+## [2.6.0]
+### Added
+
 - `name_long` field to `Network`
 - `aka` field to `InternetExchange`
 - `name_long` field to `Facility`
@@ -10,11 +21,6 @@
 - `name_long` field to `Organization`
 - `aka` field to `Organization`
 - github workflow for tests 
-### Fixed
-### Changed
-### Deprecated
-### Removed
-### Security
 
 
 ## [2.5.0]
