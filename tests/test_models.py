@@ -11,7 +11,7 @@ from tests.models import FieldModel, LG_FieldModel
 
 
 class FieldTests(TestCase):
-    """ test model functionality """
+    """test model functionality"""
 
     def test_init(self):
         new = URLField()
@@ -31,7 +31,7 @@ class FieldTests(TestCase):
 
 
 class LG_FieldTests(TestCase):
-    """ test model functionality """
+    """test model functionality"""
 
     def test_init(self):
         new = LG_URLField()
