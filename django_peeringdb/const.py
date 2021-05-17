@@ -123,3 +123,20 @@ PHONE_HELP_TEXT = _(
     "(dropping the leading 0 in most countries), without spaces "
     "or dashes between the groups of digits"
 )
+
+SERVICE_LEVEL_TYPES = (
+    ("", _("Not Disclosed")),
+    ("Not Disclosed", _("Not Disclosed")),
+    ("Best Effort (no SLA)", _("Best Effort (no SLA)")),
+    ("Normal Business Hours", _("Normal Business Hours")),
+    ("24/7 Support", _("24/7 Support")),
+)
+
+TERMS_TYPES = (
+    ("", _("Not Disclosed")),
+    ("Not Disclosed", _("Not Disclosed")),
+    ("No Commercial Terms", _("No Commercial Terms")),
+    ("Bundled With Other Services", _("Bundled With Other Services")),
+    ("Non-recurring Fees Only", _("Non-recurring Fees Only")),
+    ("Recurring Fees", _("Recurring Fees")),
+)
