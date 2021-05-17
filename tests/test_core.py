@@ -6,7 +6,7 @@ import django_peeringdb.models
 
 
 class CoreTests(TestCase):
-    """ test core functionality """
+    """test core functionality"""
 
     def test_tag_dict(self):
         tag_dict = django_peeringdb.models.tag_dict

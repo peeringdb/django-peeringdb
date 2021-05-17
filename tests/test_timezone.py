@@ -4,7 +4,7 @@ from django.utils.timezone import make_aware, make_naive, utc
 
 
 class TimeZoneTests(TestCase):
-    """ test time zone handling """
+    """test time zone handling"""
 
     def test_conversion(self):
         input = "2020-02-04T20:34:14Z"
