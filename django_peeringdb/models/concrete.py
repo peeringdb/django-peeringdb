@@ -51,16 +51,6 @@ class Facility(FacilityBase):
 
 
 @expose_model
-class Network(NetworkBase):
-    org = models.ForeignKey(
-        Organization,
-        related_name="net_set",
-        verbose_name=_("Organization"),
-        on_delete=models.CASCADE,
-    )
-
-
-@expose_model
 class InternetExchange(InternetExchangeBase):
     org = models.ForeignKey(
         Organization,
@@ -68,10 +58,12 @@ class InternetExchange(InternetExchangeBase):
         verbose_name=_("Organization"),
         on_delete=models.CASCADE,
     )
-
-    @property
-    def fac_set(self):
-        return [ixfac.fac for ixfac in self.ixfac_set]
+    fac_set = models.ManyToManyField(
+        Facility,
+        related_name="ix_set",
+        verbose_name=_("Facility"),
+        through="InternetExchangeFacility",
+    )
 
 
 @expose_model
@@ -114,6 +106,28 @@ class IXLanPrefix(IXLanPrefixBase):
         related_name="ixpfx_set",
         verbose_name=_("Internet Exchange LAN"),
         on_delete=models.CASCADE,
+    )
+
+
+@expose_model
+class Network(NetworkBase):
+    org = models.ForeignKey(
+        Organization,
+        related_name="net_set",
+        verbose_name=_("Organization"),
+        on_delete=models.CASCADE,
+    )
+    fac_set = models.ManyToManyField(
+        Facility,
+        related_name="net_set",
+        verbose_name=_("Facility"),
+        through="NetworkFacility",
+    )
+    ixlan_set = models.ManyToManyField(
+        IXLan,
+        related_name="net_set",
+        verbose_name=_("Internet Exchange LAN"),
+        through="NetworkIXLan",
     )
 
 
