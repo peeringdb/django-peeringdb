@@ -95,7 +95,7 @@ class InternetExchangeFacility(InternetExchangeFacilityBase):
         db_table = "%six_facility" % settings.TABLE_PREFIX
 
     def __str__(self):
-        return "%s @ %s" % (self.ix, self.fac)
+        return f"{self.ix} @ {self.fac}"
 
 
 @expose_model
@@ -123,7 +123,7 @@ class IXLanPrefix(IXLanPrefixBase):
     )
 
     def __str__(self):
-        return "%s @ %s" % (self.prefix, self.ixlan)
+        return f"{self.prefix} @ {self.ixlan}"
 
 
 @expose_model
@@ -137,7 +137,7 @@ class NetworkContact(ContactBase):
     )
 
     def __str__(self):
-        return "%s, %s %s" % (self.name, self.net, self.role)
+        return f"{self.name}, {self.net} {self.role}"
 
 
 @expose_model
@@ -162,7 +162,7 @@ class NetworkFacility(NetworkFacilityBase):
         db_table = "%snetwork_facility" % settings.TABLE_PREFIX
 
     def __str__(self):
-        return "%s @ %s" % (self.net, self.fac)
+        return f"{self.net} @ {self.fac}"
 
 
 @expose_model
@@ -183,7 +183,7 @@ class NetworkIXLan(NetworkIXLanBase):
     )
 
     def __str__(self):
-        return "%s @ %s" % (self.net, self.ixlan)
+        return f"{self.net} @ {self.ixlan}"
 
 
 __all__ = [m.__name__ for m in all_models]
