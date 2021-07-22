@@ -1,5 +1,5 @@
 from django import setup
-from django.conf import settings, global_settings
+from django.conf import global_settings, settings
 
 from django_peeringdb import default_settings
 

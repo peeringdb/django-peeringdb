@@ -1,15 +1,16 @@
 from django.contrib import admin
+
 from django_peeringdb.models import (
-    Organization,
-    Network,
     Facility,
     InternetExchange,
-    NetworkFacility,
     InternetExchangeFacility,
     IXLan,
     IXLanPrefix,
-    NetworkIXLan,
+    Network,
     NetworkContact,
+    NetworkFacility,
+    NetworkIXLan,
+    Organization,
 )
 
 

@@ -1,19 +1,19 @@
-from django.db import models
 from django.conf import settings
+from django.db import models
 from django.utils.translation import ugettext_lazy as _
+
 from django_peeringdb.models import (
-    OrganizationBase,
+    ContactBase,
     FacilityBase,
-    NetworkBase,
     InternetExchangeBase,
     InternetExchangeFacilityBase,
     IXLanBase,
     IXLanPrefixBase,
-    ContactBase,
+    NetworkBase,
     NetworkFacilityBase,
     NetworkIXLanBase,
+    OrganizationBase,
 )
-
 
 all_models = []
 tag_dict = {}
