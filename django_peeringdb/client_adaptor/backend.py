@@ -6,6 +6,7 @@ from collections import defaultdict
 from decimal import Decimal
 from ipaddress import IPv4Address, IPv6Address
 
+
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.management import call_command
 from django.db import DEFAULT_DB_ALIAS, IntegrityError, connection, connections, models
@@ -15,6 +16,7 @@ from django_countries.fields import Country
 from peeringdb import resource
 from peeringdb.backend import Interface, reftag_to_cls
 
+from django_peeringdb import __version__ # noqa
 import django_peeringdb.models
 from django_peeringdb.models import concrete
 
