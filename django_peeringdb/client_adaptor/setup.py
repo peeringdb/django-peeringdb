@@ -3,6 +3,7 @@ from django.conf import settings, global_settings
 
 from django_peeringdb import default_settings
 
+
 # default_settings must define _all_ defaults, so we have to extract and combine
 # everything from global_settings and django_peeringdb's defaults.
 # https://docs.djangoproject.com/en/dev/topics/settings/#custom-default-settings

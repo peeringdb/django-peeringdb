@@ -1,5 +1,16 @@
 from django.contrib import admin
-from django_peeringdb.models import *
+from django_peeringdb.models import (
+    Organization,
+    Network,
+    Facility,
+    InternetExchange,
+    NetworkFacility,
+    InternetExchangeFacility,
+    IXLan,
+    IXLanPrefix,
+    NetworkIXLan,
+    NetworkContact,
+)
 
 
 class HandleRefAdminMixIn:

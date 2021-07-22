@@ -6,12 +6,8 @@ from decimal import Decimal
 from ipaddress import IPv4Address, IPv6Address
 from collections import defaultdict
 
-import django
-from django.apps import apps
-from django.conf import settings
 from django.core.exceptions import (
     ValidationError,
-    FieldDoesNotExist,
     ObjectDoesNotExist,
 )
 from django.core.management import call_command
@@ -22,7 +18,6 @@ from django.db.transaction import atomic as atomic_transaction
 from django_countries.fields import Country
 
 import django_peeringdb.models
-from django_peeringdb import __version__
 from django_peeringdb.models import concrete
 
 from peeringdb import resource
@@ -197,7 +192,6 @@ class Backend(Interface):
         engine = connection.vendor
         patterns = self.ERROR_PATTERNS[engine]
 
-        fields = []
         assert isinstance(exc, IntegrityError)
         # for name, err in exc.error_dict.items():
         for pattern, index in patterns.get("unique"):

@@ -1,5 +1,5 @@
 # lazy init for translations
-_ = lambda s: s
+from django.utils.translation import gettext_lazy as _
 
 TABLE_PREFIX = "peeringdb_"
 ABSTRACT_ONLY = False
