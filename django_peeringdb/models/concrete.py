@@ -94,6 +94,9 @@ class InternetExchangeFacility(InternetExchangeFacilityBase):
         unique_together = ("ix", "fac")
         db_table = "%six_facility" % settings.TABLE_PREFIX
 
+    def __str__(self):
+        return "%s @ %s" % (self.ix, self.fac)
+
 
 @expose_model
 class IXLan(IXLanBase):
@@ -104,6 +107,9 @@ class IXLan(IXLanBase):
         verbose_name=_("Internet Exchange"),
         on_delete=models.CASCADE,
     )
+
+    def __str__(self):
+        return str(self.ix)
 
 
 @expose_model
@@ -116,6 +122,9 @@ class IXLanPrefix(IXLanPrefixBase):
         on_delete=models.CASCADE,
     )
 
+    def __str__(self):
+        return "%s @ %s" % (self.prefix, self.ixlan)
+
 
 @expose_model
 class NetworkContact(ContactBase):
@@ -126,6 +135,9 @@ class NetworkContact(ContactBase):
         verbose_name=_("Network"),
         on_delete=models.CASCADE,
     )
+
+    def __str__(self):
+        return "%s, %s %s" % (self.name, self.net, self.role)
 
 
 @expose_model
@@ -149,6 +161,9 @@ class NetworkFacility(NetworkFacilityBase):
         unique_together = ("net", "fac", "local_asn")
         db_table = "%snetwork_facility" % settings.TABLE_PREFIX
 
+    def __str__(self):
+        return "%s @ %s" % (self.net, self.fac)
+
 
 @expose_model
 class NetworkIXLan(NetworkIXLanBase):
@@ -166,6 +181,9 @@ class NetworkIXLan(NetworkIXLanBase):
         verbose_name=_("Internet Exchange LAN"),
         on_delete=models.CASCADE,
     )
+
+    def __str__(self):
+        return "%s @ %s" % (self.net, self.ixlan)
 
 
 __all__ = [m.__name__ for m in all_models]

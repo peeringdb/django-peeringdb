@@ -142,6 +142,9 @@ class ContactBase(HandleRefModel):
     class HandleRef:
         tag = "poc"
 
+    def __str__(self):
+        return self.name
+
 
 class NetworkBase(HandleRefModel):
     asn = ASNField(verbose_name="ASN", unique=True)
