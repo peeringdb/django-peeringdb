@@ -1,25 +1,24 @@
-import sys
+import calendar
 import datetime
+import sys
 from collections import defaultdict
 from decimal import Decimal
 
+import django.core.exceptions
 import pytest
-import calendar
-
 from django.db import IntegrityError
 from django.db.transaction import atomic as atomic_transaction
-import django.core.exceptions
-
-import tests.peeringdb_mock
-
-sys.modules["peeringdb"] = sys.modules["tests.peeringdb_mock"]
-
 
 import django_peeringdb.models as models
 
+# import order is important here, linters will complain
+# about the backend import not being on top of the file
+# TODO: find better way to handle this
+import tests.peeringdb_mock  # noqa
 from django_peeringdb.client_adaptor.load import database_settings
 
-from django_peeringdb.client_adaptor.backend import Backend
+sys.modules["peeringdb"] = sys.modules["tests.peeringdb_mock"]  # noqa
+from django_peeringdb.client_adaptor.backend import Backend  # noqa
 
 
 def test_database_settings():
@@ -52,8 +51,8 @@ def test_backend_setup():
     for model in models.all_models:
         for field in model._meta.fields:
             if field.name in ["created", "updated"]:
-                assert field.auto_now_add == False
-                assert field.auto_now == False
+                assert field.auto_now_add is False
+                assert field.auto_now is False
 
 
 def test_atomic_transaction():
@@ -232,7 +231,7 @@ def test_detect_missing_relations(db):
 def test_detect_uniqueness_error(db):
     backend = Backend()
     now = datetime.datetime.now()
-    org = models.Organization.objects.create(name="Test org", created=now, updated=now)
+    models.Organization.objects.create(name="Test org", created=now, updated=now)
     org2 = models.Organization(name="Test org", created=now, updated=now)
     with pytest.raises(IntegrityError) as exc:
         backend.save(org2)

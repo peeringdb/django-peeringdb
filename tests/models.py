@@ -1,5 +1,6 @@
 from django.db import models
-from django_peeringdb.models import URLField, LG_URLField
+
+from django_peeringdb.models import LG_URLField, URLField
 
 
 class FieldModel(models.Model):
