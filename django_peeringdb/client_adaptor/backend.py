@@ -1,32 +1,24 @@
 # PeeringDB client backend implementation module
 
-import re
 import calendar
+import re
+from collections import defaultdict
 from decimal import Decimal
 from ipaddress import IPv4Address, IPv6Address
-from collections import defaultdict
 
-import django
-from django.apps import apps
-from django.conf import settings
-from django.core.exceptions import (
-    ValidationError,
-    FieldDoesNotExist,
-    ObjectDoesNotExist,
-)
+
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.management import call_command
-from django.db import models, connections, DEFAULT_DB_ALIAS, IntegrityError, connection
+from django.db import DEFAULT_DB_ALIAS, IntegrityError, connection, connections, models
 from django.db.migrations.executor import MigrationExecutor
 from django.db.transaction import atomic as atomic_transaction
-
 from django_countries.fields import Country
-
-import django_peeringdb.models
-from django_peeringdb import __version__
-from django_peeringdb.models import concrete
-
 from peeringdb import resource
-from peeringdb.backend import reftag_to_cls, Interface
+from peeringdb.backend import Interface, reftag_to_cls
+
+from django_peeringdb import __version__ # noqa
+import django_peeringdb.models
+from django_peeringdb.models import concrete
 
 
 class Backend(Interface):
@@ -197,7 +189,6 @@ class Backend(Interface):
         engine = connection.vendor
         patterns = self.ERROR_PATTERNS[engine]
 
-        fields = []
         assert isinstance(exc, IntegrityError)
         # for name, err in exc.error_dict.items():
         for pattern, index in patterns.get("unique"):
