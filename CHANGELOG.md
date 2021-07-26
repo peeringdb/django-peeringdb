@@ -3,10 +3,15 @@
 
 ## [Unreleased]
 ### Added
+- python 3.9 support
+- Django 3.2 support
+- __str__ methods to more models (#52)
+- django admin interface views (#63)
 ### Fixed
 ### Changed
 ### Deprecated
 ### Removed
+- python 3.5 support
 ### Security
 
 
