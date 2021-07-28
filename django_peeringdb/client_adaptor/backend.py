@@ -15,7 +15,6 @@ from django_countries.fields import Country
 from peeringdb import resource
 from peeringdb.backend import Interface, reftag_to_cls
 
-import django_peeringdb.models
 from django_peeringdb import __version__  # noqa
 from django_peeringdb.models import concrete
 
@@ -61,7 +60,7 @@ class Backend(Interface):
         # in order to copy updated / created times from server
         # we need to turn off auto updating of those fields
         # during update and add
-        for model in django_peeringdb.models.all_models:
+        for model in concrete.all_models:
             for field in model._meta.fields:
                 if field.name in ["created", "updated"]:
                     field.auto_now_add = False
