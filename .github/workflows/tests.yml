@@ -42,7 +42,6 @@ jobs:
           flake8 .
           black . --check
           isort .
-
   test:
     needs: linting
     strategy:
@@ -76,8 +75,16 @@ jobs:
       - name: Run tests
         run: |
           source .venv/bin/activate
-          pytest -vv --cov-report=term-missing --cov=${{ github.event.repository.name }} --cov-report=xml tests/
+          pip install tox-gh-actions
+          tox
           coverage report
+      # upload coverage stats
+      - name: Upload coverage
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./coverage.xml
+          fail_ci_if_error: true
+
       # upload coverage stats
       - name: Upload coverage
         uses: codecov/codecov-action@v1
