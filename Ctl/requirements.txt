@@ -1,2 +1,0 @@
-django_countries>=0.1.0
-django_handleref>=1,<2

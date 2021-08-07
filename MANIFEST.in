@@ -1,4 +1,0 @@
-include LICENSE.txt
-recursive-include django_peeringdb *.py
-recursive-include Ctl *.txt
-include Ctl/VERSION

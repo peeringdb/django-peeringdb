@@ -30,7 +30,7 @@
 - `aka` field to `Facility`
 - `name_long` field to `Organization`
 - `aka` field to `Organization`
-- github workflow for tests 
+- github workflow for tests
 
 
 ## [2.5.0]
@@ -168,7 +168,7 @@
 ## [0.2.2]
 ### Added
 - CHANGELOG!
-- docs for adding XK country code for Kosovo 
+- docs for adding XK country code for Kosovo
 
 ### Fixed
 - beta URL changed to www
