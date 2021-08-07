@@ -1,12 +1,8 @@
+import pytest
 from django.core.exceptions import ValidationError
 from django.test import TestCase
-import ipaddress
-import pytest
 
-from django_peeringdb.models import (
-    URLField,
-    LG_URLField,
-)
+from django_peeringdb.models import LG_URLField, URLField
 from tests.models import FieldModel, LG_FieldModel
 
 
@@ -14,7 +10,7 @@ class FieldTests(TestCase):
     """test model functionality"""
 
     def test_init(self):
-        new = URLField()
+        URLField()
 
     def test_url(self):
         model = FieldModel()
@@ -34,7 +30,7 @@ class LG_FieldTests(TestCase):
     """test model functionality"""
 
     def test_init(self):
-        new = LG_URLField()
+        LG_URLField()
 
     def test_url(self):
         model = LG_FieldModel()

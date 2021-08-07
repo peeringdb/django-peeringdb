@@ -3,10 +3,15 @@
 
 ## [Unreleased]
 ### Added
+- python 3.9 support
+- Django 3.2 support
+- __str__ methods to more models (#52)
+- django admin interface views (#63)
 ### Fixed
 ### Changed
 ### Deprecated
 ### Removed
+- python 3.5 support
 ### Security
 
 
@@ -25,7 +30,7 @@
 - `aka` field to `Facility`
 - `name_long` field to `Organization`
 - `aka` field to `Organization`
-- github workflow for tests 
+- github workflow for tests
 
 
 ## [2.5.0]
@@ -163,7 +168,7 @@
 ## [0.2.2]
 ### Added
 - CHANGELOG!
-- docs for adding XK country code for Kosovo 
+- docs for adding XK country code for Kosovo
 
 ### Fixed
 - beta URL changed to www

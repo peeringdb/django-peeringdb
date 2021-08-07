@@ -1,7 +1,5 @@
-import pytest
-import datetime
-
 from django.test import TestCase
+
 import django_peeringdb.models
 
 

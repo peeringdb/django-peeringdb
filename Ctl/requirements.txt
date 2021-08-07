@@ -1,4 +1,0 @@
-django_countries>=0.1.0
-django_handleref>=0.6,<0.7
-django_inet>=0.5,<0.6
-twentyc.rpc>=0.4.0,<0.5

@@ -1,41 +1,41 @@
 # mock resource classes from peeringdb-py client
 
 
-class Organization(object):
+class Organization:
     pass
 
 
-class Facility(object):
+class Facility:
     pass
 
 
-class Network(object):
+class Network:
     pass
 
 
-class InternetExchange(object):
+class InternetExchange:
     pass
 
 
-class InternetExchangeFacility(object):
+class InternetExchangeFacility:
     pass
 
 
-class InternetExchangeLan(object):
+class InternetExchangeLan:
     pass
 
 
-class InternetExchangeLanPrefix(object):
+class InternetExchangeLanPrefix:
     pass
 
 
-class NetworkFacility(object):
+class NetworkFacility:
     pass
 
 
-class NetworkIXLan(object):
+class NetworkIXLan:
     pass
 
 
-class NetworkContact(object):
+class NetworkContact:
     pass
