@@ -9,7 +9,6 @@ def read_file(name):
 LONG_DESCRIPTION = read_file("README.md")
 VERSION = read_file("Ctl/VERSION")
 REQUIREMENTS = read_file("Ctl/requirements.txt").split("\n")
-TEST_REQUIREMENTS = read_file("Ctl/requirements-test.txt").split("\n")
 
 
 setup(
@@ -43,6 +42,5 @@ setup(
         VERSION
     ),
     install_requires=REQUIREMENTS,
-    tests_require=TEST_REQUIREMENTS,
     zip_safe=True,
 )

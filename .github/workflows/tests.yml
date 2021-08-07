@@ -20,7 +20,6 @@ jobs:
           python -m pip install --upgrade pip virtualenv
           python -m virtualenv .venv
           source .venv/bin/activate
-          pip install -r Ctl/requirements-test.txt
       - name: Run linters
         run: |
           source .venv/bin/activate
