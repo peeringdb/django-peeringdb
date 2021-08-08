@@ -30,8 +30,6 @@ python = "^3.6.2"
 django_countries = ">1"
 django_handleref = "^1"
 django_inet = "^1"
-# XXX
-"twentyc.rpc" = "*"
 
 [tool.poetry.dev-dependencies]
 # testing
