@@ -2,6 +2,10 @@
 
 
 ## Unreleased
+### Added
+- `property` to `Facility`
+- `available_voltage_services` to `Facility`
+- `diverse_serving_substations` to `Facility`
 
 
 ## 2.8.0
