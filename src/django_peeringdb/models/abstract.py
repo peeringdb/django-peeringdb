@@ -7,6 +7,7 @@ from django_handleref.models import HandleRefModel
 from django_inet.models import ASNField, IPAddressField, IPPrefixField, MacAddressField
 
 from django_peeringdb import const
+from django_peeringdb.fields import MultipleChoiceField
 
 
 class LG_URLField(models.URLField):
@@ -99,6 +100,34 @@ class FacilityBase(HandleRefModel, AddressModel):
     sales_phone = models.CharField(
         _("Sales Phone"), max_length=192, blank=True, help_text=const.PHONE_HELP_TEXT
     )
+
+    property = models.CharField(
+        _("Property"),
+        max_length=27,
+        null=True,
+        blank=True,
+        choices=const.PROPERTY,
+        help_text=_("A property owner is the individual or entity that has title to the property. A lessee is a user of a property who has a lease, an agreement, with the owner of the property.")
+    )
+
+    diverse_serving_substations = models.BooleanField(
+        _("Diverse Serving Substations"),
+        null=True,
+        blank=True,
+        help_text=_("Two separate and distinct paths to individual substations which should maintain a separated path back to one or more utility generator stations.")
+    )
+
+
+    available_voltage_services = MultipleChoiceField(
+        _("Available Voltage Services"),
+        null=True,
+        blank=True,
+        max_length=255,
+        choices=const.AVAILABLE_VOLTAGE,
+        help_text=_("The alternating current voltage available to users of the facility either directly from the landlord or delivered by the utility separately.")
+    )
+
+
 
     notes = models.TextField(_("Notes"), blank=True)
 

@@ -25,6 +25,25 @@ class FieldTests(TestCase):
             model.url = "invalid"
             model.full_clean()
 
+    def test_multichoice(self):
+        model = FieldModel()
+
+        model.multichoice = ["1","2"]
+        model.full_clean()
+
+        model.multichoice = "1"
+        model.full_clean()
+        assert model.multichoice == ["1"]
+
+        with pytest.raises(ValidationError):
+            model.multichoice = ["4"]
+            model.full_clean()
+
+        with pytest.raises(ValidationError):
+            model.multichoice = "4"
+            model.full_clean()
+
+
 
 class LG_FieldTests(TestCase):
     """test model functionality"""
