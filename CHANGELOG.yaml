@@ -1,5 +1,8 @@
 Unreleased:
-  added: []
+  added:
+  - '`property` to `Facility`'
+  - '`available_voltage_services` to `Facility`'
+  - '`diverse_serving_substations` to `Facility`'
   fixed: []
   changed: []
   deprecated: []
