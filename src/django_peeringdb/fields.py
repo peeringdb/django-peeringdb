@@ -4,6 +4,7 @@ import django.forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
+
 class MultipleChoiceField(models.CharField):
 
     """
@@ -34,11 +35,10 @@ class MultipleChoiceField(models.CharField):
         self.clean_choices(value)
 
         if value is None and not self.null:
-            raise exceptions.ValidationError(self.error_messages['null'], code='null')
+            raise ValidationError(self.error_messages["null"], code="null")
 
         if not self.blank and value in self.empty_values:
-            raise exceptions.ValidationError(self.error_messages['blank'], code='blank')
-
+            raise ValidationError(self.error_messages["blank"], code="blank")
 
     def from_db_value(self, value, expression, connection):
 
@@ -60,7 +60,7 @@ class MultipleChoiceField(models.CharField):
             return ""
 
         picked = []
-        for choice, _ in self.choices:
+        for choice, label in self.choices:
             if choice in value:
                 picked.append(choice)
         return ",".join(picked)
@@ -82,5 +82,3 @@ class MultipleChoiceField(models.CharField):
         defaults = {"form_class": django.forms.MultipleChoiceField}
         defaults.update(**kwargs)
         return super().formfield(**defaults)
-
-

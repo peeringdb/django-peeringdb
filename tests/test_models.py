@@ -28,7 +28,7 @@ class FieldTests(TestCase):
     def test_multichoice(self):
         model = FieldModel()
 
-        model.multichoice = ["1","2"]
+        model.multichoice = ["1", "2"]
         model.full_clean()
 
         model.multichoice = "1"
@@ -42,7 +42,6 @@ class FieldTests(TestCase):
         with pytest.raises(ValidationError):
             model.multichoice = "4"
             model.full_clean()
-
 
 
 class LG_FieldTests(TestCase):

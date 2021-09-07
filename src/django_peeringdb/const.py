@@ -141,16 +141,12 @@ TERMS_TYPES = (
     ("Recurring Fees", _("Recurring Fees")),
 )
 
-PROPERTY = (
-    ('', _('Not Disclosed')),
-    ('Owner', _('Owner')),
-    ('Lessee', _('Lessee'))
-)
+PROPERTY = (("", _("Not Disclosed")), ("Owner", _("Owner")), ("Lessee", _("Lessee")))
 
 AVAILABLE_VOLTAGE = (
-    ('48 VDC', _('48 VDC')),
-    ('120 VAC', _('120 VAC')),
-    ('208 VAC', _('208 VAC')),
-    ('240 VAC', _('240 VAC')),
-    ('480 VAC', _('480 VAC'))
+    ("48 VDC", _("48 VDC")),
+    ("120 VAC", _("120 VAC")),
+    ("208 VAC", _("208 VAC")),
+    ("240 VAC", _("240 VAC")),
+    ("480 VAC", _("480 VAC")),
 )
