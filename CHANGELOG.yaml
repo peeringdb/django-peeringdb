@@ -1,8 +1,5 @@
 Unreleased:
-  added:
-  - '`property` to `Facility`'
-  - '`available_voltage_services` to `Facility`'
-  - '`diverse_serving_substations` to `Facility`'
+  added: []
   fixed: []
   changed: []
   deprecated: []
@@ -134,3 +131,8 @@ Unreleased:
   - django admin interface views (#63)
   removed:
   - python 3.5 support
+2.9.0:
+  added:
+  - '`property` to `Facility`'
+  - '`available_voltage_services` to `Facility`'
+  - '`diverse_serving_substations` to `Facility`'
