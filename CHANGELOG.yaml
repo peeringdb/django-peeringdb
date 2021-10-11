@@ -1,6 +1,6 @@
 Unreleased:
   added:
-  - '`region_continent` field to `InternetExchage`'
+  - '`region_continent` field to `Facility`'
   fixed: []
   changed: []
   deprecated: []

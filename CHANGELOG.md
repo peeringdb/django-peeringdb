@@ -3,7 +3,7 @@
 
 ## Unreleased
 ### Added
-- `region_continent` field to `InternetExchage`
+- `region_continent` field to `Facility`
 
 
 ## 2.9.0
