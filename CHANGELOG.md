@@ -2,6 +2,8 @@
 
 
 ## Unreleased
+### Added
+- `region_continent` field to `InternetExchage`
 
 
 ## 2.9.0
