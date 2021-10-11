@@ -1,5 +1,6 @@
 Unreleased:
-  added: []
+  added:
+  - '`region_continent` field to `Facility`'
   fixed: []
   changed: []
   deprecated: []

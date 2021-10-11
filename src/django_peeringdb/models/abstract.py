@@ -134,6 +134,14 @@ class FacilityBase(HandleRefModel, AddressModel):
 
     notes = models.TextField(_("Notes"), blank=True)
 
+    region_continent = models.CharField(
+        _("Continental Region"),
+        max_length=255,
+        choices=const.REGIONS,
+        blank=True,
+        null=True,
+    )
+
     class Meta:
         abstract = True
         db_table = "%sfacility" % settings.TABLE_PREFIX
