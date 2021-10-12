@@ -1,11 +1,26 @@
 Unreleased:
-  added:
-  - '`region_continent` field to `Facility`'
+  added: []
   fixed: []
   changed: []
   deprecated: []
   removed: []
   security: []
+2.10.0:
+  added:
+  - '`region_continent` field to `Facility`'
+2.9.0:
+  added:
+  - '`property` to `Facility`'
+  - '`available_voltage_services` to `Facility`'
+  - '`diverse_serving_substations` to `Facility`'
+2.8.0:
+  added:
+  - python 3.9 support
+  - Django 3.2 support
+  - __str__ methods to more models (#52)
+  - django admin interface views (#63)
+  removed:
+  - python 3.5 support
 2.7.0:
   added:
   - '`service_level` to `InternetExchange`'
@@ -124,16 +139,4 @@ Unreleased:
   - fixed foreign key related names
   removed:
   - poc list tests
-2.8.0:
-  added:
-  - python 3.9 support
-  - Django 3.2 support
-  - __str__ methods to more models (#52)
-  - django admin interface views (#63)
-  removed:
-  - python 3.5 support
-2.9.0:
-  added:
-  - '`property` to `Facility`'
-  - '`available_voltage_services` to `Facility`'
-  - '`diverse_serving_substations` to `Facility`'
+

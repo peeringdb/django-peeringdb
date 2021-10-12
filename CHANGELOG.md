@@ -2,8 +2,6 @@
 
 
 ## Unreleased
-### Added
-- `region_continent` field to `Facility`
 
 
 ## 2.9.0
@@ -75,6 +73,11 @@
 - add `ixf_ixp_member_list_url_visible` to IXLanBase (peeringdb/peeringdb#249)
 ### Fixed
 - fix issue in setup.py for test requirements
+
+
+## 2.10.0
+### Added
+- `region_continent` field to `Facility`
 
 
 ## 2.1.1
