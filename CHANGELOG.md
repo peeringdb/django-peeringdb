@@ -6,6 +6,10 @@
 - `sales_email` to `InternetExchange`
 - `sales_phone` to `InternetExchange`
 
+## 2.10.0
+### Added
+- `region_continent` field to `Facility`
+
 
 ## 2.9.0
 ### Added
