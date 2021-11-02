@@ -2,6 +2,9 @@
 
 
 ## Unreleased
+### Added
+- `sales_email` to `InternetExchange`
+- `sales_phone` to `InternetExchange`
 
 
 ## 2.9.0
