@@ -1,6 +1,6 @@
 from django.db import models
 
-from django_peeringdb.models import LG_URLField, URLField, MultipleChoiceField
+from django_peeringdb.models import LG_URLField, MultipleChoiceField, URLField
 
 
 class FieldModel(models.Model):
