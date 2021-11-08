@@ -328,6 +328,11 @@ class InternetExchangeBase(HandleRefModel):
         _("Policy Phone"), max_length=192, blank=True, help_text=const.PHONE_HELP_TEXT
     )
 
+    sales_email = models.EmailField(_("Sales Email"), max_length=254, blank=True)
+    sales_phone = models.CharField(
+        _("Sales Phone"), max_length=192, blank=True, help_text=const.PHONE_HELP_TEXT
+    )
+
     ixf_net_count = models.IntegerField(_("IX-F Network Count"), default=0)
     ixf_last_import = models.DateTimeField(_("IX-F Last Import"), null=True, blank=True)
 

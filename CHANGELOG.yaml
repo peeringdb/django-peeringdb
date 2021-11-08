@@ -1,5 +1,7 @@
 Unreleased:
-  added: []
+  added:
+  - '`sales_email` to `InternetExchange`'
+  - '`sales_phone` to `InternetExchange`'
   fixed: []
   changed: []
   deprecated: []
