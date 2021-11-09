@@ -1,7 +1,5 @@
 Unreleased:
-  added:
-  - '`sales_email` to `InternetExchange`'
-  - '`sales_phone` to `InternetExchange`'
+  added: []
   fixed: []
   changed: []
   deprecated: []
@@ -141,4 +139,7 @@ Unreleased:
   - fixed foreign key related names
   removed:
   - poc list tests
-
+2.11.0:
+  added:
+  - '`sales_email` to `InternetExchange`'
+  - '`sales_phone` to `InternetExchange`'
