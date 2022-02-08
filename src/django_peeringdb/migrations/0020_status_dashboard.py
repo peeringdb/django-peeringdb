@@ -9,7 +9,7 @@ import django_peeringdb.models.abstract
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('peeringdb_server', '0019_ix_add_sales_phone_email'),
+        ('django_peeringdb', '0019_ix_add_sales_phone_email'),
     ]
 
     operations = [
