@@ -142,6 +142,8 @@ class FacilityBase(HandleRefModel, AddressModel):
         null=True,
     )
 
+    status_dashboard = URLField(_("Status Dashboard"), null=True, blank=True)
+
     class Meta:
         abstract = True
         db_table = "%sfacility" % settings.TABLE_PREFIX
@@ -280,6 +282,8 @@ class NetworkBase(HandleRefModel):
         choices=const.POLICY_CONTRACTS,
     )
 
+    status_dashboard = URLField(_("Status Dashboard"), null=True, blank=True)
+
     class Meta:
         abstract = True
         db_table = "%snetwork" % settings.TABLE_PREFIX
@@ -351,6 +355,8 @@ class InternetExchangeBase(HandleRefModel):
         choices=const.TERMS_TYPES,
         default="Not Disclosed",
     )
+
+    status_dashboard = URLField(_("Status Dashboard"), null=True, blank=True)
 
     class Meta:
         abstract = True
