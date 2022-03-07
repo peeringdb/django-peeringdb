@@ -1,6 +1,10 @@
 Unreleased:
-  added: []
-  fixed: []
+  added:
+  - '`status_dashboard` to `InternetExchange`'
+  - '`status_dashboard` to `Network`'
+  - '`status_dashboard` to `Facility`'
+  fixed:
+  - 'django ugettext deprecation warning'
   changed: []
   deprecated: []
   removed: []
