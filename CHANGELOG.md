@@ -2,12 +2,6 @@
 
 
 ## Unreleased
-### Added
-- `status_dashboard` to `InternetExchange`
-- `status_dashboard` to `Network`
-- `status_dashboard` to `Facility`
-### Fixed
-- django ugettext deprecation warning
 
 
 ## 2.9.0
@@ -79,6 +73,15 @@
 - add `ixf_ixp_member_list_url_visible` to IXLanBase (peeringdb/peeringdb#249)
 ### Fixed
 - fix issue in setup.py for test requirements
+
+
+## 2.12.0
+### Added
+- `status_dashboard` to `InternetExchange`
+- `status_dashboard` to `Network`
+- `status_dashboard` to `Facility`
+### Fixed
+- django ugettext deprecation warning
 
 
 ## 2.11.0
