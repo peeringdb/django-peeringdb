@@ -5,6 +5,17 @@ Unreleased:
   deprecated: []
   removed: []
   security: []
+2.12.0:
+  added:
+  - '`status_dashboard` to `InternetExchange`'
+  - '`status_dashboard` to `Network`'
+  - '`status_dashboard` to `Facility`'
+  fixed:
+  - django ugettext deprecation warning
+2.11.0:
+  added:
+  - '`sales_email` to `InternetExchange`'
+  - '`sales_phone` to `InternetExchange`'
 2.10.0:
   added:
   - '`region_continent` field to `Facility`'
@@ -139,14 +150,3 @@ Unreleased:
   - fixed foreign key related names
   removed:
   - poc list tests
-2.11.0:
-  added:
-  - '`sales_email` to `InternetExchange`'
-  - '`sales_phone` to `InternetExchange`'
-2.12.0:
-  added:
-  - '`status_dashboard` to `InternetExchange`'
-  - '`status_dashboard` to `Network`'
-  - '`status_dashboard` to `Facility`'
-  fixed:
-  - django ugettext deprecation warning
