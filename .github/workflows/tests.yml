@@ -34,7 +34,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Run tests
         run: |
-          poerty run pip install tox-gh-actions
+          poetry run pip install tox-gh-actions
           poetry run tox
           coverage report
       # upload coverage stats
