@@ -8,26 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: 3.9
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
-      - name: Load cached venv
-        id: cached-poetry-dependencies
-        uses: actions/cache@v2
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
-      # install dependencies if cache does not exist
-      - name: Check cache and install dependencies
-        run: poetry install --no-interaction --no-root
-        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-      # poetry run pre-commit run --all-files
+      - name: Install virtualenv from poetry
+        uses: 20c/workflows/poetry@v1
       - name: Run linters
         run: |
             poetry run isort src/
@@ -41,37 +23,19 @@ jobs:
       fail-fast: true
       matrix:
         os: [ "ubuntu-latest", "macos-latest" ]
-        python-version: [ "3.6", "3.7", "3.8", "3.9" ]
+        python-version: [ "3.7", "3.8", "3.9", "3.10" ]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-      - name: Set up python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+      - name: Install virtualenv from poetry
+        uses: 20c/workflows/poetry@v1
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-      - name: Load cached venv
-        id: cached-poetry-dependencies
-        uses: actions/cache@v2
-        with:
-          path: .venv
-          key: venv-${{ runner.os }}-{{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
-      - name: Ensure cache is healthy
-        if: steps.cache.outputs.cached-poetry-dependencies == 'true'
-        shell: bash
-        run: timeout 10s poetry run pip --version || rm -rf .venv
-      - name: Check cache and install dependencies
-        run: poetry install
       - name: Run tests
         run: |
-          source .venv/bin/activate
-          pip install tox-gh-actions
-          tox
+          poerty run pip install tox-gh-actions
+          poetry run tox
           coverage report
       # upload coverage stats
       - name: Upload coverage

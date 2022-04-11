@@ -2,10 +2,12 @@ Unreleased:
   added:
   - '`sales_email` to `InternetExchange`'
   - '`sales_phone` to `InternetExchange`'
+  - python 3.10
   fixed: []
   changed: []
   deprecated: []
-  removed: []
+  removed:
+  - python 3.6
   security: []
 2.10.0:
   added:
