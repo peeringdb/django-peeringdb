@@ -3,7 +3,6 @@ Unreleased:
   - python 3.10
   fixed:
   - issue with MultipleChoiceField when used with django-handleref object history (peeringdb/peeringdb#1096)
->>>>>>> master
   changed: []
   deprecated: []
   removed:
