@@ -16,7 +16,6 @@ jobs:
             poetry run black --check src/
             poetry run pre-commit run --all-files
 
-
   test:
     needs: linting
     strategy:
