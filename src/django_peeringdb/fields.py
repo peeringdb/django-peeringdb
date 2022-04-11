@@ -14,8 +14,10 @@ class MultipleChoiceField(models.CharField):
     multiple choice field.
     """
 
-    def clean_choices(self, values):
+    def cleaned_values(self, values):
+        return [value.strip("{}' ") for value in values]
 
+    def clean_choices(self, values):
         for value in values:
             exists = False
             for choice, label in self.choices:
@@ -31,7 +33,7 @@ class MultipleChoiceField(models.CharField):
             # Skip validation for non-editable fields.
             return
 
-        self.clean_choices(value)
+        self.clean_choices(self.cleaned_values(value))
 
         if value is None and not self.null:
             raise ValidationError(self.error_messages["null"], code="null")
@@ -44,10 +46,10 @@ class MultipleChoiceField(models.CharField):
         if value is None:
             return None
 
-        if not value:
+        if not value or value == "[]":
             return []
 
-        values = value.split(",")
+        values = self.cleaned_values(value.split(","))
 
         self.clean_choices(values)
 
@@ -62,6 +64,7 @@ class MultipleChoiceField(models.CharField):
         for choice, label in self.choices:
             if choice in value:
                 picked.append(choice)
+
         return ",".join(picked)
 
     def to_python(self, value):
@@ -71,8 +74,10 @@ class MultipleChoiceField(models.CharField):
         if value is None:
             return value
 
-        values = value.split(",")
+        if value == "[]":
+            return None
 
+        values = self.cleaned_values(value.split(","))
         self.clean_choices(values)
 
         return values
@@ -81,3 +86,8 @@ class MultipleChoiceField(models.CharField):
         defaults = {"form_class": django.forms.MultipleChoiceField}
         defaults.update(**kwargs)
         return super().formfield(**defaults)
+
+    def value_to_string(self, obj):
+        values = self.value_from_object(obj)
+        self.clean_choices(self.cleaned_values(values))
+        return ",".join(values)
