@@ -75,6 +75,15 @@
 - fix issue in setup.py for test requirements
 
 
+## 2.13.0
+### Added
+- python 3.10
+### Fixed
+- issue with MultipleChoiceField when used with django-handleref object history (peeringdb/peeringdb#1096)
+### Removed
+- python 3.6
+
+
 ## 2.12.0
 ### Added
 - `status_dashboard` to `InternetExchange`
