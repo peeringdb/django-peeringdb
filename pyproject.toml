@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-peeringdb"
-version = "2.12.0.1"
+version = "2.13.0"
 description = "PeeringDB Django models"
 readme = "README.md"
 repository = "https://github.com/peeringdb/django-peeringdb"
