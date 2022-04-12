@@ -1,10 +1,12 @@
 Unreleased:
-  added: []
+  added:
+  - python 3.10
   fixed:
   - issue with MultipleChoiceField when used with django-handleref object history (peeringdb/peeringdb#1096)
   changed: []
   deprecated: []
-  removed: []
+  removed:
+  - python 3.6
   security: []
 2.12.0:
   added:
