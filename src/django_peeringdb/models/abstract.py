@@ -291,10 +291,8 @@ class NetworkBase(HandleRefModel):
         max_length=255,
     )
     rir_status_updated = models.DateTimeField(
-        _("RIR status updated"),
-        blank=True, 
-        null=True
-        )  
+        _("RIR status updated"), blank=True, null=True
+    )
 
     class Meta:
         abstract = True
