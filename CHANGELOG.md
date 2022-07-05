@@ -2,6 +2,10 @@
 
 
 ## Unreleased
+### Added
+- `rir_status` to `Network`
+- `rir_status_updated` to `Network`
+
 
 ## 2.13.0
 ### Added
@@ -10,6 +14,7 @@
 - issue with MultipleChoiceField when used with django-handleref object history (peeringdb/peeringdb#1096)
 ### Removed
 - python 3.6
+
 
 ## 2.12.0
 ### Added
@@ -29,6 +34,7 @@
 ## 2.10.0
 ### Added
 - `region_continent` field to `Facility`
+
 
 ## 2.9.0
 ### Added
@@ -99,7 +105,6 @@
 - add `ixf_ixp_member_list_url_visible` to IXLanBase (peeringdb/peeringdb#249)
 ### Fixed
 - fix issue in setup.py for test requirements
-
 
 
 ## 2.1.1

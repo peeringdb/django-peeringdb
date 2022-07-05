@@ -1,5 +1,7 @@
 Unreleased:
-  added: []
+  added:
+  - '`rir_status` to `Network`'
+  - '`rir_status_updated` to `Network`'
   fixed: []
   changed: []
   deprecated: []
