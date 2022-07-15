@@ -1,12 +1,14 @@
 Unreleased:
-  added:
-  - '`rir_status` to `Network`'
-  - '`rir_status_updated` to `Network`'
+  added: []
   fixed: []
   changed: []
   deprecated: []
   removed: []
   security: []
+'2.14':
+  added:
+  - '`rir_status` to `Network`'
+  - '`rir_status_updated` to `Network`'
 2.13.0:
   added:
   - python 3.10
