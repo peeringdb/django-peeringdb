@@ -33,29 +33,32 @@ django_inet = "^1"
 
 [tool.poetry.dev-dependencies]
 # testing
-codecov = "*"
-pytest = "^6.0.1"
-pytest-django = "^3.8.0"
+codecov = ">=2"
+coverage = ">=5"
+pytest = ">=6"
+pytest-django = ">=3.8"
 pytest-cov = "*"
 tox = ">=3.24"
 
 # linting
+# bandit = ">=1.6.2"
 black = ">=20"
-isort = "^5.7.0"
-flake8 = "^3.8.4"
-mypy = "^0.812"
-pre-commit = "^2.13"
-pyupgrade = "^2.19.4"
+isort = ">=5.7"
+flake8 = ">=3.8"
+mypy = ">=0.950"
+pre-commit = ">=2.13"
+pyupgrade = ">=2.19"
 
 # docs
 markdown = "*"
 markdown-include = ">=0.5,<1"
-mkdocs = "^1"
+mkdocs = "^1.2.3"
 
 # ctl
-ctl = "^1"
-jinja2 = "^2.11.2"
-tmpl = "^1"
+ctl = ">=1"
+jinja2 = ">=2"
+tmpl = ">=1"
+# v4 released 2022-03-31
 twine = "^3.3.0"
 
 [tool.poetry.plugins."markdown.extensions"]
