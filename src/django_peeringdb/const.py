@@ -338,7 +338,7 @@ REGION_MAPPING = [
     },
     {
         "code": "EG",
-        "continent": "MIddle East",
+        "continent": "Middle East",
     },
     {
         "code": "ER",
@@ -938,6 +938,6 @@ REGION_MAPPING = [
     },
     {
         "code": "PR",
-        "continent": "America",
+        "continent": "North America",
     },
 ]
