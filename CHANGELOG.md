@@ -2,6 +2,9 @@
 
 
 ## Unreleased
+
+
+## 2.14.1
 ### Fixed
 - fix incorrect country-code to continent mappings for Georgia (GE) and Puerto Rico (PR)
 

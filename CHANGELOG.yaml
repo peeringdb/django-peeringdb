@@ -1,11 +1,14 @@
 Unreleased:
   added: []
-  fixed:
-  - fix incorrect country-code to continent mappings for Georgia (GE) and Puerto Rico (PR)
+  fixed: []
   changed: []
   deprecated: []
   removed: []
   security: []
+2.14.1:
+  fixed:
+  - fix incorrect country-code to continent mappings for Georgia (GE) and Puerto Rico
+    (PR)
 2.14.0:
   added:
   - '`rir_status` to `Network`'
