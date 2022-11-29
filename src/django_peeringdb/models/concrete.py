@@ -3,6 +3,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from django_peeringdb.models import (
+    CarrierBase,
+    CarrierFacilityBase,
     ContactBase,
     FacilityBase,
     InternetExchangeBase,
@@ -72,6 +74,40 @@ class InternetExchange(InternetExchangeBase):
     @property
     def fac_set(self):
         return [ixfac.fac for ixfac in self.ixfac_set]
+
+
+@expose_model
+class Carrier(CarrierBase):
+    org = models.ForeignKey(
+        Organization,
+        related_name="carrier_set",
+        verbose_name=_("Organization"),
+        on_delete=models.CASCADE,
+    )
+
+
+@expose_model
+class CarrierFacility(CarrierFacilityBase):
+    carrier = models.ForeignKey(
+        Carrier,
+        related_name="carrierfac_set",
+        verbose_name=_("Carrier"),
+        on_delete=models.CASCADE,
+    )
+    fac = models.ForeignKey(
+        Facility,
+        default=0,
+        related_name="carrierfac_set",
+        verbose_name=_("Facility"),
+        on_delete=models.CASCADE,
+    )
+
+    class Meta(CarrierFacilityBase.Meta):
+        unique_together = ("carrier", "fac")
+        db_table = "%six_carrier_facility" % settings.TABLE_PREFIX
+
+    def __str__(self):
+        return f"{self.carrier} @ {self.fac}"
 
 
 @expose_model
