@@ -396,7 +396,7 @@ class InternetExchangeFacilityBase(HandleRefModel):
 class IXLanBase(HandleRefModel):
     name = models.CharField(_("Name"), max_length=255, blank=True)
     descr = models.TextField(_("Description"), blank=True)
-    mtu = models.PositiveIntegerField("MTU", null=True, blank=True)
+    mtu = models.PositiveIntegerField("MTU", default=1500, choices=const.MTUS)
     vlan = models.PositiveIntegerField("VLAN", null=True, blank=True)
     dot1q_support = models.BooleanField("802.1Q", default=False)
     rs_asn = ASNField(
