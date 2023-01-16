@@ -485,7 +485,7 @@ class CarrierBase(HandleRefModel):
     aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
     name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
 
-    website = URLField(_("Website"))
+    website = URLField(_("Website"), blank=True, null=True)
     notes = models.TextField(_("Notes"), blank=True)
 
     class Meta:
