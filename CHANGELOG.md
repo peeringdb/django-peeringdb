@@ -5,6 +5,8 @@
 ### Added
 - Carrier object
 - CarrierFacility object
+### Changed
+- MTU changed from free-form to validate against a set of choices, currently 1500, 9000
 
 
 ## 2.14.1
