@@ -2,6 +2,9 @@
 
 
 ## Unreleased
+### Added
+- Carrier object
+- CarrierFacility object
 
 
 ## 2.14.1
