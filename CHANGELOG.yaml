@@ -1,14 +1,19 @@
 Unreleased:
+  added: []
+  fixed: []
+  changed: []
+  deprecated: []
+  removed: []
+  security: []
+2.15.0:
   added:
   - Carrier object
   - CarrierFacility object
   fixed:
   - issue with with some environments missing asgiref
   changed:
-  - MTU changed from free-form to validate against a set of choices, currently 1500, 9000
-  deprecated: []
-  removed: []
-  security: []
+  - MTU changed from free-form to validate against a set of choices, currently 1500,
+    9000
 2.14.1:
   fixed:
   - fix incorrect country-code to continent mappings for Georgia (GE) and Puerto Rico
