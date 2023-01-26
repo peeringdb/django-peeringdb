@@ -31,6 +31,8 @@ class Backend(Interface):
 
     # Resource (abstract) and model (concrete) definitions
     RESOURCE_MAP = {
+        resource.Carrier: concrete.Carrier,
+        resource.CarrierFacility: concrete.CarrierFacility,
         resource.Facility: concrete.Facility,
         resource.InternetExchange: concrete.InternetExchange,
         resource.InternetExchangeFacility: concrete.InternetExchangeFacility,

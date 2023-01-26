@@ -38,6 +38,11 @@ PROTOCOLS = (
     ("IPv6", _("IPv6")),
 )
 
+MTUS = (
+    (1500, "1500"),
+    (9000, "9000"),
+)
+
 RATIOS = (
     ("", _("Not Disclosed")),
     ("Not Disclosed", _("Not Disclosed")),

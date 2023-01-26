@@ -396,7 +396,7 @@ class InternetExchangeFacilityBase(HandleRefModel):
 class IXLanBase(HandleRefModel):
     name = models.CharField(_("Name"), max_length=255, blank=True)
     descr = models.TextField(_("Description"), blank=True)
-    mtu = models.PositiveIntegerField("MTU", null=True, blank=True)
+    mtu = models.PositiveIntegerField("MTU", default=1500, choices=const.MTUS)
     vlan = models.PositiveIntegerField("VLAN", null=True, blank=True)
     dot1q_support = models.BooleanField("802.1Q", default=False)
     rs_asn = ASNField(
@@ -476,3 +476,38 @@ class NetworkIXLanBase(HandleRefModel):
 
     class HandleRef:
         tag = "netixlan"
+
+
+class CarrierBase(HandleRefModel):
+
+    name = models.CharField(_("Name"), max_length=255, unique=True)
+
+    aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
+    name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
+
+    website = URLField(_("Website"), blank=True, null=True)
+    notes = models.TextField(_("Notes"), blank=True)
+
+    class Meta:
+        abstract = True
+        db_table = f"{settings.TABLE_PREFIX}carrier"
+        verbose_name = _("Carrier")
+        verbose_name_plural = _("Carriers")
+
+    class HandleRef:
+        tag = "carrier"
+        delete_cascade = ["carrierfac_set"]
+
+    def __str__(self):
+        return self.name
+
+
+class CarrierFacilityBase(HandleRefModel):
+    class Meta:
+        abstract = True
+        db_table = f"{settings.TABLE_PREFIX}carrier_facility"
+        verbose_name = _("Carrier presence at facility")
+        verbose_name_plural = _("Carrier presences at facility")
+
+    class HandleRef:
+        tag = "carrierfac"

@@ -39,3 +39,11 @@ class NetworkIXLan:
 
 class NetworkContact:
     pass
+
+
+class Carrier:
+    pass
+
+
+class CarrierFacility:
+    pass
