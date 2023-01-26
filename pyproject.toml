@@ -30,6 +30,7 @@ python = "^3.7"
 django_countries = ">1"
 django_handleref = "^1"
 django_inet = "^1"
+asgiref = "^3"
 
 [tool.poetry.dev-dependencies]
 # testing
