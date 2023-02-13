@@ -519,6 +519,7 @@ class CampusBase(HandleRefModel):
     aka = models.CharField(_("Also Known As"), max_length=255, blank=True, null=True)
 
     website = URLField(_("Website"), blank=True, null=True)
+    notes = models.TextField(_("Notes"), blank=True)
 
     class Meta:
         abstract = True

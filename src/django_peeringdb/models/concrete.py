@@ -45,7 +45,12 @@ class Organization(OrganizationBase):
 
 @expose_model
 class Campus(CampusBase):
-    pass
+    org = models.ForeignKey(
+        Organization,
+        related_name="campus_set",
+        verbose_name=_("Organization"),
+        on_delete=models.CASCADE,
+    )
 
 
 @expose_model
