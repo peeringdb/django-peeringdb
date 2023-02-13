@@ -61,6 +61,8 @@ class Facility(FacilityBase):
         related_name="fac_set",
         verbose_name=_("Campus"),
         on_delete=models.CASCADE,
+        null=True,
+        blank=True,
     )
 
 

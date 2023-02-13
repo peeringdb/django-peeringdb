@@ -47,3 +47,7 @@ class Carrier:
 
 class CarrierFacility:
     pass
+
+
+class Campus:
+    pass
