@@ -511,3 +511,24 @@ class CarrierFacilityBase(HandleRefModel):
 
     class HandleRef:
         tag = "carrierfac"
+
+
+class CampusBase(HandleRefModel):
+    name = models.CharField(_("Campus Name"), max_length=255, unique=True)
+
+    name_long = models.CharField(_("Long Name"), max_length=255, blank=True, null=True)
+    aka = models.CharField(_("Also Known As"), max_length=255, blank=True, null=True)
+
+    website = URLField(_("Website"), blank=True, null=True)
+
+    class Meta:
+        abstract = True
+        db_table = "%scampus" % settings.TABLE_PREFIX
+        verbose_name = _("Campus")
+        verbose_name_plural = _("Campuses")
+
+    class HandleRef:
+        tag = "campus"
+
+    def __str__(self):
+        return self.name
