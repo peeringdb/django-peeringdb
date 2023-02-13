@@ -43,6 +43,7 @@ class Backend(Interface):
         resource.NetworkFacility: concrete.NetworkFacility,
         resource.NetworkIXLan: concrete.NetworkIXLan,
         resource.Organization: concrete.Organization,
+        resource.Campus: concrete.Campus,
     }
 
     ERROR_PATTERNS = {
