@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("django_peeringdb", "0012_change_network_prefixes_and_info_type"),
     ]

@@ -20,7 +20,6 @@ from django_peeringdb.models import concrete
 
 
 class Backend(Interface):
-
     # Non-builtin scalar types
     CUSTOM_FIELDS = (
         Decimal,
@@ -186,7 +185,6 @@ class Backend(Interface):
         return fields or None
 
     def _detect_integrity_error(self, exc):
-
         engine = connection.vendor
         patterns = self.ERROR_PATTERNS[engine]
 

@@ -9,7 +9,6 @@ import django_peeringdb.models.abstract
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("django_peeringdb", "0011_ixlan_ixf_fields"),
     ]

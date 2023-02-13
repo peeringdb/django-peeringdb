@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from django_peeringdb.models import (
+    CampusBase,
     CarrierBase,
     CarrierFacilityBase,
     ContactBase,
@@ -15,7 +16,6 @@ from django_peeringdb.models import (
     NetworkFacilityBase,
     NetworkIXLanBase,
     OrganizationBase,
-    CampusBase,
 )
 
 all_models = []
