@@ -2,7 +2,6 @@
 
 import django.db.models.deletion
 import django.db.models.manager
-import django_countries.fields
 import django_handleref.models
 from django.db import migrations, models
 
