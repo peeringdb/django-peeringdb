@@ -2,6 +2,8 @@
 
 
 ## Unreleased
+### Added
+- Campus object
 
 
 ## 2.15.0

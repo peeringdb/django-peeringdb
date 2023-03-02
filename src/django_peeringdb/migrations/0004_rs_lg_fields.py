@@ -6,7 +6,6 @@ import django_peeringdb.models.abstract
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("django_peeringdb", "0003_never_via_route_servers"),
     ]

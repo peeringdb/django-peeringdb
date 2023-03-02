@@ -42,7 +42,6 @@ class MultipleChoiceField(models.CharField):
             raise ValidationError(self.error_messages["blank"], code="blank")
 
     def from_db_value(self, value, expression, connection):
-
         if value is None:
             return None
 
@@ -56,7 +55,6 @@ class MultipleChoiceField(models.CharField):
         return values
 
     def get_prep_value(self, value):
-
         if value is None:
             return ""
 

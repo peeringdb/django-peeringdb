@@ -11,7 +11,6 @@ import django_peeringdb.models.abstract
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("django_peeringdb", "0016_add_ix_service_and_terms"),
     ]

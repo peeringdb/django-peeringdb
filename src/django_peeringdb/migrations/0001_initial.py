@@ -12,7 +12,6 @@ import django_peeringdb.models.abstract
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = []

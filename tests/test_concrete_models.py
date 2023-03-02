@@ -5,7 +5,6 @@ from django_peeringdb.models import Carrier, CarrierFacility, Facility, Organiza
 
 @pytest.mark.django_db
 def test_carriers():
-
     org = Organization.objects.create(name="Test")
     fac = Facility.objects.create(name="Test", org=org)
     carrier = Carrier.objects.create(name="Test", org=org)

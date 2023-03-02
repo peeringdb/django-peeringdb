@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from django_peeringdb.models import (
+    CampusBase,
     CarrierBase,
     CarrierFacilityBase,
     ContactBase,
@@ -43,12 +44,30 @@ class Organization(OrganizationBase):
 
 
 @expose_model
+class Campus(CampusBase):
+    org = models.ForeignKey(
+        Organization,
+        related_name="campus_set",
+        verbose_name=_("Organization"),
+        on_delete=models.CASCADE,
+    )
+
+
+@expose_model
 class Facility(FacilityBase):
     org = models.ForeignKey(
         Organization,
         related_name="fac_set",
         verbose_name=_("Organization"),
         on_delete=models.CASCADE,
+    )
+    campus = models.ForeignKey(
+        Campus,
+        related_name="fac_set",
+        verbose_name=_("Campus"),
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
     )
 
 
