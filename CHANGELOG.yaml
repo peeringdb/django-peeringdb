@@ -1,11 +1,13 @@
 Unreleased:
-  added:
-  - Campus object
+  added: []
   fixed: []
   changed: []
   deprecated: []
   removed: []
   security: []
+2.16.0:
+  added:
+  - Campus object
 2.15.0:
   added:
   - Carrier object
