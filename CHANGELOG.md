@@ -2,6 +2,13 @@
 
 
 ## Unreleased
+### Added
+- Organization social_media field
+- Facility social_media field
+- InternetExchange social_media field
+- Network social_media field
+- Campus social_media field
+- Carrier social_media field
 
 
 ## 2.16.0
