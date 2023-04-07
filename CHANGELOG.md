@@ -9,6 +9,9 @@
 - Network social_media field
 - Campus social_media field
 - Carrier social_media field
+### Removed
+- django2.2 support
+- django3.0 support
 
 
 ## 2.16.0

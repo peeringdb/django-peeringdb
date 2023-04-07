@@ -9,7 +9,9 @@ Unreleased:
   fixed: []
   changed: []
   deprecated: []
-  removed: []
+  removed:
+  - django2.2 support
+  - django3.0 support
   security: []
 2.16.0:
   added:
