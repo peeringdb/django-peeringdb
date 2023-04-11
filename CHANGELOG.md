@@ -2,6 +2,9 @@
 
 
 ## Unreleased
+
+
+## 3.0.0
 ### Added
 - Organization social_media field
 - Facility social_media field

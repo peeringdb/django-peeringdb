@@ -1,4 +1,11 @@
 Unreleased:
+  added: []
+  fixed: []
+  changed: []
+  deprecated: []
+  removed: []
+  security: []
+3.0.0:
   added:
   - Organization social_media field
   - Facility social_media field
@@ -6,13 +13,9 @@ Unreleased:
   - Network social_media field
   - Campus social_media field
   - Carrier social_media field
-  fixed: []
-  changed: []
-  deprecated: []
   removed:
   - django2.2 support
   - django3.0 support
-  security: []
 2.16.0:
   added:
   - Campus object
