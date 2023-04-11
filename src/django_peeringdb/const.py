@@ -156,6 +156,15 @@ AVAILABLE_VOLTAGE = (
     ("480 VAC", _("480 VAC")),
 )
 
+SOCIAL_MEDIA_SERVICES = [
+    ("website", _("Website")),
+    ("facebook", _("Facebook")),
+    ("twitter", _("Twitter")),
+    ("instagram", _("Instagram")),
+    ("linkedin", _("LinkedIn")),
+    ("tiktok", _("TikTok")),
+]
+
 REGION_MAPPING = [
     {
         "code": "AD",

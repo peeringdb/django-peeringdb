@@ -62,6 +62,7 @@ class OrganizationBase(HandleRefModel, AddressModel):
     name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
 
     website = URLField(_("Website"), blank=True)
+    social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
     notes = models.TextField(_("Notes"), blank=True)
 
     class Meta:
@@ -81,6 +82,7 @@ class OrganizationBase(HandleRefModel, AddressModel):
 class FacilityBase(HandleRefModel, AddressModel):
     name = models.CharField(_("Name"), max_length=255, unique=True)
     website = URLField(_("Website"), blank=True)
+    social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
 
     aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
     name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
@@ -201,6 +203,7 @@ class NetworkBase(HandleRefModel):
         ),
     )
     website = URLField(_("Website"), blank=True)
+    social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
     looking_glass = LG_URLField(_("Looking Glass URL"), blank=True)
     route_server = LG_URLField(_("Route Server URL"), blank=True)
 
@@ -328,6 +331,7 @@ class InternetExchangeBase(HandleRefModel):
     proto_ipv6 = models.BooleanField(_("Unicast IPv6"), default=False)
 
     website = URLField(_("Company Website"), blank=True)
+    social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
     url_stats = URLField(_("Traffic Stats Website"), blank=True)
 
     tech_email = models.EmailField(_("Technical Email"), max_length=254, blank=True)
@@ -485,6 +489,7 @@ class CarrierBase(HandleRefModel):
     name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
 
     website = URLField(_("Website"), blank=True, null=True)
+    social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
     notes = models.TextField(_("Notes"), blank=True)
 
     class Meta:
@@ -519,6 +524,7 @@ class CampusBase(HandleRefModel):
     aka = models.CharField(_("Also Known As"), max_length=255, blank=True, null=True)
 
     website = URLField(_("Website"), blank=True, null=True)
+    social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
     notes = models.TextField(_("Notes"), blank=True)
 
     class Meta:
