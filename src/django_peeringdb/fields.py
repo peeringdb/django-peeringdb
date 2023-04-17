@@ -69,10 +69,7 @@ class MultipleChoiceField(models.CharField):
         if isinstance(value, (list, set, tuple)):
             return value
 
-        if value is None:
-            return value
-
-        if value == "[]":
+        if not value or value == "[]":
             return None
 
         values = self.cleaned_values(value.split(","))

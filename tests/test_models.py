@@ -43,6 +43,14 @@ class FieldTests(TestCase):
             model.multichoice = "4"
             model.full_clean()
 
+    def test_multichoice_to_python(self):
+        model = FieldModel()
+        field = model._meta.get_field("multichoice")
+        field.to_python("") is None
+        field.to_python("[]") is None
+        field.to_python("1,2,3") == ["1", "2", "3"]
+        field.to_python(["1", "2", "3"]) == ["1", "2", "3"]
+
 
 class LG_FieldTests(TestCase):
     """test model functionality"""
