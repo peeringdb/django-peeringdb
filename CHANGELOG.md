@@ -2,6 +2,9 @@
 
 
 ## Unreleased
+
+
+## 3.0.1
 ### Fixed
 - fix issue with empty and none values in MultipleChoiceField
 

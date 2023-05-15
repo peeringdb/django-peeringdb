@@ -1,11 +1,13 @@
 Unreleased:
   added: []
-  fixed:
-  - fix issue with empty and none values in MultipleChoiceField
+  fixed: []
   changed: []
   deprecated: []
   removed: []
   security: []
+3.0.1:
+  fixed:
+  - fix issue with empty and none values in MultipleChoiceField
 3.0.0:
   added:
   - Organization social_media field
