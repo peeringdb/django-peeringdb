@@ -4,6 +4,14 @@
 ## Unreleased
 
 
+## 3.1.0
+### Added
+- django 4.2 support
+- python 3.11 support
+### Removed
+- python 3.7 support
+
+
 ## 3.0.1
 ### Fixed
 - fix issue with empty and none values in MultipleChoiceField
