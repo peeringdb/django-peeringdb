@@ -1,9 +1,12 @@
 Unreleased:
-  added: []
+  added:
+  - django 4.2 support
+  - python 3.11 support
   fixed: []
   changed: []
   deprecated: []
-  removed: []
+  removed:
+  - python 3.7 support
   security: []
 3.0.1:
   fixed:
