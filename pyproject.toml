@@ -14,10 +14,10 @@ classifiers = [
   "Framework :: Django :: 4.0",
   "Intended Audience :: Developers",
   "License :: OSI Approved :: Apache Software License",
-  "Programming Language :: Python :: 3.7",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
   "Topic :: Software Development :: Libraries :: Python Modules",
   "Topic :: Internet",
 ]
@@ -25,9 +25,9 @@ classifiers = [
 packages = [{ include = "django_peeringdb", from = "src" }]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 django_countries = ">1"
-django_handleref = "^1"
+django_handleref = "^2"
 django_inet = "^1"
 asgiref = "^3"
 
