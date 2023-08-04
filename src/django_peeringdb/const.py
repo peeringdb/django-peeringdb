@@ -141,9 +141,7 @@ CAMPUS_HELP_TEXT = _(
     "A set of facilities under one management, with inter-building cross-connects"
 )
 
-POLICY_GENERAL_HELP_TEXT = _(
-    "Peering with the routeserver is shown with an icon"
-)
+POLICY_GENERAL_HELP_TEXT = _("Peering with the routeserver is shown with an icon")
 
 SERVICE_LEVEL_TYPES = (
     ("", _("Not Disclosed")),
