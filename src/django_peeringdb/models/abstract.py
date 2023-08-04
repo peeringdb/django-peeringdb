@@ -61,7 +61,7 @@ class OrganizationBase(HandleRefModel, AddressModel):
     aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
     name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
 
-    website = URLField(_("Website"), blank=True)
+    website = URLField(_("Website"), blank=True, default="")
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
     notes = models.TextField(_("Notes"), blank=True)
 
@@ -81,7 +81,7 @@ class OrganizationBase(HandleRefModel, AddressModel):
 
 class FacilityBase(HandleRefModel, AddressModel):
     name = models.CharField(_("Name"), max_length=255, unique=True)
-    website = URLField(_("Website"), blank=True, null=True)
+    website = URLField(_("Website"), blank=True)
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
 
     aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
@@ -202,7 +202,7 @@ class NetworkBase(HandleRefModel):
             "Routing Registry (IRR)"
         ),
     )
-    website = URLField(_("Website"), blank=True, null=True)
+    website = URLField(_("Website"), blank=True)
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
     looking_glass = LG_URLField(_("Looking Glass URL"), blank=True)
     route_server = LG_URLField(_("Route Server URL"), blank=True)
@@ -334,7 +334,7 @@ class InternetExchangeBase(HandleRefModel):
     proto_multicast = models.BooleanField(_("Multicast"), default=False)
     proto_ipv6 = models.BooleanField(_("Unicast IPv6"), default=False)
 
-    website = URLField(_("Company Website"), blank=True, null=True)
+    website = URLField(_("Company Website"), blank=True, default="")
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
     url_stats = URLField(_("Traffic Stats Website"), blank=True)
 
@@ -492,7 +492,7 @@ class CarrierBase(HandleRefModel):
     aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
     name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
 
-    website = URLField(_("Website"), blank=True, null=True)
+    website = URLField(_("Website"), blank=True, default="")
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
     notes = models.TextField(_("Notes"), blank=True)
 
@@ -527,7 +527,7 @@ class CampusBase(HandleRefModel):
     name_long = models.CharField(_("Long Name"), max_length=255, blank=True, null=True)
     aka = models.CharField(_("Also Known As"), max_length=255, blank=True, null=True)
 
-    website = URLField(_("Website"), blank=True, null=True)
+    website = URLField(_("Website"), blank=True, default="")
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
     notes = models.TextField(_("Notes"), blank=True)
 
