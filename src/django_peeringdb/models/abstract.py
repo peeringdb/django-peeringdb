@@ -61,7 +61,7 @@ class OrganizationBase(HandleRefModel, AddressModel):
     aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
     name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
 
-    website = URLField(_("Website"), blank=True)
+    website = URLField(_("Website"), blank=True, default="")
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
     notes = models.TextField(_("Notes"), blank=True)
 
@@ -269,7 +269,11 @@ class NetworkBase(HandleRefModel):
 
     policy_url = URLField(_("Peering Policy"), blank=True)
     policy_general = models.CharField(
-        _("General Policy"), max_length=72, blank=True, choices=const.POLICY_GENERAL
+        _("General Policy"),
+        max_length=72,
+        blank=True,
+        choices=const.POLICY_GENERAL,
+        help_text=const.POLICY_GENERAL_HELP_TEXT,
     )
     policy_locations = models.CharField(
         _("Multiple Locations"),
@@ -330,7 +334,7 @@ class InternetExchangeBase(HandleRefModel):
     proto_multicast = models.BooleanField(_("Multicast"), default=False)
     proto_ipv6 = models.BooleanField(_("Unicast IPv6"), default=False)
 
-    website = URLField(_("Company Website"), blank=True)
+    website = URLField(_("Company Website"), blank=True, default="")
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
     url_stats = URLField(_("Traffic Stats Website"), blank=True)
 
@@ -488,7 +492,7 @@ class CarrierBase(HandleRefModel):
     aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
     name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
 
-    website = URLField(_("Website"), blank=True, null=True)
+    website = URLField(_("Website"), blank=True, default="")
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
     notes = models.TextField(_("Notes"), blank=True)
 
@@ -523,7 +527,7 @@ class CampusBase(HandleRefModel):
     name_long = models.CharField(_("Long Name"), max_length=255, blank=True, null=True)
     aka = models.CharField(_("Also Known As"), max_length=255, blank=True, null=True)
 
-    website = URLField(_("Website"), blank=True, null=True)
+    website = URLField(_("Website"), blank=True, default="")
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
     notes = models.TextField(_("Notes"), blank=True)
 

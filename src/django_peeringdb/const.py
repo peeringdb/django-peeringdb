@@ -129,6 +129,20 @@ PHONE_HELP_TEXT = _(
     "or dashes between the groups of digits"
 )
 
+WEBSITE_OVERRIDE_HELP_TEXT = _(
+    "If this field is set, it will be displayed on this record. "
+    "If not, we will display the website from the organization "
+    "record this is tied to"
+)
+
+CARRIER_HELP_TEXT = _("Provider of L1 or L2 connectivity into a facility")
+
+CAMPUS_HELP_TEXT = _(
+    "A set of facilities under one management, with inter-building cross-connects"
+)
+
+POLICY_GENERAL_HELP_TEXT = _("Peering with the routeserver is shown with an icon")
+
 SERVICE_LEVEL_TYPES = (
     ("", _("Not Disclosed")),
     ("Not Disclosed", _("Not Disclosed")),

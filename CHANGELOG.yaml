@@ -1,7 +1,9 @@
 Unreleased:
-  added: []
+  added:
+  - help text for is_rs_peer, campus, carrier and policy
   fixed: []
-  changed: []
+  changed:
+  - website field restrictions
   deprecated: []
   removed: []
   security: []

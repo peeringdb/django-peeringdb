@@ -2,6 +2,10 @@
 
 
 ## Unreleased
+### Added
+- help text for is_rs_peer, campus, carrier and policy
+### Changed
+- website field restrictions
 
 
 ## 3.1.0
