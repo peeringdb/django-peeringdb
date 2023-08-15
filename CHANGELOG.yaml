@@ -1,12 +1,15 @@
 Unreleased:
-  added:
-  - help text for is_rs_peer, campus, carrier and policy
+  added: []
   fixed: []
-  changed:
-  - website field restrictions
+  changed: []
   deprecated: []
   removed: []
   security: []
+3.2.0:
+  added:
+  - help text for is_rs_peer, campus, carrier and policy
+  changed:
+  - website field restrictions
 3.1.0:
   added:
   - django 4.2 support

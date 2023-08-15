@@ -2,6 +2,9 @@
 
 
 ## Unreleased
+
+
+## 3.2.0
 ### Added
 - help text for is_rs_peer, campus, carrier and policy
 ### Changed
