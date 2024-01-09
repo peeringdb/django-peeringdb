@@ -9,7 +9,7 @@ import django_peeringdb.fields
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("django_peeringdb", "0027_auto_20230804_1414"),
+        ("django_peeringdb", "0028_auto_20240109_1157"),
     ]
 
     operations = [
