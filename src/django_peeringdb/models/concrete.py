@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from django_peeringdb import const
 from django_peeringdb.models import (
     CampusBase,
     CarrierBase,
@@ -78,6 +79,17 @@ class Network(NetworkBase):
         related_name="net_set",
         verbose_name=_("Organization"),
         on_delete=models.CASCADE,
+    )
+
+    # keep legacy info type field on the concrete
+    # models so its still queryable and syncable via
+    # peeringdb-py
+    info_type = models.CharField(
+        _("Network Type"),
+        max_length=60,
+        blank=True,
+        choices=const.NET_TYPES,
+        default="Not Disclosed",
     )
 
 
