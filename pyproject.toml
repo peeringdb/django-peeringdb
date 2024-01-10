@@ -27,11 +27,11 @@ packages = [{ include = "django_peeringdb", from = "src" }]
 [tool.poetry.dependencies]
 python = "^3.8"
 django_countries = ">1"
-django_handleref = "^2"
-django_inet = "^1"
-asgiref = "^3"
+django_handleref = ">=2"
+django_inet = ">=1"
+asgiref = ">=3"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 # testing
 codecov = ">=2"
 coverage = ">=5"
@@ -41,28 +41,28 @@ pytest-cov = "*"
 tox = ">=3.24"
 
 # linting
-# bandit = ">=1.6.2"
 black = ">=20"
 isort = ">=5.7"
 flake8 = ">=3.8"
 mypy = ">=0.950"
 pre-commit = ">=2.13"
 pyupgrade = ">=2.19"
+ruff = "^0.1.11"
 
 # docs
 markdown = "*"
 markdown-include = ">=0.5,<1"
-mkdocs = "^1.2.3"
+mkdocs = ">=1.2.3"
 
 # ctl
 ctl = ">=1"
 jinja2 = ">=2"
 tmpl = ">=1"
-# v4 released 2022-03-31
-twine = "^3.3.0"
+twine = ">=3.3"
 
 [tool.poetry.plugins."markdown.extensions"]
 pymdgen = "pymdgen.md:Extension"
+
 
 [build-system]
 requires = ["poetry>=0.12"]
