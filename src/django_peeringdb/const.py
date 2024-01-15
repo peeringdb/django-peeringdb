@@ -99,9 +99,8 @@ TRAFFIC = (
     ("100+Tbps", _("100+Tbps")),
 )
 
-NET_TYPES = (
-    ("", _("Not Disclosed")),
-    ("Not Disclosed", _("Not Disclosed")),
+
+_NET_TYPES = (
     ("NSP", _("NSP")),
     ("Content", _("Content")),
     ("Cable/DSL/ISP", _("Cable/DSL/ISP")),
@@ -113,6 +112,13 @@ NET_TYPES = (
     ("Route Collector", _("Route Collector")),
     ("Government", _("Government")),
 )
+
+NET_TYPES = (
+    ("", _("Not Disclosed")),
+    ("Not Disclosed", _("Not Disclosed")),
+) + _NET_TYPES
+
+NET_TYPES_MULTI_CHOICE = _NET_TYPES
 
 VISIBILITY = (
     ("Private", _("Private")),
@@ -164,9 +170,7 @@ PROPERTY = (("", _("Not Disclosed")), ("Owner", _("Owner")), ("Lessee", _("Lesse
 
 AVAILABLE_VOLTAGE = (
     ("48 VDC", _("48 VDC")),
-    ("120 VAC", _("120 VAC")),
-    ("208 VAC", _("208 VAC")),
-    ("240 VAC", _("240 VAC")),
+    ("400 VAC", _("400 VAC")),
     ("480 VAC", _("480 VAC")),
 )
 

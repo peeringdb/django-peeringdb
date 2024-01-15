@@ -227,13 +227,14 @@ class NetworkBase(HandleRefModel):
         choices=const.SCOPES,
         default="Not Disclosed",
     )
-    info_type = models.CharField(
-        _("Network Type"),
-        max_length=60,
+
+    info_types = MultipleChoiceField(
+        _("Network Types"),
         blank=True,
-        choices=const.NET_TYPES,
-        default="Not Disclosed",
+        max_length=255,
+        choices=const.NET_TYPES_MULTI_CHOICE,
     )
+
     info_prefixes4 = models.PositiveIntegerField(
         _("IPv4 Prefixes"),
         null=True,

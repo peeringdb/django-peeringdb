@@ -1,7 +1,9 @@
 Unreleased:
-  added: []
+  added:
+  - added `info_types` field to `Network` to support multi choice type selection
   fixed: []
-  changed: []
+  changed:
+  - changed `available_voltage_services` in `Facility` to allow 48 VDC, 400 VAC and 480 VAC
   deprecated: []
   removed: []
   security: []
