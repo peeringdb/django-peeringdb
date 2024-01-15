@@ -2,6 +2,9 @@
 
 
 ## Unreleased
+
+
+## 3.3.0
 ### Added
 - added `info_types` field to `Network` to support multi choice type selection
 ### Changed

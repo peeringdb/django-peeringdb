@@ -1,12 +1,16 @@
 Unreleased:
-  added:
-  - added `info_types` field to `Network` to support multi choice type selection
+  added: []
   fixed: []
-  changed:
-  - changed `available_voltage_services` in `Facility` to allow 48 VDC, 400 VAC and 480 VAC
+  changed: []
   deprecated: []
   removed: []
   security: []
+3.3.0:
+  added:
+  - added `info_types` field to `Network` to support multi choice type selection
+  changed:
+  - changed `available_voltage_services` in `Facility` to allow 48 VDC, 400 VAC and
+    480 VAC
 3.2.0:
   added:
   - help text for is_rs_peer, campus, carrier and policy
