@@ -1,5 +1,6 @@
 Unreleased:
-  added: []
+  added:
+  - added `bfd_support` field to `Network`
   fixed: []
   changed: []
   deprecated: []

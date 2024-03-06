@@ -473,6 +473,7 @@ class NetworkIXLanBase(HandleRefModel):
     ipaddr4 = IPAddressField(verbose_name="IPv4", version=4, blank=True, null=True)
     ipaddr6 = IPAddressField(verbose_name="IPv6", version=6, blank=True, null=True)
     is_rs_peer = models.BooleanField(_("RS peer"), default=False)
+    bfd_support = models.BooleanField(_("BFD support"), default=False)
     notes = models.CharField(_("Notes"), max_length=255, blank=True)
     speed = models.PositiveIntegerField(_("Speed (mbit/sec)"))
     operational = models.BooleanField(_("Operational"), default=True)
