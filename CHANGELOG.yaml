@@ -1,11 +1,13 @@
 Unreleased:
-  added:
-  - added `bfd_support` field to `Network`
+  added: []
   fixed: []
   changed: []
   deprecated: []
   removed: []
   security: []
+3.4.0:
+  added:
+  - added `bfd_support` field to `Network`
 3.3.0:
   added:
   - added `info_types` field to `Network` to support multi choice type selection

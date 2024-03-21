@@ -2,6 +2,9 @@
 
 
 ## Unreleased
+
+
+## 3.4.0
 ### Added
 - added `bfd_support` field to `Network`
 
