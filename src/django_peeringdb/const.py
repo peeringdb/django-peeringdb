@@ -179,7 +179,7 @@ AVAILABLE_VOLTAGE = (
 SOCIAL_MEDIA_SERVICES = [
     ("website", _("Website")),
     ("facebook", _("Facebook")),
-    ("twitter", _("Twitter")),
+    ("x", _("X")),
     ("instagram", _("Instagram")),
     ("linkedin", _("LinkedIn")),
     ("tiktok", _("TikTok")),

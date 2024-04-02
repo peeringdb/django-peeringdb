@@ -2,6 +2,8 @@
 
 
 ## Unreleased
+### Changed
+- social media service `twitter` renamed to `x`
 
 
 ## 3.4.0
