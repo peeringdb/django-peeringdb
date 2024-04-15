@@ -1,7 +1,8 @@
 Unreleased:
   added: []
   fixed: []
-  changed: []
+  changed:
+  - social media service `twitter` renamed to `x`
   deprecated: []
   removed: []
   security: []
