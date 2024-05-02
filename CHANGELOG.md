@@ -2,7 +2,13 @@
 
 
 ## Unreleased
+### Added
+- help text for info_traffic
+### Fixed
+- missing migrations
 ### Changed
+- Facility.property label for Lessee changed to "Leased or Rented"
+- Facility.property help text clarified
 - social media service `twitter` renamed to `x`
 
 

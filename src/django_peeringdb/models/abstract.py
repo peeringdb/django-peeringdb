@@ -110,7 +110,7 @@ class FacilityBase(HandleRefModel, AddressModel):
         blank=True,
         choices=const.PROPERTY,
         help_text=_(
-            "A property owner is the individual or entity that has title to the property. A lessee is a user of a property who has a lease, an agreement, with the owner of the property."
+            "Leasing or renting is an agreement with a property owner for use of the property."
         ),
     )
 
@@ -211,8 +211,13 @@ class NetworkBase(HandleRefModel):
     notes_private = models.TextField(_("Private notes"), blank=True)
 
     info_traffic = models.CharField(
-        _("Traffic Levels"), max_length=39, blank=True, choices=const.TRAFFIC
+        _("Traffic Levels"),
+        max_length=39,
+        blank=True,
+        choices=const.TRAFFIC,
+        help_text=const.INFO_TRAFFIC_HELP_TEXT,
     )
+
     info_ratio = models.CharField(
         _("Traffic Ratios"),
         max_length=45,
