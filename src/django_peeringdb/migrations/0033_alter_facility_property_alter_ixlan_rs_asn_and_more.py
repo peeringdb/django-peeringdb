@@ -36,7 +36,6 @@ class Migration(migrations.Migration):
                 null=True,
                 validators=[
                     django.core.validators.MinValueValidator(0),
-                    django.core.validators.MinValueValidator(0),
                 ],
                 verbose_name="Route Server ASN",
             ),
@@ -47,7 +46,6 @@ class Migration(migrations.Migration):
             field=django_inet.models.ASNField(
                 unique=True,
                 validators=[
-                    django.core.validators.MinValueValidator(0),
                     django.core.validators.MinValueValidator(0),
                 ],
                 verbose_name="ASN",
@@ -77,7 +75,6 @@ class Migration(migrations.Migration):
                 null=True,
                 validators=[
                     django.core.validators.MinValueValidator(0),
-                    django.core.validators.MinValueValidator(0),
                 ],
                 verbose_name="Local ASN",
             ),
@@ -87,7 +84,6 @@ class Migration(migrations.Migration):
             name="asn",
             field=django_inet.models.ASNField(
                 validators=[
-                    django.core.validators.MinValueValidator(0),
                     django.core.validators.MinValueValidator(0),
                 ],
                 verbose_name="ASN",
