@@ -135,6 +135,8 @@ PHONE_HELP_TEXT = _(
     "or dashes between the groups of digits"
 )
 
+INFO_TRAFFIC_HELP_TEXT = _("Total, self-classified traffic in/out to this network.")
+
 WEBSITE_OVERRIDE_HELP_TEXT = _(
     "If this field is set, it will be displayed on this record. "
     "If not, we will display the website from the organization "
@@ -168,7 +170,11 @@ TERMS_TYPES = (
     ("Recurring Fees", _("Recurring Fees")),
 )
 
-PROPERTY = (("", _("Not Disclosed")), ("Owner", _("Owner")), ("Lessee", _("Lessee")))
+PROPERTY = (
+    ("", _("Not Disclosed")),
+    ("Owner", _("Owner")),
+    ("Lessee", _("Leased or Rented")),
+)
 
 AVAILABLE_VOLTAGE = (
     ("48 VDC", _("48 VDC")),
