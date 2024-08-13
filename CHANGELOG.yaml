@@ -1,6 +1,7 @@
 Unreleased:
   added:
   - help text for info_traffic
+  - ORM configuration options exposed
   fixed:
   - missing migrations
   changed:

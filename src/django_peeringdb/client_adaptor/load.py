@@ -5,6 +5,7 @@ DJANGO_DB_FIELDS = (
     "PORT",
     "USER",
     "PASSWORD",
+    "OPTIONS",
 )
 
 
@@ -16,6 +17,11 @@ def database_settings(db_config):
             db[k] = v
 
     db["ENGINE"] = "django.db.backends." + db["ENGINE"]
+
+    # Check if the ENGINE is not PostgreSQL, remove OPTIONS if it's present
+    if db["ENGINE"] != "django.db.backends.postgresql":
+        db.pop("OPTIONS", None)
+
     return db
 
 

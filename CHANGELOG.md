@@ -4,6 +4,7 @@
 ## Unreleased
 ### Added
 - help text for info_traffic
+- ORM configuration options exposed
 ### Fixed
 - missing migrations
 ### Changed
