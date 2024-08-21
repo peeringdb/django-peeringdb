@@ -97,7 +97,7 @@ def test_database_settings_mysql():
     assert db_config == expected
 
 
-def test_database_settings_mysql_no_options():
+def test_database_settings_mysql_options():
     db_config = database_settings(
         {
             "engine": "mysql",
@@ -106,7 +106,7 @@ def test_database_settings_mysql_no_options():
             "port": 3306,
             "user": "test_user",
             "password": "test_password",
-            "options": {"options": "-c some_option"},
+            "options": {},
         }
     )
 
@@ -117,10 +117,11 @@ def test_database_settings_mysql_no_options():
         "PORT": 3306,
         "USER": "test_user",
         "PASSWORD": "test_password",
+        "OPTIONS": {},
     }
 
     assert db_config == expected
-    assert "OPTIONS" not in db_config
+    assert "OPTIONS" in db_config
 
 
 def test_backend_setup():
