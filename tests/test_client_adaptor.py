@@ -46,6 +46,84 @@ def test_database_settings():
     assert db_config == expected
 
 
+def test_database_settings_postgresql():
+    db_config = database_settings(
+        {
+            "engine": "postgresql",
+            "name": "test_db",
+            "host": "localhost",
+            "port": 5432,
+            "user": "test_user",
+            "password": "test_password",
+            "options": {"options": "-c search_path=peeringdb_schema"},
+        }
+    )
+
+    expected = {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "test_db",
+        "HOST": "localhost",
+        "PORT": 5432,
+        "USER": "test_user",
+        "PASSWORD": "test_password",
+        "OPTIONS": {"options": "-c search_path=peeringdb_schema"},
+    }
+
+    assert db_config == expected
+    assert "OPTIONS" in db_config
+
+
+def test_database_settings_mysql():
+    db_config = database_settings(
+        {
+            "engine": "mysql",
+            "name": "test_db",
+            "host": "localhost",
+            "port": 3306,
+            "user": "test_user",
+            "password": "test_password",
+        }
+    )
+
+    expected = {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "test_db",
+        "HOST": "localhost",
+        "PORT": 3306,
+        "USER": "test_user",
+        "PASSWORD": "test_password",
+    }
+
+    assert db_config == expected
+
+
+def test_database_settings_mysql_options():
+    db_config = database_settings(
+        {
+            "engine": "mysql",
+            "name": "test_db",
+            "host": "localhost",
+            "port": 3306,
+            "user": "test_user",
+            "password": "test_password",
+            "options": {},
+        }
+    )
+
+    expected = {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "test_db",
+        "HOST": "localhost",
+        "PORT": 3306,
+        "USER": "test_user",
+        "PASSWORD": "test_password",
+        "OPTIONS": {},
+    }
+
+    assert db_config == expected
+    assert "OPTIONS" in db_config
+
+
 def test_backend_setup():
     Backend.setup()
     for model in models.all_models:

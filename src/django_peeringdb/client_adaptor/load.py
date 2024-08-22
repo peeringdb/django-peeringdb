@@ -5,6 +5,7 @@ DJANGO_DB_FIELDS = (
     "PORT",
     "USER",
     "PASSWORD",
+    "OPTIONS",
 )
 
 
