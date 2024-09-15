@@ -59,4 +59,3 @@ Only sync these tables
     python manage.py pdb_sync
 
 Will sync the full peeringdb database to your models, any subsequent call will only sync records that have changed.
-

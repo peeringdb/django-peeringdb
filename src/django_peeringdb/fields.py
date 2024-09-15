@@ -5,7 +5,6 @@ from django.utils.translation import gettext_lazy as _
 
 
 class MultipleChoiceField(models.CharField):
-
     """
     Field that can take a set of string values
     and store them in a charfield using a delimiter

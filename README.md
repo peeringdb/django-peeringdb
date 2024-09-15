@@ -9,4 +9,3 @@
 Django models for PeeringDB
 
 See the docs at http://peeringdb.github.io/django-peeringdb/
-

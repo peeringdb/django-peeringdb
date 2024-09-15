@@ -9,4 +9,3 @@ pages:
   - Home: 'index.md'
 
 markdown_extensions: [abbr,def_list,footnotes,tables,admonition,nl2br,toc]
-
