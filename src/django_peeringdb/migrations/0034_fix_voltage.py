@@ -22,9 +22,9 @@ def forward(apps, schema_editor):
     try:
         # overide from_db_value method
         # because this method calls "clean_choices" resulting in a validation error when retrieving all facilites.
-        Facility._meta.get_field("available_voltage_services").from_db_value = (
-            _from_db_value
-        )
+        Facility._meta.get_field(
+            "available_voltage_services"
+        ).from_db_value = _from_db_value
         facilities = Facility.handleref.all()
         for facility in facilities:
             voltage = facility.available_voltage_services
@@ -42,9 +42,9 @@ def forward(apps, schema_editor):
                 print(f"Removed {removed} from {facility}")
                 facility.save()
     finally:
-        Facility._meta.get_field("available_voltage_services").from_db_value = (
-            from_db_value
-        )
+        Facility._meta.get_field(
+            "available_voltage_services"
+        ).from_db_value = from_db_value
         updated_field.auto_now = updated_field_auto_now
 
 

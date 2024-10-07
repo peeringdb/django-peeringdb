@@ -5,17 +5,16 @@ from collections import defaultdict
 from decimal import Decimal
 
 import django.core.exceptions
+import django_peeringdb.models as models
 import pytest
 from django.db import IntegrityError
 from django.db.transaction import atomic as atomic_transaction
-
-import django_peeringdb.models as models
+from django_peeringdb.client_adaptor.load import database_settings
 
 # import order is important here, linters will complain
 # about the backend import not being on top of the file
 # TODO: find better way to handle this
 import tests.peeringdb_mock  # noqa
-from django_peeringdb.client_adaptor.load import database_settings
 
 sys.modules["peeringdb"] = sys.modules["tests.peeringdb_mock"]  # noqa
 from django_peeringdb.client_adaptor.backend import Backend  # noqa
