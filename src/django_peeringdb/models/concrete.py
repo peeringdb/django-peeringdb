@@ -249,6 +249,21 @@ class NetworkIXLan(NetworkIXLanBase):
         on_delete=models.CASCADE,
     )
 
+    net_side = models.ForeignKey(
+        Facility,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="net_side_set",
+    )
+    ix_side = models.ForeignKey(
+        Facility,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="ix_side_set",
+    )
+
     def __str__(self):
         return f"{self.net} @ {self.ixlan}"
 

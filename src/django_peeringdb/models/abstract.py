@@ -335,7 +335,9 @@ class InternetExchangeBase(HandleRefModel):
     region_continent = models.CharField(
         _("Continental Region"), max_length=255, choices=const.REGIONS
     )
-    media = models.CharField(_("Media Type"), max_length=128, choices=const.MEDIA)
+    media = models.CharField(
+        _("Media Type"), max_length=128, choices=const.MEDIA, default="Ethernet"
+    )
     proto_unicast = models.BooleanField(_("Unicast IPv4"), default=False)
     proto_multicast = models.BooleanField(_("Multicast"), default=False)
     proto_ipv6 = models.BooleanField(_("Unicast IPv6"), default=False)

@@ -12,8 +12,6 @@ jobs:
         uses: 20c/workflows/poetry@v1
       - name: Run linters
         run: |
-            poetry run isort src/
-            poetry run black --check src/
             poetry run pre-commit run --all-files
 
   test:

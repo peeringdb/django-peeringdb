@@ -5,12 +5,17 @@
 ### Added
 - help text for info_traffic
 - ORM configuration options exposed
+- NetworkIXLan.ix_side field added
+- NetworkIXLan.net_side field added
 ### Fixed
 - missing migrations
+- facility voltage value migration to fix peeringdb-py#86 on old databases
 ### Changed
 - Facility.property label for Lessee changed to "Leased or Rented"
 - Facility.property help text clarified
 - social media service `twitter` renamed to `x`
+### Deprecated
+- InternetExchange.media field has been deprecated and will default to `Ethernet` until it will be removed in v3 of the PeeringDB API.
 
 
 ## 3.4.0
