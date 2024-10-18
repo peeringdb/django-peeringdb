@@ -1,5 +1,4 @@
 import pytest
-
 from django_peeringdb.models import Carrier, CarrierFacility, Facility, Organization
 
 
