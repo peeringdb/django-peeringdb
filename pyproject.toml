@@ -21,15 +21,15 @@ classifiers = [
   "Topic :: Software Development :: Libraries :: Python Modules",
   "Topic :: Internet",
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 dependencies = [
   "django_countries>1",
   "django_handleref>=2",
   "django_inet>=1",
   "asgiref>=3",
 ]
-[dependency-groups]
 
+[dependency-groups]
 dev = [
   # testing
   "codecov>=2",
@@ -64,15 +64,6 @@ repository = "https://github.com/peeringdb/django-peeringdb"
 [build-system]
 requires = ["hatchling>=1.0.0"]
 build-backend = "hatchling.build"
-
-[tool.hatch.metadata]
-allow-direct-references = true
-
-[tool.hatch.build.targets.sdist]
-include = ["src/django_peeringdb/**"]
-
-[tool.hatch.build.targets.wheel]
-include = ["src/django_peeringdb/**"]
 
 [tool.ruff.lint]
 extend-select = [
