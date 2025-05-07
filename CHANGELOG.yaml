@@ -13,7 +13,8 @@ Unreleased:
   - social media service `twitter` renamed to `x`
   deprecated:
   - InternetExchange.media field has been deprecated and will default to `Ethernet` until it will be removed in v3 of the PeeringDB API.
-  removed: []
+  removed:
+  - support for python 3.8
   security: []
 3.4.0:
   added:
