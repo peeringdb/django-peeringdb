@@ -38,6 +38,8 @@ dev = [
   "pytest-django>=3.8",
   "pytest-cov",
   "tox>=3.24",
+  "tox-gh-actions>=3",
+  "tox-uv>=1.13.0",
 
   # linting
   "mypy>=0.950",
