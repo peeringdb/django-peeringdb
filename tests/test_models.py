@@ -1,8 +1,8 @@
 import pytest
 from django.core.exceptions import ValidationError
 from django.test import TestCase
-from django_peeringdb.models import LG_URLField, URLField
 
+from django_peeringdb.models import LG_URLField, URLField
 from tests.models import FieldModel, LG_FieldModel
 
 

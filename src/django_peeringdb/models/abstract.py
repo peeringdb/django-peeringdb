@@ -197,9 +197,7 @@ class NetworkBase(HandleRefModel):
         max_length=255,
         blank=True,
         help_text=_(
-            "Reference to an AS-SET or "
-            "ROUTE-SET in Internet "
-            "Routing Registry (IRR)"
+            "Reference to an AS-SET or ROUTE-SET in Internet Routing Registry (IRR)"
         ),
     )
     website = URLField(_("Website"), blank=True)
