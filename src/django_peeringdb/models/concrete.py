@@ -135,7 +135,7 @@ class CarrierFacility(CarrierFacilityBase):
 
     class Meta(CarrierFacilityBase.Meta):
         unique_together = ("carrier", "fac")
-        db_table = "%six_carrier_facility" % settings.TABLE_PREFIX
+        db_table = f"{settings.TABLE_PREFIX}ix_carrier_facility"
 
     def __str__(self):
         return f"{self.carrier} @ {self.fac}"
@@ -159,7 +159,7 @@ class InternetExchangeFacility(InternetExchangeFacilityBase):
 
     class Meta(InternetExchangeFacilityBase.Meta):
         unique_together = ("ix", "fac")
-        db_table = "%six_facility" % settings.TABLE_PREFIX
+        db_table = f"{settings.TABLE_PREFIX}ix_facility"
 
     def __str__(self):
         return f"{self.ix} @ {self.fac}"
@@ -226,7 +226,7 @@ class NetworkFacility(NetworkFacilityBase):
 
     class Meta(NetworkFacilityBase.Meta):
         unique_together = ("net", "fac", "local_asn")
-        db_table = "%snetwork_facility" % settings.TABLE_PREFIX
+        db_table = f"{settings.TABLE_PREFIX}network_facility"
 
     def __str__(self):
         return f"{self.net} @ {self.fac}"

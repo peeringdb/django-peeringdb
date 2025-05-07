@@ -67,7 +67,7 @@ class OrganizationBase(HandleRefModel, AddressModel):
 
     class Meta:
         abstract = True
-        db_table = "%sorganization" % settings.TABLE_PREFIX
+        db_table = f"{settings.TABLE_PREFIX}organization"
         verbose_name = _("Organization")
         verbose_name_plural = _("Organizations")
 
@@ -148,7 +148,7 @@ class FacilityBase(HandleRefModel, AddressModel):
 
     class Meta:
         abstract = True
-        db_table = "%sfacility" % settings.TABLE_PREFIX
+        db_table = f"{settings.TABLE_PREFIX}facility"
         verbose_name = _("Facility")
         verbose_name_plural = _("Facilities")
 
@@ -174,7 +174,7 @@ class ContactBase(HandleRefModel):
 
     class Meta:
         abstract = True
-        db_table = "%snetwork_contact" % settings.TABLE_PREFIX
+        db_table = f"{settings.TABLE_PREFIX}network_contact"
         verbose_name = _("Contact")
         verbose_name_plural = _("Contacts")
 
@@ -307,7 +307,7 @@ class NetworkBase(HandleRefModel):
 
     class Meta:
         abstract = True
-        db_table = "%snetwork" % settings.TABLE_PREFIX
+        db_table = f"{settings.TABLE_PREFIX}network"
         verbose_name = _("Network")
         verbose_name_plural = _("Networks")
 
@@ -384,7 +384,7 @@ class InternetExchangeBase(HandleRefModel):
 
     class Meta:
         abstract = True
-        db_table = "%six" % settings.TABLE_PREFIX
+        db_table = f"{settings.TABLE_PREFIX}ix"
         verbose_name = _("Internet Exchange")
         verbose_name_plural = _("Internet Exchanges")
 
@@ -399,7 +399,7 @@ class InternetExchangeBase(HandleRefModel):
 class InternetExchangeFacilityBase(HandleRefModel):
     class Meta:
         abstract = True
-        db_table = "%six_facility" % settings.TABLE_PREFIX
+        db_table = f"{settings.TABLE_PREFIX}ix_facility"
         verbose_name = _("Internet Exchange facility")
         verbose_name_plural = _("Internet Exchange facilities")
 
@@ -432,7 +432,7 @@ class IXLanBase(HandleRefModel):
 
     class Meta:
         abstract = True
-        db_table = "%sixlan" % settings.TABLE_PREFIX
+        db_table = f"{settings.TABLE_PREFIX}ixlan"
         verbose_name = _("Internet Exchange LAN")
         verbose_name_plural = _("Internet Exchange LANs")
 
@@ -449,7 +449,7 @@ class IXLanPrefixBase(HandleRefModel):
 
     class Meta:
         abstract = True
-        db_table = "%sixlan_prefix" % settings.TABLE_PREFIX
+        db_table = f"{settings.TABLE_PREFIX}ixlan_prefix"
         verbose_name = _("Internet Exchange LAN prefix")
         verbose_name_plural = _("Internet Exchange LAN prefixes")
 
@@ -465,7 +465,7 @@ class NetworkFacilityBase(HandleRefModel):
 
     class Meta:
         abstract = True
-        db_table = "%snetwork_facility" % settings.TABLE_PREFIX
+        db_table = f"{settings.TABLE_PREFIX}network_facility"
         verbose_name = _("Network Facility")
         verbose_name_plural = _("Network Facilities")
 
@@ -485,7 +485,7 @@ class NetworkIXLanBase(HandleRefModel):
 
     class Meta:
         abstract = True
-        db_table = "%snetwork_ixlan" % settings.TABLE_PREFIX
+        db_table = f"{settings.TABLE_PREFIX}network_ixlan"
         verbose_name = _("Public Peering Exchange Point")
         verbose_name_plural = _("Public Peering Exchange Points")
 
@@ -540,7 +540,7 @@ class CampusBase(HandleRefModel):
 
     class Meta:
         abstract = True
-        db_table = "%scampus" % settings.TABLE_PREFIX
+        db_table = f"{settings.TABLE_PREFIX}campus"
         verbose_name = _("Campus")
         verbose_name_plural = _("Campuses")
 
