@@ -1,12 +1,10 @@
-[tool.poetry]
+[project]
 name = "django-peeringdb"
 version = "3.4.0"
 description = "PeeringDB Django models"
 readme = "README.md"
-repository = "https://github.com/peeringdb/django-peeringdb"
-authors = ["PeeringDB <support@peeringdb.com>"]
-license = "Apache-2.0"
-
+license = { text = "BSD-2-Clause" }
+authors = [{ name = "PeeringDB", email = "support@peeringdb.com" }]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Framework :: Django :: 3.1",
@@ -19,20 +17,35 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Topic :: Software Development :: Libraries :: Python Modules",
   "Topic :: Internet",
 ]
+dependencies = [
+  "django_countries>1",
+  "django_handleref>=2",
+  "django_inet>=1",
+  "asgiref>=3",
+]
+requires-python = ">=3.8"
 
-packages = [{ include = "django_peeringdb", from = "src" }]
+[project.urls]
+repository = "https://github.com/peeringdb/django-peeringdb"
 
-[tool.poetry.dependencies]
-python = "^3.8"
-django_countries = ">1"
-django_handleref = ">=2"
-django_inet = ">=1"
-asgiref = ">=3"
+[build-system]
+requires = ["hatchling>=1.0.0"]
+build-backend = "hatchling.build"
 
-[tool.poetry.group.dev.dependencies]
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.sdist]
+include = ["src/django_peeringdb/**"]
+
+[tool.hatch.build.targets.wheel]
+include = ["src/django_peeringdb/**"]
+
+[tool.hatch.envs.default.dependencies]
 # testing
 codecov = ">=2"
 coverage = ">=5"
@@ -61,14 +74,6 @@ jinja2 = ">=2"
 tmpl = ">=1"
 twine = ">=3.3"
 
-[tool.poetry.plugins."markdown.extensions"]
-pymdgen = "pymdgen.md:Extension"
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-
 [tool.isort]
 profile = "black"
 multi_line_output = 3
-
