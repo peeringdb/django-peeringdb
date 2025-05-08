@@ -158,13 +158,22 @@ class Backend(Interface):
         """
         missing = defaultdict(set)
         for name, err in list(exc.error_dict.items()):
-            # check if it was a relationship that doesnt exist locally
-            pattern = r".+ with id (\d+) does not exist.+"
-            m = re.match(pattern, str(err))
-            if m:
+            # check if it was a relationship that doesn't exist locally
+            exists_pattern = r".+ with id (\d+) does not exist.+"
+            choice_pattern = r".+ instance with id (\d+) is not a valid choice.+"
+
+            error_str = str(err)
+            m_exists = re.search(exists_pattern, error_str)
+            m_choice = re.search(choice_pattern, error_str)
+
+            if m_exists:
                 field = obj._meta.get_field(name)
                 res = self.get_resource(field.related_model)
-                missing[res].add(int(m.group(1)))
+                missing[res].add(int(m_exists.group(1)))
+            elif m_choice:
+                field = obj._meta.get_field(name)
+                res = self.get_resource(field.related_model)
+                missing[res].add(int(m_choice.group(1)))
         return missing
 
     def detect_uniqueness_error(self, exc):
