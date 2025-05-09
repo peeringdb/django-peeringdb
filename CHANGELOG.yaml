@@ -1,4 +1,11 @@
 Unreleased:
+  added: []
+  fixed: []
+  changed: []
+  deprecated: []
+  removed: []
+  security: []
+3.5.0:
   added:
   - help text for info_traffic
   - ORM configuration options exposed
@@ -12,9 +19,10 @@ Unreleased:
   - Facility.property help text clarified
   - social media service `twitter` renamed to `x`
   deprecated:
-  - InternetExchange.media field has been deprecated and will default to `Ethernet` until it will be removed in v3 of the PeeringDB API.
-  removed: []
-  security: []
+  - InternetExchange.media field has been deprecated and will default to `Ethernet`
+    until it will be removed in v3 of the PeeringDB API.
+  removed:
+  - support for python 3.8
 3.4.0:
   added:
   - added `bfd_support` field to `Network`

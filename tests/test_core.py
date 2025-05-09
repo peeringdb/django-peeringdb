@@ -1,5 +1,6 @@
-import django_peeringdb.models
 from django.test import TestCase
+
+import django_peeringdb.models
 
 
 class CoreTests(TestCase):

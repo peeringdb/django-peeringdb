@@ -2,6 +2,9 @@
 
 
 ## Unreleased
+
+
+## 3.5.0
 ### Added
 - help text for info_traffic
 - ORM configuration options exposed
@@ -16,6 +19,8 @@
 - social media service `twitter` renamed to `x`
 ### Deprecated
 - InternetExchange.media field has been deprecated and will default to `Ethernet` until it will be removed in v3 of the PeeringDB API.
+### Removed
+- support for python 3.8
 
 
 ## 3.4.0
