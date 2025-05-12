@@ -225,7 +225,7 @@ class NetworkFacility(NetworkFacilityBase):
     )
 
     class Meta(NetworkFacilityBase.Meta):
-        unique_together = ("net", "fac", "local_asn")
+        unique_together = ("net", "fac")
         db_table = f"{settings.TABLE_PREFIX}network_facility"
 
     def __str__(self):

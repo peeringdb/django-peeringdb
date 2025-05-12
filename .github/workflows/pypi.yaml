@@ -1,6 +1,12 @@
-name: Publish Python 🐍 distribution 📦 to PyPI and TestPyPI
+name: Publish Python 🐍 distribution 📦
 
-on: push
+on:
+  push:
+    tags:
+      - "[0-9]+.[0-9]+"
+  pull_request:
+    branches:
+      - "testpypi-.*"
 
 jobs:
   build:
@@ -28,8 +34,7 @@ jobs:
         path: dist/
 
   publish-to-pypi:
-    name: >-
-      Publish Python 🐍 distribution 📦 to PyPI
+    name: Publish PyPI
     if: startsWith(github.ref, 'refs/tags/3')  # only publish to PyPI on tag pushes
     needs:
     - build
@@ -51,8 +56,7 @@ jobs:
 
   github-release:
     name: >-
-      Sign the Python 🐍 distribution 📦 with Sigstore
-      and upload them to GitHub Release
+      Sign and GitHub Release
     needs:
     - publish-to-pypi
     runs-on: ubuntu-latest
@@ -93,7 +97,7 @@ jobs:
         --repo '${{ github.repository }}'
 
   publish-to-testpypi:
-    name: Publish Python 🐍 distribution 📦 to TestPyPI
+    name: Publish TestPyPI
     needs:
     - build
     runs-on: ubuntu-latest

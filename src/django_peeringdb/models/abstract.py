@@ -458,7 +458,6 @@ class IXLanPrefixBase(HandleRefModel):
 
 
 class NetworkFacilityBase(HandleRefModel):
-    local_asn = ASNField(verbose_name=_("Local ASN"), null=True, blank=True)
     avail_sonet = models.BooleanField("SONET", default=False)
     avail_ethernet = models.BooleanField("Ethernet", default=False)
     avail_atm = models.BooleanField("ATM", default=False)

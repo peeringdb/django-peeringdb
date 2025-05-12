@@ -3,7 +3,8 @@ Unreleased:
   fixed: []
   changed: []
   deprecated: []
-  removed: []
+  removed:
+  - "`NetworkFacility.local_asn` field"
   security: []
 3.5.0:
   added:
