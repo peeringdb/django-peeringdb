@@ -3,9 +3,11 @@ Unreleased:
   fixed: []
   changed: []
   deprecated: []
-  removed:
-  - "`NetworkFacility.local_asn` field"
+  removed: []
   security: []
+3.6.0:
+  removed:
+  - '`NetworkFacility.local_asn` field'
 3.5.0:
   added:
   - help text for info_traffic
