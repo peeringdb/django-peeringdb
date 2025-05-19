@@ -2,6 +2,9 @@
 
 
 ## Unreleased
+
+
+## 3.6.0
 ### Removed
 - `NetworkFacility.local_asn` field
 

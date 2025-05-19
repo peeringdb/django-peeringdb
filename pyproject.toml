@@ -1,6 +1,6 @@
 [project]
 name = "django-peeringdb"
-version = "3.5.0"
+version = "3.6.0"
 description = "PeeringDB Django models"
 readme = "README.md"
 license = { text = "BSD-2-Clause" }
