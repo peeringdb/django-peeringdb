@@ -2,6 +2,8 @@
 
 
 ## Unreleased
+### Added
+- additional social media services added
 
 
 ## 3.6.0
