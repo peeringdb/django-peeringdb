@@ -1,4 +1,3 @@
-import django.forms
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -19,13 +18,14 @@ class MultipleChoiceField(models.CharField):
     def clean_choices(self, values):
         for value in values:
             exists = False
-            for choice, label in self.choices:
-                if choice == value:
-                    exists = True
-                    break
+            if self.choices:
+                for choice, label in self.choices:
+                    if choice == value:
+                        exists = True
+                        break
 
-            if not exists:
-                raise ValidationError(_("Invalid value: {}").format(value))
+                if not exists:
+                    raise ValidationError(_("Invalid value: {}").format(value))
 
     def validate(self, value, model_instance):
         if not self.editable:
@@ -58,14 +58,15 @@ class MultipleChoiceField(models.CharField):
             return ""
 
         picked = []
-        for choice, label in self.choices:
-            if choice in value:
-                picked.append(choice)
+        if self.choices:
+            for choice, label in self.choices:
+                if choice in value:
+                    picked.append(choice)
 
         return ",".join(picked)
 
     def to_python(self, value):
-        if isinstance(value, (list, set, tuple)):
+        if isinstance(value, list | set | tuple):
             return value
 
         if not value or value == "[]":
@@ -76,8 +77,10 @@ class MultipleChoiceField(models.CharField):
 
         return values
 
-    def formfield(self, **kwargs):
-        defaults = {"form_class": django.forms.MultipleChoiceField}
+    def formfield(self, form_class=None, choices_form_class=None, **kwargs):
+        from django.forms import MultipleChoiceField
+
+        defaults = {"form_class": form_class or MultipleChoiceField}
         defaults.update(**kwargs)
         return super().formfield(**defaults)
 

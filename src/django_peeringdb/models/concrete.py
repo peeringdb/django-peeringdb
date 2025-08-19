@@ -46,7 +46,7 @@ class Organization(OrganizationBase):
 
 @expose_model
 class Campus(CampusBase):
-    org = models.ForeignKey(
+    org: models.ForeignKey = models.ForeignKey(
         Organization,
         related_name="campus_set",
         verbose_name=_("Organization"),
@@ -56,13 +56,13 @@ class Campus(CampusBase):
 
 @expose_model
 class Facility(FacilityBase):
-    org = models.ForeignKey(
+    org: models.ForeignKey = models.ForeignKey(
         Organization,
         related_name="fac_set",
         verbose_name=_("Organization"),
         on_delete=models.CASCADE,
     )
-    campus = models.ForeignKey(
+    campus: models.ForeignKey[Campus | None] = models.ForeignKey(
         Campus,
         related_name="fac_set",
         verbose_name=_("Campus"),
@@ -74,7 +74,7 @@ class Facility(FacilityBase):
 
 @expose_model
 class Network(NetworkBase):
-    org = models.ForeignKey(
+    org: models.ForeignKey = models.ForeignKey(
         Organization,
         related_name="net_set",
         verbose_name=_("Organization"),
@@ -84,7 +84,7 @@ class Network(NetworkBase):
     # keep legacy info type field on the concrete
     # models so its still queryable and syncable via
     # peeringdb-py
-    info_type = models.CharField(
+    info_type: models.CharField = models.CharField(
         _("Network Type"),
         max_length=60,
         blank=True,
@@ -95,7 +95,7 @@ class Network(NetworkBase):
 
 @expose_model
 class InternetExchange(InternetExchangeBase):
-    org = models.ForeignKey(
+    org: models.ForeignKey = models.ForeignKey(
         Organization,
         related_name="ix_set",
         verbose_name=_("Organization"),
@@ -109,7 +109,7 @@ class InternetExchange(InternetExchangeBase):
 
 @expose_model
 class Carrier(CarrierBase):
-    org = models.ForeignKey(
+    org: models.ForeignKey = models.ForeignKey(
         Organization,
         related_name="carrier_set",
         verbose_name=_("Organization"),
@@ -119,13 +119,13 @@ class Carrier(CarrierBase):
 
 @expose_model
 class CarrierFacility(CarrierFacilityBase):
-    carrier = models.ForeignKey(
+    carrier: models.ForeignKey = models.ForeignKey(
         Carrier,
         related_name="carrierfac_set",
         verbose_name=_("Carrier"),
         on_delete=models.CASCADE,
     )
-    fac = models.ForeignKey(
+    fac: models.ForeignKey = models.ForeignKey(
         Facility,
         default=0,
         related_name="carrierfac_set",
@@ -143,13 +143,13 @@ class CarrierFacility(CarrierFacilityBase):
 
 @expose_model
 class InternetExchangeFacility(InternetExchangeFacilityBase):
-    ix = models.ForeignKey(
+    ix: models.ForeignKey = models.ForeignKey(
         InternetExchange,
         related_name="ixfac_set",
         verbose_name=_("Internet Exchange"),
         on_delete=models.CASCADE,
     )
-    fac = models.ForeignKey(
+    fac: models.ForeignKey = models.ForeignKey(
         Facility,
         default=0,
         related_name="ixfac_set",
@@ -167,7 +167,7 @@ class InternetExchangeFacility(InternetExchangeFacilityBase):
 
 @expose_model
 class IXLan(IXLanBase):
-    ix = models.ForeignKey(
+    ix: models.ForeignKey = models.ForeignKey(
         InternetExchange,
         default=0,
         related_name="ixlan_set",
@@ -181,7 +181,7 @@ class IXLan(IXLanBase):
 
 @expose_model
 class IXLanPrefix(IXLanPrefixBase):
-    ixlan = models.ForeignKey(
+    ixlan: models.ForeignKey = models.ForeignKey(
         IXLan,
         default=0,
         related_name="ixpfx_set",
@@ -195,7 +195,7 @@ class IXLanPrefix(IXLanPrefixBase):
 
 @expose_model
 class NetworkContact(ContactBase):
-    net = models.ForeignKey(
+    net: models.ForeignKey = models.ForeignKey(
         Network,
         default=0,
         related_name="poc_set",
@@ -209,14 +209,14 @@ class NetworkContact(ContactBase):
 
 @expose_model
 class NetworkFacility(NetworkFacilityBase):
-    net = models.ForeignKey(
+    net: models.ForeignKey = models.ForeignKey(
         Network,
         default=0,
         related_name="netfac_set",
         verbose_name=_("Network"),
         on_delete=models.CASCADE,
     )
-    fac = models.ForeignKey(
+    fac: models.ForeignKey = models.ForeignKey(
         Facility,
         default=0,
         related_name="netfac_set",
@@ -234,14 +234,14 @@ class NetworkFacility(NetworkFacilityBase):
 
 @expose_model
 class NetworkIXLan(NetworkIXLanBase):
-    net = models.ForeignKey(
+    net: models.ForeignKey = models.ForeignKey(
         Network,
         default=0,
         related_name="netixlan_set",
         verbose_name=_("Network"),
         on_delete=models.CASCADE,
     )
-    ixlan = models.ForeignKey(
+    ixlan: models.ForeignKey = models.ForeignKey(
         IXLan,
         default=0,
         related_name="netixlan_set",
@@ -249,14 +249,14 @@ class NetworkIXLan(NetworkIXLanBase):
         on_delete=models.CASCADE,
     )
 
-    net_side = models.ForeignKey(
+    net_side: models.ForeignKey = models.ForeignKey(
         Facility,
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
         related_name="net_side_set",
     )
-    ix_side = models.ForeignKey(
+    ix_side: models.ForeignKey = models.ForeignKey(
         Facility,
         null=True,
         blank=True,

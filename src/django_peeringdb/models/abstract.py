@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from django.conf import settings
 from django.core.validators import URLValidator
 from django.db import models
@@ -31,20 +33,26 @@ class AddressModel(models.Model):
     Postal Address
     """
 
-    address1 = models.CharField(_("Address 1"), max_length=255, blank=True)
-    address2 = models.CharField(_("Address 2"), max_length=255, blank=True)
-    city = models.CharField(_("City"), max_length=255, blank=True)
-    state = models.CharField(_("State"), max_length=255, blank=True)
-    zipcode = models.CharField(_("Zip-Code"), max_length=48, blank=True)
-    country = CountryField(_("Country"), blank=True)
+    address1: models.CharField = models.CharField(
+        _("Address 1"), max_length=255, blank=True
+    )
+    address2: models.CharField = models.CharField(
+        _("Address 2"), max_length=255, blank=True
+    )
+    city: models.CharField = models.CharField(_("City"), max_length=255, blank=True)
+    state: models.CharField = models.CharField(_("State"), max_length=255, blank=True)
+    zipcode: models.CharField = models.CharField(
+        _("Zip-Code"), max_length=48, blank=True
+    )
+    country: CountryField = CountryField(_("Country"), blank=True)
 
-    suite = models.CharField(_("Suite"), max_length=255, blank=True)
-    floor = models.CharField(_("Floor"), max_length=255, blank=True)
+    suite: models.CharField = models.CharField(_("Suite"), max_length=255, blank=True)
+    floor: models.CharField = models.CharField(_("Floor"), max_length=255, blank=True)
 
-    latitude = models.DecimalField(
+    latitude: models.DecimalField = models.DecimalField(
         _("Latitude"), max_digits=9, decimal_places=6, blank=True, null=True
     )
-    longitude = models.DecimalField(
+    longitude: models.DecimalField = models.DecimalField(
         _("Longitude"), max_digits=9, decimal_places=6, blank=True, null=True
     )
 
@@ -56,14 +64,18 @@ class AddressModel(models.Model):
 
 
 class OrganizationBase(HandleRefModel, AddressModel):
-    name = models.CharField(_("Name"), max_length=255, unique=True)
+    name: models.CharField = models.CharField(_("Name"), max_length=255, unique=True)
 
-    aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
-    name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
+    aka: models.CharField = models.CharField(
+        _("Also Known As"), max_length=255, blank=True
+    )
+    name_long: models.CharField = models.CharField(
+        _("Long Name"), max_length=255, blank=True
+    )
 
-    website = URLField(_("Website"), blank=True, default="")
+    website: URLField = URLField(_("Website"), blank=True, default="")
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
-    notes = models.TextField(_("Notes"), blank=True)
+    notes: models.TextField = models.TextField(_("Notes"), blank=True)
 
     class Meta:
         abstract = True
@@ -80,30 +92,40 @@ class OrganizationBase(HandleRefModel, AddressModel):
 
 
 class FacilityBase(HandleRefModel, AddressModel):
-    name = models.CharField(_("Name"), max_length=255, unique=True)
-    website = URLField(_("Website"), blank=True)
+    name: models.CharField = models.CharField(_("Name"), max_length=255, unique=True)
+    website: URLField = URLField(_("Website"), blank=True)
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
 
-    aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
-    name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
+    aka: models.CharField = models.CharField(
+        _("Also Known As"), max_length=255, blank=True
+    )
+    name_long: models.CharField = models.CharField(
+        _("Long Name"), max_length=255, blank=True
+    )
 
-    clli = models.CharField(_("CLLI Code"), max_length=18, blank=True)
-    rencode = models.CharField(_("Rencode"), max_length=18, blank=True)
-    npanxx = models.CharField(_("NPA-NXX"), max_length=21, blank=True)
+    clli: models.CharField = models.CharField(_("CLLI Code"), max_length=18, blank=True)
+    rencode: models.CharField = models.CharField(
+        _("Rencode"), max_length=18, blank=True
+    )
+    npanxx: models.CharField = models.CharField(_("NPA-NXX"), max_length=21, blank=True)
 
-    tech_email = models.EmailField(_("Technical Email"), max_length=254, blank=True)
-    tech_phone = models.CharField(
+    tech_email: models.EmailField = models.EmailField(
+        _("Technical Email"), max_length=254, blank=True
+    )
+    tech_phone: models.CharField = models.CharField(
         _("Technical Phone"),
         max_length=192,
         blank=True,
         help_text=const.PHONE_HELP_TEXT,
     )
-    sales_email = models.EmailField(_("Sales Email"), max_length=254, blank=True)
-    sales_phone = models.CharField(
+    sales_email: models.EmailField = models.EmailField(
+        _("Sales Email"), max_length=254, blank=True
+    )
+    sales_phone: models.CharField = models.CharField(
         _("Sales Phone"), max_length=192, blank=True, help_text=const.PHONE_HELP_TEXT
     )
 
-    property = models.CharField(
+    property: models.CharField = models.CharField(
         _("Property"),
         max_length=27,
         null=True,
@@ -114,7 +136,7 @@ class FacilityBase(HandleRefModel, AddressModel):
         ),
     )
 
-    diverse_serving_substations = models.BooleanField(
+    diverse_serving_substations: models.BooleanField = models.BooleanField(
         _("Diverse Serving Substations"),
         null=True,
         blank=True,
@@ -123,7 +145,7 @@ class FacilityBase(HandleRefModel, AddressModel):
         ),
     )
 
-    available_voltage_services = MultipleChoiceField(
+    available_voltage_services: MultipleChoiceField = MultipleChoiceField(
         _("Available Voltage Services"),
         null=True,
         blank=True,
@@ -134,9 +156,9 @@ class FacilityBase(HandleRefModel, AddressModel):
         ),
     )
 
-    notes = models.TextField(_("Notes"), blank=True)
+    notes: models.TextField = models.TextField(_("Notes"), blank=True)
 
-    region_continent = models.CharField(
+    region_continent: models.CharField = models.CharField(
         _("Continental Region"),
         max_length=255,
         choices=const.REGIONS,
@@ -144,7 +166,7 @@ class FacilityBase(HandleRefModel, AddressModel):
         null=True,
     )
 
-    status_dashboard = URLField(_("Status Dashboard"), null=True, blank=True)
+    status_dashboard: URLField = URLField(_("Status Dashboard"), null=True, blank=True)
 
     class Meta:
         abstract = True
@@ -161,16 +183,18 @@ class FacilityBase(HandleRefModel, AddressModel):
 
 
 class ContactBase(HandleRefModel):
-    role = models.CharField(_("Role"), max_length=27, choices=const.POC_ROLES)
-    visible = models.CharField(
+    role: models.CharField = models.CharField(
+        _("Role"), max_length=27, choices=const.POC_ROLES
+    )
+    visible: models.CharField = models.CharField(
         _("Visibility"), max_length=64, choices=const.VISIBILITY, default="Public"
     )
-    name = models.CharField(_("Name"), max_length=254, blank=True)
-    phone = models.CharField(
+    name: models.CharField = models.CharField(_("Name"), max_length=254, blank=True)
+    phone: models.CharField = models.CharField(
         _("Phone"), max_length=100, blank=True, help_text=const.PHONE_HELP_TEXT
     )
-    email = models.EmailField(_("Email"), max_length=254, blank=True)
-    url = URLField(_("URL"), blank=True)
+    email: models.EmailField = models.EmailField(_("Email"), max_length=254, blank=True)
+    url: URLField = URLField(_("URL"), blank=True)
 
     class Meta:
         abstract = True
@@ -186,13 +210,17 @@ class ContactBase(HandleRefModel):
 
 
 class NetworkBase(HandleRefModel):
-    asn = ASNField(verbose_name="ASN", unique=True)
-    name = models.CharField(_("Name"), max_length=255, unique=True)
+    asn: ASNField = ASNField(verbose_name="ASN", unique=True)
+    name: models.CharField = models.CharField(_("Name"), max_length=255, unique=True)
 
-    aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
-    name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
+    aka: models.CharField = models.CharField(
+        _("Also Known As"), max_length=255, blank=True
+    )
+    name_long: models.CharField = models.CharField(
+        _("Long Name"), max_length=255, blank=True
+    )
 
-    irr_as_set = models.CharField(
+    irr_as_set: models.CharField = models.CharField(
         _("IRR as-set/route-set"),
         max_length=255,
         blank=True,
@@ -200,15 +228,15 @@ class NetworkBase(HandleRefModel):
             "Reference to an AS-SET or ROUTE-SET in Internet Routing Registry (IRR)"
         ),
     )
-    website = URLField(_("Website"), blank=True)
+    website: URLField = URLField(_("Website"), blank=True)
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
-    looking_glass = LG_URLField(_("Looking Glass URL"), blank=True)
-    route_server = LG_URLField(_("Route Server URL"), blank=True)
+    looking_glass: LG_URLField = LG_URLField(_("Looking Glass URL"), blank=True)
+    route_server: LG_URLField = LG_URLField(_("Route Server URL"), blank=True)
 
-    notes = models.TextField(_("Notes"), blank=True)
-    notes_private = models.TextField(_("Private notes"), blank=True)
+    notes: models.TextField = models.TextField(_("Notes"), blank=True)
+    notes_private: models.TextField = models.TextField(_("Private notes"), blank=True)
 
-    info_traffic = models.CharField(
+    info_traffic: models.CharField = models.CharField(
         _("Traffic Levels"),
         max_length=39,
         blank=True,
@@ -216,14 +244,14 @@ class NetworkBase(HandleRefModel):
         help_text=const.INFO_TRAFFIC_HELP_TEXT,
     )
 
-    info_ratio = models.CharField(
+    info_ratio: models.CharField = models.CharField(
         _("Traffic Ratios"),
         max_length=45,
         blank=True,
         choices=const.RATIOS,
         default="Not Disclosed",
     )
-    info_scope = models.CharField(
+    info_scope: models.CharField = models.CharField(
         _("Geographic Scope"),
         max_length=39,
         blank=True,
@@ -231,14 +259,14 @@ class NetworkBase(HandleRefModel):
         default="Not Disclosed",
     )
 
-    info_types = MultipleChoiceField(
+    info_types: MultipleChoiceField = MultipleChoiceField(
         _("Network Types"),
         blank=True,
         max_length=255,
         choices=const.NET_TYPES_MULTI_CHOICE,
     )
 
-    info_prefixes4 = models.PositiveIntegerField(
+    info_prefixes4: models.PositiveIntegerField = models.PositiveIntegerField(
         _("IPv4 Prefixes"),
         null=True,
         blank=True,
@@ -248,7 +276,7 @@ class NetworkBase(HandleRefModel):
             "sessions for this ASN"
         ),
     )
-    info_prefixes6 = models.PositiveIntegerField(
+    info_prefixes6: models.PositiveIntegerField = models.PositiveIntegerField(
         _("IPv6 Prefixes"),
         null=True,
         blank=True,
@@ -258,10 +286,16 @@ class NetworkBase(HandleRefModel):
             "sessions for this ASN"
         ),
     )
-    info_unicast = models.BooleanField(_("Unicast IPv4"), default=False)
-    info_multicast = models.BooleanField(_("Multicast"), default=False)
-    info_ipv6 = models.BooleanField(_("Unicast IPv6"), default=False)
-    info_never_via_route_servers = models.BooleanField(
+    info_unicast: models.BooleanField = models.BooleanField(
+        _("Unicast IPv4"), default=False
+    )
+    info_multicast: models.BooleanField = models.BooleanField(
+        _("Multicast"), default=False
+    )
+    info_ipv6: models.BooleanField = models.BooleanField(
+        _("Unicast IPv6"), default=False
+    )
+    info_never_via_route_servers: models.BooleanField = models.BooleanField(
         _("Never via route servers"),
         default=False,
         help_text=_(
@@ -271,37 +305,39 @@ class NetworkBase(HandleRefModel):
         ),
     )
 
-    policy_url = URLField(_("Peering Policy"), blank=True)
-    policy_general = models.CharField(
+    policy_url: URLField = URLField(_("Peering Policy"), blank=True)
+    policy_general: models.CharField = models.CharField(
         _("General Policy"),
         max_length=72,
         blank=True,
         choices=const.POLICY_GENERAL,
         help_text=const.POLICY_GENERAL_HELP_TEXT,
     )
-    policy_locations = models.CharField(
+    policy_locations: models.CharField = models.CharField(
         _("Multiple Locations"),
         max_length=72,
         blank=True,
         choices=const.POLICY_LOCATIONS,
     )
-    policy_ratio = models.BooleanField(_("Ratio Requirement"), default=False)
-    policy_contracts = models.CharField(
+    policy_ratio: models.BooleanField = models.BooleanField(
+        _("Ratio Requirement"), default=False
+    )
+    policy_contracts: models.CharField = models.CharField(
         _("Contract Requirement"),
         max_length=36,
         blank=True,
         choices=const.POLICY_CONTRACTS,
     )
 
-    status_dashboard = URLField(_("Status Dashboard"), null=True, blank=True)
+    status_dashboard: URLField = URLField(_("Status Dashboard"), null=True, blank=True)
 
-    rir_status = models.CharField(
+    rir_status: models.CharField = models.CharField(
         _("RIR status"),
         null=True,
         default=None,
         max_length=255,
     )
-    rir_status_updated = models.DateTimeField(
+    rir_status_updated: models.DateTimeField = models.DateTimeField(
         _("RIR status updated"), blank=True, null=True
     )
 
@@ -320,51 +356,71 @@ class NetworkBase(HandleRefModel):
 
 
 class InternetExchangeBase(HandleRefModel):
-    name = models.CharField(_("Name"), max_length=64, unique=True)
+    name: models.CharField = models.CharField(_("Name"), max_length=64, unique=True)
 
-    aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
-    name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
+    aka: models.CharField = models.CharField(
+        _("Also Known As"), max_length=255, blank=True
+    )
+    name_long: models.CharField = models.CharField(
+        _("Long Name"), max_length=255, blank=True
+    )
 
-    city = models.CharField(_("City"), max_length=192)
-    country = CountryField(_("Country"))
+    city: models.CharField = models.CharField(_("City"), max_length=192)
+    country: CountryField = CountryField(_("Country"))
 
-    notes = models.TextField(_("Notes"), blank=True)
+    notes: models.TextField = models.TextField(_("Notes"), blank=True)
 
-    region_continent = models.CharField(
+    region_continent: models.CharField = models.CharField(
         _("Continental Region"), max_length=255, choices=const.REGIONS
     )
-    media = models.CharField(
+    media: models.CharField = models.CharField(
         _("Media Type"), max_length=128, choices=const.MEDIA, default="Ethernet"
     )
-    proto_unicast = models.BooleanField(_("Unicast IPv4"), default=False)
-    proto_multicast = models.BooleanField(_("Multicast"), default=False)
-    proto_ipv6 = models.BooleanField(_("Unicast IPv6"), default=False)
+    proto_unicast: models.BooleanField = models.BooleanField(
+        _("Unicast IPv4"), default=False
+    )
+    proto_multicast: models.BooleanField = models.BooleanField(
+        _("Multicast"), default=False
+    )
+    proto_ipv6: models.BooleanField = models.BooleanField(
+        _("Unicast IPv6"), default=False
+    )
 
-    website = URLField(_("Company Website"), blank=True, default="")
+    website: URLField = URLField(_("Company Website"), blank=True, default="")
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
-    url_stats = URLField(_("Traffic Stats Website"), blank=True)
+    url_stats: URLField = URLField(_("Traffic Stats Website"), blank=True)
 
-    tech_email = models.EmailField(_("Technical Email"), max_length=254, blank=True)
-    tech_phone = models.CharField(
+    tech_email: models.EmailField = models.EmailField(
+        _("Technical Email"), max_length=254, blank=True
+    )
+    tech_phone: models.CharField = models.CharField(
         _("Technical Phone"),
         max_length=192,
         blank=True,
         help_text=const.PHONE_HELP_TEXT,
     )
-    policy_email = models.EmailField(_("Policy Email"), max_length=254, blank=True)
-    policy_phone = models.CharField(
+    policy_email: models.EmailField = models.EmailField(
+        _("Policy Email"), max_length=254, blank=True
+    )
+    policy_phone: models.CharField = models.CharField(
         _("Policy Phone"), max_length=192, blank=True, help_text=const.PHONE_HELP_TEXT
     )
 
-    sales_email = models.EmailField(_("Sales Email"), max_length=254, blank=True)
-    sales_phone = models.CharField(
+    sales_email: models.EmailField = models.EmailField(
+        _("Sales Email"), max_length=254, blank=True
+    )
+    sales_phone: models.CharField = models.CharField(
         _("Sales Phone"), max_length=192, blank=True, help_text=const.PHONE_HELP_TEXT
     )
 
-    ixf_net_count = models.IntegerField(_("IX-F Network Count"), default=0)
-    ixf_last_import = models.DateTimeField(_("IX-F Last Import"), null=True, blank=True)
+    ixf_net_count: models.IntegerField = models.IntegerField(
+        _("IX-F Network Count"), default=0
+    )
+    ixf_last_import: models.DateTimeField = models.DateTimeField(
+        _("IX-F Last Import"), null=True, blank=True
+    )
 
-    service_level = models.CharField(
+    service_level: models.CharField = models.CharField(
         _("Service Level"),
         max_length=60,
         blank=True,
@@ -372,7 +428,7 @@ class InternetExchangeBase(HandleRefModel):
         default="Not Disclosed",
     )
 
-    terms = models.CharField(
+    terms: models.CharField = models.CharField(
         _("Terms"),
         max_length=60,
         blank=True,
@@ -380,7 +436,7 @@ class InternetExchangeBase(HandleRefModel):
         default="Not Disclosed",
     )
 
-    status_dashboard = URLField(_("Status Dashboard"), null=True, blank=True)
+    status_dashboard: URLField = URLField(_("Status Dashboard"), null=True, blank=True)
 
     class Meta:
         abstract = True
@@ -408,22 +464,26 @@ class InternetExchangeFacilityBase(HandleRefModel):
 
 
 class IXLanBase(HandleRefModel):
-    name = models.CharField(_("Name"), max_length=255, blank=True)
-    descr = models.TextField(_("Description"), blank=True)
-    mtu = models.PositiveIntegerField("MTU", default=1500, choices=const.MTUS)
-    vlan = models.PositiveIntegerField("VLAN", null=True, blank=True)
-    dot1q_support = models.BooleanField("802.1Q", default=False)
-    rs_asn = ASNField(
+    name: models.CharField = models.CharField(_("Name"), max_length=255, blank=True)
+    descr: models.TextField = models.TextField(_("Description"), blank=True)
+    mtu: models.PositiveIntegerField = models.PositiveIntegerField(
+        "MTU", default=1500, choices=const.MTUS
+    )
+    vlan: models.PositiveIntegerField = models.PositiveIntegerField(
+        "VLAN", null=True, blank=True
+    )
+    dot1q_support: models.BooleanField = models.BooleanField("802.1Q", default=False)
+    rs_asn: ASNField = ASNField(
         verbose_name=_("Route Server ASN"), null=True, blank=True, default=0
     )
-    arp_sponge = MacAddressField(
+    arp_sponge: MacAddressField = MacAddressField(
         verbose_name=_("ARP sponging MAC"), null=True, unique=True, blank=True
     )
 
-    ixf_ixp_member_list_url = models.URLField(
+    ixf_ixp_member_list_url: models.URLField = models.URLField(
         verbose_name=_("IX-F Member Export URL"), null=True, blank=True
     )
-    ixf_ixp_member_list_url_visible = models.CharField(
+    ixf_ixp_member_list_url_visible: models.CharField = models.CharField(
         verbose_name=_("IX-F Member Export URL Visibility"),
         max_length=64,
         choices=const.VISIBILITY,
@@ -442,10 +502,12 @@ class IXLanBase(HandleRefModel):
 
 
 class IXLanPrefixBase(HandleRefModel):
-    notes = models.CharField(_("Notes"), max_length=255, blank=True)
-    protocol = models.CharField(_("Protocol"), max_length=64, choices=const.PROTOCOLS)
-    prefix = IPPrefixField(verbose_name=_("Prefix"), unique=True)
-    in_dfz = models.BooleanField(default=False)
+    notes: models.CharField = models.CharField(_("Notes"), max_length=255, blank=True)
+    protocol: models.CharField = models.CharField(
+        _("Protocol"), max_length=64, choices=const.PROTOCOLS
+    )
+    prefix: IPPrefixField = IPPrefixField(verbose_name=_("Prefix"), unique=True)
+    in_dfz: models.BooleanField = models.BooleanField(default=False)
 
     class Meta:
         abstract = True
@@ -458,9 +520,9 @@ class IXLanPrefixBase(HandleRefModel):
 
 
 class NetworkFacilityBase(HandleRefModel):
-    avail_sonet = models.BooleanField("SONET", default=False)
-    avail_ethernet = models.BooleanField("Ethernet", default=False)
-    avail_atm = models.BooleanField("ATM", default=False)
+    avail_sonet: models.BooleanField = models.BooleanField("SONET", default=False)
+    avail_ethernet: models.BooleanField = models.BooleanField("Ethernet", default=False)
+    avail_atm: models.BooleanField = models.BooleanField("ATM", default=False)
 
     class Meta:
         abstract = True
@@ -473,14 +535,24 @@ class NetworkFacilityBase(HandleRefModel):
 
 
 class NetworkIXLanBase(HandleRefModel):
-    asn = ASNField(verbose_name="ASN")
-    ipaddr4 = IPAddressField(verbose_name="IPv4", version=4, blank=True, null=True)
-    ipaddr6 = IPAddressField(verbose_name="IPv6", version=6, blank=True, null=True)
-    is_rs_peer = models.BooleanField(_("RS peer"), default=False)
-    bfd_support = models.BooleanField(_("BFD support"), default=False)
-    notes = models.CharField(_("Notes"), max_length=255, blank=True)
-    speed = models.PositiveIntegerField(_("Speed (mbit/sec)"))
-    operational = models.BooleanField(_("Operational"), default=True)
+    asn: ASNField = ASNField(verbose_name="ASN")
+    ipaddr4: IPAddressField = IPAddressField(
+        verbose_name="IPv4", version=4, blank=True, null=True
+    )
+    ipaddr6: IPAddressField = IPAddressField(
+        verbose_name="IPv6", version=6, blank=True, null=True
+    )
+    is_rs_peer: models.BooleanField = models.BooleanField(_("RS peer"), default=False)
+    bfd_support: models.BooleanField = models.BooleanField(
+        _("BFD support"), default=False
+    )
+    notes: models.CharField = models.CharField(_("Notes"), max_length=255, blank=True)
+    speed: models.PositiveIntegerField = models.PositiveIntegerField(
+        _("Speed (mbit/sec)")
+    )
+    operational: models.BooleanField = models.BooleanField(
+        _("Operational"), default=True
+    )
 
     class Meta:
         abstract = True
@@ -493,14 +565,18 @@ class NetworkIXLanBase(HandleRefModel):
 
 
 class CarrierBase(HandleRefModel):
-    name = models.CharField(_("Name"), max_length=255, unique=True)
+    name: models.CharField = models.CharField(_("Name"), max_length=255, unique=True)
 
-    aka = models.CharField(_("Also Known As"), max_length=255, blank=True)
-    name_long = models.CharField(_("Long Name"), max_length=255, blank=True)
+    aka: models.CharField = models.CharField(
+        _("Also Known As"), max_length=255, blank=True
+    )
+    name_long: models.CharField = models.CharField(
+        _("Long Name"), max_length=255, blank=True
+    )
 
-    website = URLField(_("Website"), blank=True, default="")
+    website: URLField = URLField(_("Website"), blank=True, default="")
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
-    notes = models.TextField(_("Notes"), blank=True)
+    notes: models.TextField = models.TextField(_("Notes"), blank=True)
 
     class Meta:
         abstract = True
@@ -528,14 +604,20 @@ class CarrierFacilityBase(HandleRefModel):
 
 
 class CampusBase(HandleRefModel):
-    name = models.CharField(_("Campus Name"), max_length=255, unique=True)
+    name: models.CharField = models.CharField(
+        _("Campus Name"), max_length=255, unique=True
+    )
 
-    name_long = models.CharField(_("Long Name"), max_length=255, blank=True, null=True)
-    aka = models.CharField(_("Also Known As"), max_length=255, blank=True, null=True)
+    name_long: models.CharField = models.CharField(
+        _("Long Name"), max_length=255, blank=True, null=True
+    )
+    aka: models.CharField = models.CharField(
+        _("Also Known As"), max_length=255, blank=True, null=True
+    )
 
-    website = URLField(_("Website"), blank=True, default="")
+    website: URLField = URLField(_("Website"), blank=True, default="")
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
-    notes = models.TextField(_("Notes"), blank=True)
+    notes: models.TextField = models.TextField(_("Notes"), blank=True)
 
     class Meta:
         abstract = True
