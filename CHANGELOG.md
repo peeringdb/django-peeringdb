@@ -2,6 +2,16 @@
 
 
 ## Unreleased
+### Added
+- additional social media services added
+- python 3.13 support
+- python 3.14 support
+
+### Fixed Issues
+- fixed django-peeringdb/#107: Dependency updates and modernization
+
+### Removed
+- python 3.9 support (end of life)
 
 
 ## 3.6.0

@@ -199,7 +199,7 @@ class Backend(Interface):
 
         assert isinstance(exc, IntegrityError)
         # for name, err in exc.error_dict.items():
-        for pattern, index in patterns.get("unique"):
+        for pattern, index in patterns.get("unique", []):
             m = re.search(pattern, str(exc.args[index]))
             if m:
                 return [m.groupdict()["field_name"]]
