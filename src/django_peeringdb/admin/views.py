@@ -17,7 +17,7 @@ from django_peeringdb.models import (
 class HandleRefAdminMixIn:
     """Dummy MixIn that just hides HandleRef's fields."""
 
-    exclude = ("status", "version")
+    exclude: tuple[str, ...] = ("status", "version")
 
 
 class ModelAdminBase(HandleRefAdminMixIn, admin.ModelAdmin):

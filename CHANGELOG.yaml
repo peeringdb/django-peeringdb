@@ -1,10 +1,14 @@
 Unreleased:
   added:
-    - additional social media services added
-  fixed: []
+  - additional social media services added
+  - python 3.13 support
+  - python 3.14 support
+  fixed:
+  - "Dependency updates and modernization (#107)"
   changed: []
   deprecated: []
-  removed: []
+  removed:
+  - python 3.9 support (end of life)
   security: []
 3.6.0:
   removed:
