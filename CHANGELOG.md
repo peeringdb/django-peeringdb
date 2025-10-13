@@ -2,13 +2,16 @@
 
 
 ## Unreleased
+
+
+## 3.7.0
 ### Added
 - additional social media services added
 - python 3.13 support
 - python 3.14 support
 - NetworkContact help text defintions
 ### Fixed
-- Dependency updates and modernization (#107)
+- django-peeringdb/#107 Dependency updates and modernization
 ### Removed
 - python 3.9 support (end of life)
 
