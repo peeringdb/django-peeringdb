@@ -3,6 +3,7 @@ Unreleased:
   - additional social media services added
   - python 3.13 support
   - python 3.14 support
+  - NetworkContact help text defintions
   fixed:
   - "Dependency updates and modernization (#107)"
   changed: []

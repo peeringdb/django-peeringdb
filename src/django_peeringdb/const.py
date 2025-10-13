@@ -12,6 +12,17 @@ POC_ROLES = (
     ("Sales", _("Sales")),
 )
 
+POC_ROLE_HELP_TEXT = {
+    "Abuse": _("The address to send abuse reports."),
+    "Maintenance": _("The address to send notice of maintenance events."),
+    "NOC": _("The address for the Network Operations Center."),
+    "Policy": _("The address to send peering requests."),
+    "Public Relations": _("The address to contact the Public Relations team."),
+    "Sales": _("The address to send sales questions."),
+    "Technical": _("The address to send other technical questions and requests."),
+}
+
+
 POLICY_GENERAL = (
     ("Open", _("Open")),
     ("Selective", _("Selective")),

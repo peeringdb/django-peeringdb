@@ -6,10 +6,9 @@
 - additional social media services added
 - python 3.13 support
 - python 3.14 support
-
-### Fixed Issues
-- fixed django-peeringdb/#107: Dependency updates and modernization
-
+- NetworkContact help text defintions
+### Fixed
+- Dependency updates and modernization (#107)
 ### Removed
 - python 3.9 support (end of life)
 
