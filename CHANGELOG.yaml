@@ -1,15 +1,19 @@
 Unreleased:
+  added: []
+  fixed: []
+  changed: []
+  deprecated: []
+  removed: []
+  security: []
+3.7.0:
   added:
   - additional social media services added
   - python 3.13 support
   - python 3.14 support
   fixed:
-  - "Dependency updates and modernization (#107)"
-  changed: []
-  deprecated: []
+  - Dependency updates and modernization (#107)
   removed:
   - python 3.9 support (end of life)
-  security: []
 3.6.0:
   removed:
   - '`NetworkFacility.local_asn` field'
