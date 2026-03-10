@@ -26,7 +26,7 @@ dependencies = [
   "django_handleref>=2",
   "django_inet>=1",
   "asgiref>=3",
-  "django>=4.2",
+  "django>=4.2,<6",
 ]
 
 [dependency-groups]
