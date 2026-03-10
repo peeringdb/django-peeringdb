@@ -1,5 +1,6 @@
 Unreleased:
-  added: []
+  added:
+  - '"No Power" option for facility available voltage services (#1884)'
   fixed: []
   changed: []
   deprecated: []

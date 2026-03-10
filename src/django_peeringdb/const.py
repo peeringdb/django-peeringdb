@@ -188,6 +188,7 @@ PROPERTY = (
 )
 
 AVAILABLE_VOLTAGE = (
+    ("No Power", _("No Power")),
     ("48 VDC", _("48 VDC")),
     ("400 VAC", _("400 VAC")),
     ("480 VAC", _("480 VAC")),

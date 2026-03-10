@@ -2,6 +2,8 @@
 
 
 ## Unreleased
+### Added
+- "No Power" option for facility available voltage services (#1884)
 
 
 ## 3.7.0
