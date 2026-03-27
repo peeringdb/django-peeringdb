@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.core.validators import URLValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -177,6 +178,18 @@ class FacilityBase(HandleRefModel, AddressModel):
     class HandleRef:
         tag = "fac"
         delete_cascade = ["ixfac_set", "netfac_set"]
+
+    def clean(self):
+        super().clean()
+        avs = self.available_voltage_services
+        if avs and "No Power" in avs and len(avs) > 1:
+            raise ValidationError(
+                {
+                    "available_voltage_services": _(
+                        '"No Power" is mutually exclusive with other voltage options.'
+                    )
+                }
+            )
 
     def __str__(self):
         return self.name
