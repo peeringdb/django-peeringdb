@@ -4,6 +4,8 @@
 ## Unreleased
 ### Added
 - "No Power" option for facility available voltage services (#1884)
+### Fixed
+- missing cascade delete relationships for carrier, campus and carrierfac during initial syncs (peeringdb-py/#91)
 
 
 ## 3.7.0

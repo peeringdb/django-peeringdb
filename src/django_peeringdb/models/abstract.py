@@ -86,7 +86,7 @@ class OrganizationBase(HandleRefModel, AddressModel):
 
     class HandleRef:
         tag = "org"
-        delete_cascade = ["net_set", "fac_set", "ix_set"]
+        delete_cascade = ["net_set", "fac_set", "ix_set", "carrier_set", "campus_set"]
 
     def __str__(self):
         return self.name
@@ -177,7 +177,7 @@ class FacilityBase(HandleRefModel, AddressModel):
 
     class HandleRef:
         tag = "fac"
-        delete_cascade = ["ixfac_set", "netfac_set"]
+        delete_cascade = ["ixfac_set", "netfac_set", "carrierfac_set"]
 
     def clean(self):
         super().clean()
