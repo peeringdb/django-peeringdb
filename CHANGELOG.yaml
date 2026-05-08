@@ -4,7 +4,8 @@ Unreleased:
   fixed:
   - missing cascade delete relationships for carrier, campus and carrierfac during
     initial syncs (peeringdb-py/#91)
-  changed: []
+  changed:
+  - '`NetworkIXLan.speed` verbose name updated to "Capacity (mbit/sec)" (#1888)'
   deprecated: []
   removed: []
   security: []

@@ -561,7 +561,7 @@ class NetworkIXLanBase(HandleRefModel):
     )
     notes: models.CharField = models.CharField(_("Notes"), max_length=255, blank=True)
     speed: models.PositiveIntegerField = models.PositiveIntegerField(
-        _("Speed (mbit/sec)")
+        _("Capacity (mbit/sec)")
     )
     operational: models.BooleanField = models.BooleanField(
         _("Operational"), default=True

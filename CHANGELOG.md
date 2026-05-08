@@ -4,6 +4,8 @@
 ## Unreleased
 ### Added
 - "No Power" option for facility available voltage services (#1884)
+### Changed
+- `NetworkIXLan.speed` verbose name updated to "Capacity (mbit/sec)" (#1888)
 ### Fixed
 - missing cascade delete relationships for carrier, campus and carrierfac during initial syncs (peeringdb-py/#91)
 
