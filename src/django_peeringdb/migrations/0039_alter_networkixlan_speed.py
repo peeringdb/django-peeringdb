@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('django_peeringdb', '0038_alter_facility_available_voltage_services'),
+        ("django_peeringdb", "0038_alter_facility_available_voltage_services"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='networkixlan',
-            name='speed',
-            field=models.PositiveIntegerField(verbose_name='Capacity (mbit/sec)'),
+            model_name="networkixlan",
+            name="speed",
+            field=models.PositiveIntegerField(verbose_name="Capacity (mbit/sec)"),
         ),
     ]
