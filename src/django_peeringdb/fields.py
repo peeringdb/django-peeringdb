@@ -1,3 +1,6 @@
+from collections.abc import Iterable
+from typing import cast
+
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -12,10 +15,10 @@ class MultipleChoiceField(models.CharField):
     multiple choice field.
     """
 
-    def cleaned_values(self, values):
+    def cleaned_values(self, values: Iterable[str]) -> list[str]:
         return [value.strip("{}' ") for value in values]
 
-    def clean_choices(self, values):
+    def clean_choices(self, values: Iterable[str]) -> None:
         for value in values:
             exists = False
             if self.choices:
@@ -27,7 +30,7 @@ class MultipleChoiceField(models.CharField):
                 if not exists:
                     raise ValidationError(_("Invalid value: {}").format(value))
 
-    def validate(self, value, model_instance):
+    def validate(self, value, model_instance) -> None:
         if not self.editable:
             # Skip validation for non-editable fields.
             return
@@ -40,7 +43,9 @@ class MultipleChoiceField(models.CharField):
         if not self.blank and value in self.empty_values:
             raise ValidationError(self.error_messages["blank"], code="blank")
 
-    def from_db_value(self, value, expression, connection):
+    def from_db_value(
+        self, value: str | None, expression, connection
+    ) -> list[str] | None:
         if value is None:
             return None
 
@@ -53,7 +58,7 @@ class MultipleChoiceField(models.CharField):
 
         return values
 
-    def get_prep_value(self, value):
+    def get_prep_value(self, value) -> str:
         if value is None:
             return ""
 
@@ -84,7 +89,7 @@ class MultipleChoiceField(models.CharField):
         defaults.update(**kwargs)
         return super().formfield(**defaults)
 
-    def value_to_string(self, obj):
-        values = self.value_from_object(obj)
+    def value_to_string(self, obj: models.Model) -> str:
+        values = cast("list[str]", self.value_from_object(obj))
         self.clean_choices(self.cleaned_values(values))
         return ",".join(values)

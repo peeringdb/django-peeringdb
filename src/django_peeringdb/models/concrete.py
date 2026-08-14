@@ -19,11 +19,11 @@ from django_peeringdb.models import (
     OrganizationBase,
 )
 
-all_models = []
-tag_dict = {}
+all_models: list[type[models.Model]] = []
+tag_dict: dict[str, type[models.Model]] = {}
 
 
-def expose_model(cls):
+def expose_model(cls: type[models.Model]) -> type[models.Model]:
     all_models.append(cls)
     tag_dict[cls._handleref.tag] = cls
     return cls

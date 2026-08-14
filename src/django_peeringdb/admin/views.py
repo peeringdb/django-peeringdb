@@ -1,4 +1,9 @@
+from typing import ClassVar
+
 from django.contrib import admin
+from django.contrib.admin.options import InlineModelAdmin
+from django.db.models import Model
+from django.http import HttpRequest
 
 from django_peeringdb.models import (
     Facility,
@@ -21,7 +26,9 @@ class HandleRefAdminMixIn:
 
 
 class ModelAdminBase(HandleRefAdminMixIn, admin.ModelAdmin):
-    def has_change_permission(self, request, obj=None):
+    def has_change_permission(
+        self, request: HttpRequest, obj: Model | None = None
+    ) -> bool:
         """Make everything read-only, as this is PeeringDB's data."""
         return False
 
@@ -37,7 +44,7 @@ class NetworkInline(HandleRefAdminMixIn, admin.TabularInline):
 class OrganizationAdmin(ModelAdminBase):
     search_fields = ("name",)
     list_display = ("name", "website")
-    inlines = [
+    inlines: ClassVar[list[type[InlineModelAdmin]]] = [
         NetworkInline,
     ]
 
@@ -66,7 +73,7 @@ class NetworkIXLanInline(HandleRefAdminMixIn, admin.TabularInline):
 class NetworkAdmin(ModelAdminBase):
     search_fields = ("name", "aka", "asn")
     list_display = ("name", "aka", "asn")
-    inlines = [
+    inlines: ClassVar[list[type[InlineModelAdmin]]] = [
         NetworkFacilityInline,
         NetworkContactInline,
         NetworkIXLanInline,
@@ -90,7 +97,7 @@ class InternetExchangeAdmin(ModelAdminBase):
         "name_long",
     )
     list_display = ("name", "name_long", "city")
-    inlines = [
+    inlines: ClassVar[list[type[InlineModelAdmin]]] = [
         InternetExchangeFacilityInline,
         IXLanInline,
     ]
@@ -105,6 +112,6 @@ class IXLanPrefixInline(HandleRefAdminMixIn, admin.StackedInline):
 class IXLanAdmin(ModelAdminBase):
     search_fields = ("name", "ix__name")
     list_display = ("__str__", "ix")
-    inlines = [
+    inlines: ClassVar[list[type[InlineModelAdmin]]] = [
         IXLanPrefixInline,
     ]

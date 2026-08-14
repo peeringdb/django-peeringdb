@@ -5,6 +5,7 @@ import re
 from collections import defaultdict
 from decimal import Decimal
 from ipaddress import IPv4Address, IPv6Address
+from typing import ClassVar
 
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.management import call_command
@@ -29,7 +30,7 @@ class Backend(Interface):
     )
 
     # Resource (abstract) and model (concrete) definitions
-    RESOURCE_MAP = {
+    RESOURCE_MAP: ClassVar[dict[type, type]] = {
         resource.Carrier: concrete.Carrier,
         resource.CarrierFacility: concrete.CarrierFacility,
         resource.Facility: concrete.Facility,
@@ -45,7 +46,7 @@ class Backend(Interface):
         resource.Campus: concrete.Campus,
     }
 
-    ERROR_PATTERNS = {
+    ERROR_PATTERNS: ClassVar[dict[str, dict[str, list[tuple[str, int]]]]] = {
         "mysql": {
             "unique": [(r"Duplicate entry '[^\']+' for key '(?P<field_name>\w+)'", 1)],
         },
@@ -58,7 +59,7 @@ class Backend(Interface):
     }
 
     @classmethod
-    def setup(cls):
+    def setup(cls) -> None:
         # in order to copy updated / created times from server
         # we need to turn off auto updating of those fields
         # during update and add
@@ -73,17 +74,17 @@ class Backend(Interface):
         return atomic_transaction()
 
     @classmethod
-    def validation_error(cls, concrete=None):
+    def validation_error(cls, concrete=None) -> type[ValidationError]:
         return ValidationError
 
     @classmethod
-    def object_missing_error(cls, concrete=None):
+    def object_missing_error(cls, concrete=None) -> type[ObjectDoesNotExist]:
         if concrete:
             return concrete.DoesNotExist
         return ObjectDoesNotExist
 
     @reftag_to_cls
-    def last_change(self, concrete):
+    def last_change(self, concrete) -> int:
         upd = concrete.handleref.last_change()
         if upd:
             return int(calendar.timegm(upd.timetuple()))
@@ -94,7 +95,7 @@ class Backend(Interface):
         return concrete.objects.get(pk=id)
 
     @reftag_to_cls
-    def get_object_by(self, concrete, field_name, value):
+    def get_object_by(self, concrete, field_name: str, value):
         return concrete.objects.get(**{field_name: value})
 
     @reftag_to_cls
@@ -104,7 +105,7 @@ class Backend(Interface):
         return concrete.objects.all()
 
     @reftag_to_cls
-    def get_objects_by(self, concrete, field_name, value):
+    def get_objects_by(self, concrete, field_name: str, value):
         return concrete.objects.filter(**{field_name: value})
 
     @reftag_to_cls
@@ -116,21 +117,23 @@ class Backend(Interface):
         return concrete._meta.get_fields()
 
     @reftag_to_cls
-    def get_field(self, concrete, field_name):
+    def get_field(self, concrete, field_name: str):
         return concrete._meta.get_field(field_name)
 
     @reftag_to_cls
-    def get_field_concrete(self, concrete, field_name):
+    def get_field_concrete(self, concrete, field_name: str):
         return concrete._meta.get_field(field_name).related_model
 
     @reftag_to_cls
-    def is_field_related(self, concrete, field_name):
+    def is_field_related(self, concrete, field_name: str):
         field = self.get_field(concrete, field_name)
         related = getattr(field, "related_model", False)
         multiple = getattr(field, "multiple", False)
         return (related, multiple)
 
-    def set_relation_many_to_many(self, obj, field_name, objs):
+    def set_relation_many_to_many(
+        self, obj: models.Model, field_name: str, objs
+    ) -> None:
         "Set a many-to-many field on an object"
         relation = getattr(obj, field_name)
         if hasattr(relation, "set"):
@@ -138,13 +141,13 @@ class Backend(Interface):
         else:
             setattr(obj, field_name, objs)  # Django 1.x
 
-    def clean(self, obj):
+    def clean(self, obj: models.Model) -> None:
         obj.full_clean()
 
-    def save(self, obj):
+    def save(self, obj: models.Model) -> None:
         obj.save()
 
-    def convert_field(self, concrete, field_name, value):
+    def convert_field(self, concrete, field_name: str, value):
         field = concrete._meta.get_field(field_name)
         if isinstance(field, models.DecimalField) and isinstance(value, float):
             return Decimal("{:.{prec}f}".format(value, prec=field.decimal_places))
@@ -176,14 +179,14 @@ class Backend(Interface):
                 missing[res].add(int(m_choice.group(1)))
         return missing
 
-    def detect_uniqueness_error(self, exc):
+    def detect_uniqueness_error(self, exc: Exception) -> list[str] | None:
         """
         Parse error, and if it describes any violations of a uniqueness constraint,
         return the corresponding fields, else None
         """
         pattern = r"(\w+) with this (\w+) already exists"
 
-        fields = []
+        fields: list[str] = []
         if isinstance(exc, IntegrityError):
             return self._detect_integrity_error(exc)
         assert isinstance(exc, ValidationError), TypeError
@@ -193,7 +196,7 @@ class Backend(Interface):
                 fields.append(name)
         return fields or None
 
-    def _detect_integrity_error(self, exc):
+    def _detect_integrity_error(self, exc: IntegrityError) -> list[str] | None:
         engine = connection.vendor
         patterns = self.ERROR_PATTERNS[engine]
 
@@ -206,11 +209,11 @@ class Backend(Interface):
         return None
 
     # Database
-    def migrate_database(self, verbosity=0):
+    def migrate_database(self, verbosity: int = 0) -> None:
         call_command("migrate", interactive=False, verbosity=verbosity)
 
     # credit to https://stackoverflow.com/a/31847406/1325447
-    def is_database_migrated(self, database=DEFAULT_DB_ALIAS):
+    def is_database_migrated(self, database: str = DEFAULT_DB_ALIAS) -> bool:
         connection = connections[database]
         connection.prepare_database()
         executor = MigrationExecutor(connection)
@@ -218,5 +221,5 @@ class Backend(Interface):
         # No plan <=> Yes sync'd
         return not executor.migration_plan(targets)
 
-    def delete_all(self):
+    def delete_all(self) -> None:
         call_command("flush", interactive=False, verbosity=1)
