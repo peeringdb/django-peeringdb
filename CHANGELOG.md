@@ -8,6 +8,10 @@
 - `NetworkIXLan.speed` verbose name updated to "Capacity (mbit/sec)" (#1888)
 ### Fixed
 - missing cascade delete relationships for carrier, campus and carrierfac during initial syncs (peeringdb-py/#91)
+- django-peeringdb/#136 Dependency updates and modernization
+### Removed
+- python 3.10 support (end of life)
+- django 4.2 support (end of life)
 
 
 ## 3.7.0

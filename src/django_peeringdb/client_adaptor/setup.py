@@ -1,3 +1,5 @@
+from types import ModuleType
+
 from django import setup
 from django.conf import global_settings, settings
 
@@ -8,16 +10,16 @@ from django_peeringdb import default_settings
 # everything from global_settings and django_peeringdb's defaults.
 # https://docs.djangoproject.com/en/dev/topics/settings/#custom-default-settings
 class _Settings:
-    def __init__(self):
+    def __init__(self) -> None:
         self.__dict__ = {}
 
-    def update(self, new):
+    def update(self, new: ModuleType) -> None:
         for name in dir(new):
             if name.isupper():
                 self.__dict__[name] = getattr(new, name)
 
 
-def configure(**kwargs):
+def configure(**kwargs: object) -> None:
     if settings.configured:
         return
 

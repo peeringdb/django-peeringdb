@@ -1,3 +1,6 @@
+from types import ModuleType
+from typing import cast
+
 DJANGO_DB_FIELDS = (
     "ENGINE",
     "NAME",
@@ -9,31 +12,33 @@ DJANGO_DB_FIELDS = (
 )
 
 
-def database_settings(db_config):
-    db = {}
+def database_settings(db_config: dict[str, object]) -> dict[str, object]:
+    db: dict[str, object] = {}
     for k, v in list(db_config.items()):
         k = k.upper()
         if k in DJANGO_DB_FIELDS:
             db[k] = v
 
-    db["ENGINE"] = "django.db.backends." + db["ENGINE"]
+    db["ENGINE"] = "django.db.backends." + cast(str, db["ENGINE"])
     return db
 
 
 __backend = None
 
 
-def load_backend(**orm_config):
+def load_backend(**orm_config: object) -> ModuleType:
     """
     Load the client adaptor module of django_peeringdb
     Assumes config is valid.
     """
-    settings = {}
+    settings: dict[str, object] = {}
     settings["SECRET_KEY"] = orm_config.get("secret_key", "")
 
     db_config = orm_config["database"]
     if db_config:
-        settings["DATABASES"] = {"default": database_settings(db_config)}
+        settings["DATABASES"] = {
+            "default": database_settings(cast("dict[str, object]", db_config))
+        }
 
     from django_peeringdb.client_adaptor.setup import configure
 

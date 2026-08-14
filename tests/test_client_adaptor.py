@@ -9,15 +9,14 @@ import pytest
 from django.db import IntegrityError
 from django.db.transaction import atomic as atomic_transaction
 
-import django_peeringdb.models as models
-
 # import order is important here, linters will complain
 # about the backend import not being on top of the file
 # TODO: find better way to handle this
 import tests.peeringdb_mock  # noqa
+from django_peeringdb import models
 from django_peeringdb.client_adaptor.load import database_settings
 
-sys.modules["peeringdb"] = sys.modules["tests.peeringdb_mock"]  # noqa
+sys.modules["peeringdb"] = sys.modules["tests.peeringdb_mock"]
 from django_peeringdb.client_adaptor.backend import Backend  # noqa
 
 
@@ -172,7 +171,7 @@ def test_get_objects(db):
     backend = Backend()
     now = datetime.datetime.now()
     orgs = []
-    for i in range(0, 4):
+    for i in range(4):
         orgs.append(
             models.Organization.objects.create(
                 name=f"Test org {i}", created=now, updated=now
@@ -195,7 +194,7 @@ def test_get_objects_by(db):
     backend = Backend()
     now = datetime.datetime.now()
     orgs = []
-    for i in range(0, 4):
+    for i in range(4):
         orgs.append(
             models.Organization.objects.create(
                 name=f"Test org {i}", created=now, updated=now

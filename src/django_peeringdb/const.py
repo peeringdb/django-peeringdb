@@ -127,7 +127,8 @@ _NET_TYPES = (
 NET_TYPES = (
     ("", _("Not Disclosed")),
     ("Not Disclosed", _("Not Disclosed")),
-) + _NET_TYPES
+    *_NET_TYPES,
+)
 
 NET_TYPES_MULTI_CHOICE = _NET_TYPES
 
