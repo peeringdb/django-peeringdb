@@ -7,6 +7,7 @@ Unreleased:
   - django-peeringdb/#136 Dependency updates and modernization
   changed:
   - '`NetworkIXLan.speed` verbose name updated to "Capacity (mbit/sec)" (#1888)'
+  - '`Network.irr_as_set` label and help text no longer mention route-sets (#1973)'
   deprecated: []
   removed:
   - python 3.10 support (end of life)
