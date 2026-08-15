@@ -251,12 +251,10 @@ class NetworkBase(HandleRefModel):
     )
 
     irr_as_set: models.CharField = models.CharField(
-        _("IRR as-set/route-set"),
+        _("IRR as-set"),
         max_length=255,
         blank=True,
-        help_text=_(
-            "Reference to an AS-SET or ROUTE-SET in Internet Routing Registry (IRR)"
-        ),
+        help_text=_("Reference to an AS-SET in Internet Routing Registry (IRR)"),
     )
     website: URLField = URLField(_("Website"), blank=True)
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
