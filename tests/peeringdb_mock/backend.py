@@ -1,5 +1,7 @@
 # mock backend classes from peeringdb-py client
 
+from typing import ClassVar
+
 from django_peeringdb.models import all_models
 
 
@@ -13,7 +15,7 @@ class Resource:
 
 
 class Interface:
-    REFTAG_RESOURCE = {
+    REFTAG_RESOURCE: ClassVar[dict[str, Resource]] = {
         model.HandleRef.tag: Resource(model.HandleRef.tag) for model in all_models
     }
 

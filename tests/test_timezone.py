@@ -1,4 +1,4 @@
-from datetime import timezone
+from datetime import UTC
 
 from django.test import TestCase
 from django.utils.dateparse import parse_datetime
@@ -37,7 +37,7 @@ class TimeZoneTests(TestCase):
         assert aware.minute == 34
         assert aware.utcoffset().seconds == 0
 
-        naive = make_naive(aware, timezone=timezone.utc)
+        naive = make_naive(aware, timezone=UTC)
 
         assert naive.year == 2020
         assert naive.month == 2

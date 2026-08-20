@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+from collections.abc import Callable
+from typing import Any, ClassVar
+
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import URLValidator
@@ -14,7 +17,9 @@ from django_peeringdb.fields import MultipleChoiceField
 
 
 class LG_URLField(models.URLField):
-    default_validators = [URLValidator(schemes=["http", "https", "telnet", "ssh"])]
+    default_validators: ClassVar[list[Callable[[Any], None]]] = [
+        URLValidator(schemes=["http", "https", "telnet", "ssh"])
+    ]
 
     def __init__(self, *args, **kwargs):
         kwargs["max_length"] = 255
@@ -22,7 +27,9 @@ class LG_URLField(models.URLField):
 
 
 class URLField(models.URLField):
-    default_validators = [URLValidator(schemes=["http", "https"])]
+    default_validators: ClassVar[list[Callable[[Any], None]]] = [
+        URLValidator(schemes=["http", "https"])
+    ]
 
     def __init__(self, *args, **kwargs):
         kwargs["max_length"] = 255
@@ -86,7 +93,13 @@ class OrganizationBase(HandleRefModel, AddressModel):
 
     class HandleRef:
         tag = "org"
-        delete_cascade = ["net_set", "fac_set", "ix_set", "carrier_set", "campus_set"]
+        delete_cascade: ClassVar[list[str]] = [
+            "net_set",
+            "fac_set",
+            "ix_set",
+            "carrier_set",
+            "campus_set",
+        ]
 
     def __str__(self):
         return self.name
@@ -177,7 +190,11 @@ class FacilityBase(HandleRefModel, AddressModel):
 
     class HandleRef:
         tag = "fac"
-        delete_cascade = ["ixfac_set", "netfac_set", "carrierfac_set"]
+        delete_cascade: ClassVar[list[str]] = [
+            "ixfac_set",
+            "netfac_set",
+            "carrierfac_set",
+        ]
 
     def clean(self):
         super().clean()
@@ -234,12 +251,10 @@ class NetworkBase(HandleRefModel):
     )
 
     irr_as_set: models.CharField = models.CharField(
-        _("IRR as-set/route-set"),
+        _("IRR as-set"),
         max_length=255,
         blank=True,
-        help_text=_(
-            "Reference to an AS-SET or ROUTE-SET in Internet Routing Registry (IRR)"
-        ),
+        help_text=_("Reference to an AS-SET in Internet Routing Registry (IRR)"),
     )
     website: URLField = URLField(_("Website"), blank=True)
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
@@ -362,7 +377,7 @@ class NetworkBase(HandleRefModel):
 
     class HandleRef:
         tag = "net"
-        delete_cascade = ["poc_set", "netfac_set", "netixlan_set"]
+        delete_cascade: ClassVar[list[str]] = ["poc_set", "netfac_set", "netixlan_set"]
 
     def __str__(self):
         return self.name
@@ -459,7 +474,7 @@ class InternetExchangeBase(HandleRefModel):
 
     class HandleRef:
         tag = "ix"
-        delete_cascade = ["ixfac_set", "ixlan_set"]
+        delete_cascade: ClassVar[list[str]] = ["ixfac_set", "ixlan_set"]
 
     def __str__(self):
         return self.name
@@ -511,7 +526,7 @@ class IXLanBase(HandleRefModel):
 
     class HandleRef:
         tag = "ixlan"
-        delete_cascade = ["ixpfx_set", "netixlan_set"]
+        delete_cascade: ClassVar[list[str]] = ["ixpfx_set", "netixlan_set"]
 
 
 class IXLanPrefixBase(HandleRefModel):
@@ -599,7 +614,7 @@ class CarrierBase(HandleRefModel):
 
     class HandleRef:
         tag = "carrier"
-        delete_cascade = ["carrierfac_set"]
+        delete_cascade: ClassVar[list[str]] = ["carrierfac_set"]
 
     def __str__(self):
         return self.name
