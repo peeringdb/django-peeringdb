@@ -1,6 +1,12 @@
 Unreleased:
   added:
   - '"No Power" option for facility available voltage services (#1884)'
+  - '`meta` metadata field on `Network` and `NetworkIXLan` (#1751)'
+  - 'netixlan `status` value `not-operational`; existing `operational=False` rows
+    are migrated from the boolean. Local queries filtering on `status="ok"` stop
+    returning non-operational connections once the migration has run -- use
+    `status__in=["ok", "not-operational"]` to keep the previous result set
+    (#1742)'
   fixed:
   - missing cascade delete relationships for carrier, campus and carrierfac during
     initial syncs (peeringdb-py/#91)
@@ -8,7 +14,10 @@ Unreleased:
   changed:
   - '`NetworkIXLan.speed` verbose name updated to "Capacity (mbit/sec)" (#1888)'
   - '`Network.irr_as_set` label and help text no longer mention route-sets (#1973)'
-  deprecated: []
+  deprecated:
+  - 'writing `NetworkIXLan.operational` — it is derived from `status` and becomes
+    read-only at the API layer; the field will be dropped from the schema in a
+    later release (#1742)'
   removed:
   - python 3.10 support (end of life)
   - django 4.2 support (end of life)
