@@ -258,6 +258,7 @@ class NetworkBase(HandleRefModel):
     )
     website: URLField = URLField(_("Website"), blank=True)
     social_media = models.JSONField(_("Social Media"), default=dict, blank=True)
+    meta = models.JSONField(_("Metadata"), default=dict, blank=True)
     looking_glass: LG_URLField = LG_URLField(_("Looking Glass URL"), blank=True)
     route_server: LG_URLField = LG_URLField(_("Route Server URL"), blank=True)
 
@@ -581,6 +582,8 @@ class NetworkIXLanBase(HandleRefModel):
     operational: models.BooleanField = models.BooleanField(
         _("Operational"), default=True
     )
+
+    meta = models.JSONField(_("Metadata"), default=dict, blank=True)
 
     class Meta:
         abstract = True

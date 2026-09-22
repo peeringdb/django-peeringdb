@@ -35,3 +35,23 @@ peeringdb sync
 
 ## Common problems
 
+### `status="ok"` no longer returns every active connection
+
+A netixlan that is active but not currently passing traffic now carries
+`status="not-operational"` instead of `status="ok"` with `operational=False`
+(#1742). Once migration `0042` has run against your local database, queries
+that filter on `status="ok"` silently stop returning those connections.
+
+Filter on the full set of live statuses instead:
+
+```python
+NetworkIXLan.objects.filter(status__in=["ok", "not-operational"])
+```
+
+Soft-delete filtering needs no change: handleref's `undeleted()` excludes only
+`status="deleted"`, so it keeps returning non-operational connections. (Note
+that the default manager does not filter by status at all -- `undeleted()` is
+an explicit opt-in.) `status` is a plain `CharField` with no `choices`, so the
+new value needs no schema change on your side -- it does not want a choice
+list adding to it.
+
