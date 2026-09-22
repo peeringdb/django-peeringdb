@@ -149,6 +149,18 @@ PHONE_HELP_TEXT = _(
 
 INFO_TRAFFIC_HELP_TEXT = _("Total, self-classified traffic in/out to this network.")
 
+# shared across org / fac / net / ix / carrier / campus records
+
+AKA_HELP_TEXT = _("Other names this record is commonly known by")
+
+NAME_LONG_HELP_TEXT = _("Full or legal name, where it differs from the short name")
+
+NOTES_HELP_TEXT = _("Public notes, displayed on the record")
+
+SOCIAL_MEDIA_HELP_TEXT = _(
+    "Social media presence, as a list of service and identifier pairs"
+)
+
 WEBSITE_OVERRIDE_HELP_TEXT = _(
     "If this field is set, it will be displayed on this record. "
     "If not, we will display the website from the organization "

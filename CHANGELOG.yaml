@@ -12,6 +12,8 @@ Unreleased:
     initial syncs (peeringdb-py/#91)
   - django-peeringdb/#136 Dependency updates and modernization
   changed:
+  - 'Expanded model field help text for API semantics, including units, formats,
+    defaults and read-only behavior (peeringdb/peeringdb#1981)'
   - '`NetworkIXLan.speed` verbose name updated to "Capacity (mbit/sec)" (#1888)'
   - '`Network.irr_as_set` label and help text no longer mention route-sets (#1973)'
   deprecated:
